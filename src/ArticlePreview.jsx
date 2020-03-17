@@ -1,5 +1,10 @@
 import React from "react";
 import styles from "./css/ArticlePreview.module.css";
+import { Router, Link, navigate } from "@reach/router";
+import { voteOnArticle } from "./utils/patchUtils";
+import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
+
+let currentUser = "jessjelly"; //CHANGE THIS TO SOME VARIABLE FROM SOMEWHERE BUT WHERE?
 
 const lookup = [
   "Jan",
@@ -17,11 +22,7 @@ const lookup = [
 ];
 
 const ArticlePreview = props => {
-  const title = props.article.title;
-  const author = props.article.author;
-  const topic = props.article.topic;
-  //const body = props.article.body;
-  const created_at = props.article.created_at;
+  const { title, author, topic, created_at, article_id, votes } = props.article;
   const year = new Date(created_at).getFullYear();
   const month = new Date(created_at).getMonth();
   const day = new Date(created_at).getDate();
@@ -31,21 +32,24 @@ const ArticlePreview = props => {
 
   return (
     <div className={styles.containerGrid}>
-      
-      <div className={styles.centralContainer}>
-      <p className={styles.title}>{title}</p>
-      <p className={styles.author}>by {author}</p>
-      {/* <p className={styles.body}>{body.slice(0, 110)}...</p> */}
-      </div>
+      <Link
+        style={{ textDecoration: "none" }}
+        to={`/articles/${props.article.article_id}`}
+      >
+        <div className={styles.centralContainer}>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.author}>by {author}</p>
+        </div>
+      </Link>
+
       <div className={styles.leftHandSideContainer}>
-        <p className={styles.votes}>
-          <span role="img">⬆️</span>
-          <p className={styles.voteCount}>666</p>
-          <span role="img">⬇️</span>
-        </p>
-      
+        <VoteDisplayOnArticle
+          currentUser={currentUser}
+          article_id={article_id}
+          votes={votes}
+        />
       </div>
-      
+
       <div className={styles.rightHandSideContainer}>
         <p className={styles.topic}>{topic}</p>
         <p className={styles.comments}>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fetchArticlesUtil from "./utils/fetchArticlesUtil";
+import {fetchArticles} from "./utils/getUtils";
 import ArticlePreview from "./ArticlePreview";
 
 class Frontpage extends Component {
@@ -13,7 +13,7 @@ class Frontpage extends Component {
   };
 
   componentDidMount() {
-    fetchArticlesUtil(this.sneakyUpwardChange);
+    fetchArticles(this.sneakyUpwardChange);
   }
 
   render() {
@@ -22,7 +22,7 @@ class Frontpage extends Component {
         <p>
           {this.state.isLoading
             ? "loading..."
-            : this.state.articles.map(article => {
+            : this.state.articles.slice(0, 3).map(article => {
                 return <ArticlePreview article={article} />;
               })}
         </p>

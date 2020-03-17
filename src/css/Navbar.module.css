@@ -32,7 +32,21 @@
 
 button {
   border: rebeccapurple solid 1pt;
+  margin: 0%;
   margin-top: 2.5vh;
   width: 13vw;
   height: 30px;
+}
+
+.loggedInUser {
+  display: inline-block;
+  margin: 0%;
+  margin-top: 2.5vh;
+  margin-left: -10%;
+  width: 12vw;
+  height: 28px;
+  color: indigo;
+  font-size: 90%;
+  text-align: center;
+  padding: 1px 6px 1px 6px;
 }

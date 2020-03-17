@@ -26,12 +26,14 @@
   margin-bottom: 0%;
   grid-column: 2;
   grid-row: 1;
+  color: indigo;
   /* background-color: burlywood; */
 }
 
 .author {
   grid-column: 2;
   grid-row: 1;
+  color: indigo;
 }
 
 /* .body {
