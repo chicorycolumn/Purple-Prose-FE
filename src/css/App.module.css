@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  background-color: #e4daf0;
+  margin: auto 10px;
+  width: auto;
+  height: 2000px;
+  padding-top: 12vh;
+}
+
+.App-link {
+  color: #61dafb;
+}

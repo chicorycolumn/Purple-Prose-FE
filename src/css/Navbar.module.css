@@ -1,0 +1,38 @@
+.navGrid {
+  position: fixed;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 22% 48% 30%;
+  background-color: white;
+}
+
+.searchbarContainer {
+  grid-column: 2 / 3;
+}
+
+.searchBar {
+  height: 25px;
+  font-size: 12pt;
+  width: 35vw;
+  margin-top: 2.5vh;
+  padding-right: 20%;
+}
+
+.loginHolder {
+  grid-column: 3 / 3;
+  display: block;
+  text-align: right;
+  padding-right: 2vw;
+}
+
+.ncLogo {
+  background-color: yellow;
+  grid-column: 1 / 2;
+}
+
+button {
+  border: rebeccapurple solid 1pt;
+  margin-top: 2.5vh;
+  width: 13vw;
+  height: 30px;
+}
