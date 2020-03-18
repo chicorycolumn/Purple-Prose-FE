@@ -20,8 +20,6 @@ class SingleArticle extends React.Component {
   }
 
   render() {
-    console.log("***");
-    console.log(this.state.comments);
     const lookup = [
       "Jan",
       "Feb",
@@ -98,7 +96,7 @@ class SingleArticle extends React.Component {
                 <CommentGrid
                   comment={comment}
                   currentUser={currentUser}
-                  // article_id={...?}
+                  article_id={this.state.article.article_id}
                 />
               ))}
             </div>

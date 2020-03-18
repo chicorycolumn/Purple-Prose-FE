@@ -8,61 +8,61 @@ import styles from "./css/CommentGrid.module.css";
 //up arrow should be red or blue kinda thing.
 
 class VoteDisplayOnComment extends Component {
-  // state = { castedVote: 0 };
-  // handleVote = voteDirection => {
-  //   if (
-  //     this.props.currentUser !== null &&
-  //     this.props.currentUser !== undefined &&
-  //     this.props.currentUser !== ""
-  //   ) {
-  //     voteOnComment(
-  //       this.props.currentUser,
-  //       this.props.article_id,
-  //       voteDirection
-  //     );
-  //     let newCastedVote = this.state.castedVote;
-  //     // console.log("***", this.state.castedVote, newCastedVote, "***");
-  //     if (newCastedVote < 1 && voteDirection === 1) {
-  //       // console.log(this.state.castedVote, newCastedVote);
-  //       // console.log("gonna plus");
-  //       newCastedVote++;
-  //       // console.log(this.state.castedVote, newCastedVote);
-  //     } else if (newCastedVote > -1 && voteDirection === -1) {
-  //       // console.log(this.state.castedVote, newCastedVote);
-  //       // console.log("gonna minus");
-  //       newCastedVote--;
-  //       // console.log(this.state.castedVote, newCastedVote);
-  //     }
-  //     this.setState({ castedVote: newCastedVote });
-  //   } else {
-  //     alert("To vote on the latest news, log in or sign up!");
-  //   }
-  // };
-  // render() {
-  //   return (
-  //     <p className={styles.votes}>
-  //       <span
-  //         onClick={() => {
-  //           this.handleVote(1);
-  //         }}
-  //         role="img"
-  //       >
-  //         ⬆️
-  //       </span>
-  //       <p className={styles.voteCount}>
-  //         {this.state.castedVote + (this.props.votes || 0)}
-  //       </p>
-  //       <span
-  //         onClick={() => {
-  //           this.handleVote(-1);
-  //         }}
-  //         role="img"
-  //       >
-  //         ⬇️
-  //       </span>
-  //     </p>
-  //   );
-  // }
+  state = { castedVote: 0 };
+  handleVote = voteDirection => {
+    if (
+      this.props.currentUser !== null &&
+      this.props.currentUser !== undefined &&
+      this.props.currentUser !== ""
+    ) {
+      voteOnComment(
+        this.props.currentUser,
+        this.props.article_id,
+        voteDirection
+      );
+      let newCastedVote = this.state.castedVote;
+      // console.log("***", this.state.castedVote, newCastedVote, "***");
+      if (newCastedVote < 1 && voteDirection === 1) {
+        // console.log(this.state.castedVote, newCastedVote);
+        // console.log("gonna plus");
+        newCastedVote++;
+        // console.log(this.state.castedVote, newCastedVote);
+      } else if (newCastedVote > -1 && voteDirection === -1) {
+        // console.log(this.state.castedVote, newCastedVote);
+        // console.log("gonna minus");
+        newCastedVote--;
+        // console.log(this.state.castedVote, newCastedVote);
+      }
+      this.setState({ castedVote: newCastedVote });
+    } else {
+      alert("To vote on the latest news, log in or sign up!");
+    }
+  };
+  render() {
+    return (
+      <p className={styles.votes}>
+        <span
+          onClick={() => {
+            this.handleVote(1);
+          }}
+          role="img"
+        >
+          ⬆️
+        </span>
+        <p className={styles.voteCount}>
+          {this.state.castedVote + (this.props.votes || 0)}
+        </p>
+        <span
+          onClick={() => {
+            this.handleVote(-1);
+          }}
+          role="img"
+        >
+          ⬇️
+        </span>
+      </p>
+    );
+  }
 }
 
 export default VoteDisplayOnComment;

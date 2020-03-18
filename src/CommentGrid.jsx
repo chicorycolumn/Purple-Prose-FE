@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./css/CommentGrid.module.css";
 import { Router, Link, navigate } from "@reach/router";
 import { voteOnComment } from "./utils/patchUtils";
-// import VoteDisplayOnComment from "./VoteDisplayOnComment";
+import VoteDisplayOnComment from "./VoteDisplayOnComment";
 
 let currentUser = "jessjelly"; //CHANGE THIS TO SOME VARIABLE FROM SOMEWHERE BUT WHERE?
 
@@ -59,13 +59,13 @@ class CommentGrid extends React.Component {
           <p className={styles.bodyText}>{this.props.comment.body}</p>
         </div>
 
-        {/* <div className={styles.leftHandSideContainer}>
+        <div className={styles.leftHandSideContainer}>
           <VoteDisplayOnComment
             currentUser={currentUser}
-            //article_id={this.props.article_id} GET ACCESS TO THIS LATER!!
+            article_id={this.props.article_id}
             votes={this.props.comment.votes}
           />
-        </div> */}
+        </div>
       </div>
     );
   }
