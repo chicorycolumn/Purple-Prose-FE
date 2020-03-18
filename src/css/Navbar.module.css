@@ -6,11 +6,11 @@
   justify-content: space-between;
 }
 
-.leftContainer {
+/* .leftContainer {
   display: flex;
   width: 25%;
   justify-content: space-between;
-}
+} */
 
 .searchbarContainer {
   margin-left: 10vw;

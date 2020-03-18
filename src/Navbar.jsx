@@ -13,12 +13,12 @@ const Navbar = () => {
 
   return (
     <div className={styles.navGrid}>
-      <div className={styles.leftContainer}>
-        <Link to={"/"}>
-          {" "}
-          <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
-        </Link>
-      </div>
+      {/* <div className={styles.leftContainer}> */}
+      <Link to={"/"}>
+        {" "}
+        <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
+      </Link>
+      {/* </div> */}
       <div className={styles.searchbarContainer}>
         <input
           className={styles.searchBar}
