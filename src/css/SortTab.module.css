@@ -1,0 +1,93 @@
+.fullWidthBar {
+  background-color: rebeccapurple;
+  /* background-color: #cda4ff; */
+  position: fixed;
+  top: 72.5px;
+  width: 100%;
+  height: 21px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonLeftContainer {
+  margin-right: 2.5px;
+}
+
+.buttonLeft {
+  /* border: rebeccapurple solid 1pt; */
+  width: 60px;
+  background-color: white;
+  color: indigo;
+  font-weight: bold;
+  position: relative;
+  border: rebeccapurple solid 1pt;
+}
+
+.buttonRightContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: 12.5px;
+}
+
+.sortbar {
+  background-color: ghostwhite;
+  display: flex;
+  flex-direction: row;
+  margin-top: 0px;
+}
+
+.trigger {
+  position: fixed;
+  width: 70px;
+  background-color: white;
+  color: indigo;
+  font-weight: bold;
+  border: rebeccapurple solid 1pt;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 95px;
+}
+
+.buttons {
+  border: black solid 1pt;
+  /* display: inline-block; */
+  padding: 2.5px;
+  margin-top: -2.5%;
+  border-top: none;
+  width: 70px;
+}
+
+.button3 {
+  background-color: rgb(25, 156, 25);
+}
+
+.button1 {
+  background-color: rgb(0, 196, 0);
+}
+
+.button2 {
+  background-color: rgb(0, 172, 129);
+}
+
+.littleButtons {
+  position: fixed;
+  /* border: indigo solid 1pt; */
+  background-color: white;
+  color: rebeccapurple;
+  margin: 0%;
+  border: rebeccapurple solid 1pt;
+  height: 18px;
+  width: 20px;
+}
+
+.asc {
+  left: 82px;
+}
+
+.desc {
+  left: 105px;
+}

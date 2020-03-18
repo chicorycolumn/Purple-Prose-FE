@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { fetchArticles } from "./utils/getUtils";
 import ArticlePreview from "./ArticlePreview";
+import SortTab from "./SortTab";
 
 class Frontpage extends Component {
   state = {
@@ -19,11 +20,11 @@ class Frontpage extends Component {
   render() {
     return (
       <div>
+        <SortTab />
         <p>
           {this.state.isLoading
             ? "loading..."
-            : this.state.articles.slice(0, 3).map(article => {
-                // DELETE THIS SLICE!
+            : this.state.articles.map(article => {
                 return <ArticlePreview article={article} />;
               })}
         </p>

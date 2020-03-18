@@ -14,7 +14,6 @@ function App() {
       <div className={styles.App}>
         <header className="NC News"></header>
         <div>
-          Welcome to NC News
           <Router>
             <Frontpage path="/" />
             <SingleArticle path="/articles/:article_id" />

@@ -18,17 +18,6 @@ const Navbar = () => {
           {" "}
           <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
         </Link>
-        <div className={styles.buttonLeftContainer}>
-          <Link to={"/users"}>
-            <button className={styles.buttonLeft}>Users</button>
-          </Link>
-          <Link to={"/topics"}>
-            <button className={styles.buttonLeft}>Topics</button>
-          </Link>
-          <Link to={"/write"}>
-            <button className={styles.buttonLeft}>Write!</button>
-          </Link>
-        </div>
       </div>
       <div className={styles.searchbarContainer}>
         <input
