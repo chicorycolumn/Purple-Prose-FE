@@ -2,6 +2,21 @@ import React from "react";
 import axios from "axios";
 const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
 
+export const fetchArticleWithComments = (cb, article_id) => {
+  Promise.all([
+    axios.get(`${baseUrl}/articles/${article_id}`).then(res => res.data),
+
+    axios
+      .get(`${baseUrl}/articles/${article_id}/comments`)
+      .then(res => res.data)
+  ]).then(resArr => {
+    const articleData = resArr[0];
+    const commentData = resArr[1];
+    console.log(commentData["comments"]);
+    cb(articleData["article"], commentData["comments"]);
+  });
+};
+
 export const fetchArticles = (cb, qObj) => {
   let qString = "";
 
@@ -17,6 +32,15 @@ export const fetchArticles = (cb, qObj) => {
     .then(res => res.data)
     .then(data => {
       cb(data["articles"]);
+    });
+};
+
+export const fetchArticleByID = (cb, article_id) => {
+  axios
+    .get(`${baseUrl}/articles/${article_id}`)
+    .then(res => res.data)
+    .then(data => {
+      cb(data["article"]);
     });
 };
 

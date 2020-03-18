@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Users from "./Users";
 import Topics from "./Topics";
 import Frontpage from "./Frontpage";
+import SingleArticle from "./SingleArticle";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           Welcome to NC News
           <Router>
             <Frontpage path="/" />
+            <SingleArticle path="/articles/:article_id" />
             <Users path="/users/*" />
             <Topics path="/topics/*" />
           </Router>

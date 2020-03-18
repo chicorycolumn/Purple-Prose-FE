@@ -10,3 +10,13 @@ export const voteOnArticle = (voting_user, article_id, inc_votes) => {
     })
     .catch(e => console.log(e));
 };
+
+export const voteOnComment = (voting_user, article_id, inc_votes) => {
+  //THIS FXNTY IS ACTUALLY NOT UP IN THE BACKEND YET!
+  // axios
+  //   .patch(`${baseUrl}/articles/${article_id}`, {
+  //     inc_votes,
+  //     voting_user
+  //   })
+  //   .catch(e => console.log(e));
+};

@@ -22,7 +22,15 @@ const lookup = [
 ];
 
 const ArticlePreview = props => {
-  const { title, author, topic, created_at, article_id, votes } = props.article;
+  const {
+    comment_count,
+    title,
+    author,
+    topic,
+    created_at,
+    article_id,
+    votes
+  } = props.article;
   const year = new Date(created_at).getFullYear();
   const month = new Date(created_at).getMonth();
   const day = new Date(created_at).getDate();
@@ -54,7 +62,7 @@ const ArticlePreview = props => {
         <p className={styles.topic}>{topic}</p>
         <p className={styles.comments}>
           <span role="img">💬</span>
-          100
+          {` ${comment_count} `}
         </p>
         <p className={styles.created_at}>{formattedDate}</p>
       </div>

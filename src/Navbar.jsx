@@ -1,6 +1,7 @@
 import React from "react";
 import ncnewslogo from "./logoncnews.png";
 import styles from "./css/Navbar.module.css";
+import { Router, Link, navigate } from "@reach/router";
 
 const currentUser = "jessjelly";
 
@@ -12,11 +13,22 @@ const Navbar = () => {
 
   return (
     <div className={styles.navGrid}>
-      <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />
-      <div className={styles.buttonLeftContainer}>
-        <button className={styles.buttonLeft}>Users</button>
-        <button className={styles.buttonLeft}>Topics</button>
-        <button className={styles.buttonLeft}>Write!</button>
+      <div className={styles.leftContainer}>
+        <Link to={"/"}>
+          {" "}
+          <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
+        </Link>
+        <div className={styles.buttonLeftContainer}>
+          <Link to={"/users"}>
+            <button className={styles.buttonLeft}>Users</button>
+          </Link>
+          <Link to={"/topics"}>
+            <button className={styles.buttonLeft}>Topics</button>
+          </Link>
+          <Link to={"/write"}>
+            <button className={styles.buttonLeft}>Write!</button>
+          </Link>
+        </div>
       </div>
       <div className={styles.searchbarContainer}>
         <input

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {fetchArticles} from "./utils/getUtils";
+import { fetchArticles } from "./utils/getUtils";
 import ArticlePreview from "./ArticlePreview";
 
 class Frontpage extends Component {
@@ -23,6 +23,7 @@ class Frontpage extends Component {
           {this.state.isLoading
             ? "loading..."
             : this.state.articles.slice(0, 3).map(article => {
+                // DELETE THIS SLICE!
                 return <ArticlePreview article={article} />;
               })}
         </p>

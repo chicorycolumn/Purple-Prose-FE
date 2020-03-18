@@ -1,34 +1,45 @@
 .navGrid {
   position: fixed;
   width: 100%;
-  display: grid;
-  grid-template-columns: 11% 11% 48% 30%;
+  display: flex;
   background-color: white;
+  justify-content: space-between;
+}
+
+.leftContainer {
+  display: flex;
+  width: 25%;
+  justify-content: space-between;
 }
 
 .searchbarContainer {
-  grid-column: 3 / 4;
+  margin-left: 10vw;
+}
+
+.loginHolder {
+  /* grid-column: 4;
+  display: block; */
+  text-align: right;
+  padding-right: 2vw;
 }
 
 .searchBar {
   height: 25px;
   font-size: 12pt;
-  width: 20vw;
+  width: 25vw;
   margin-top: 2.5vh;
-  padding-right: 20%;
+  margin-left: 5px;
 }
 
-.loginHolder {
-  grid-column: 4;
-  display: block;
-  text-align: right;
-  padding-right: 2vw;
+.buttonLeftContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: -2%;
 }
 
 .ncLogo {
   background-color: yellow;
-  grid-column: 1;
-  margin-left: -10%;
+  margin-left: -1%;
 }
 
 .buttonRight {
@@ -39,24 +50,19 @@
   height: 30px;
 }
 
-.buttonLeftContainer {
-  display: flex;
-  flex-direction: column;
-  grid-column: 2;
-}
-
 .buttonLeft {
-  border: yellow solid 1pt;
-  margin: 0%;
+  /* border: rebeccapurple solid 1pt; */
+  margin: 1%;
   width: 10vw;
-  height: 23px;
+  height: 22px;
+  background-color: rgb(250, 239, 255);
 }
 
 .loggedInUser {
   display: inline-block;
   margin: 0%;
   margin-top: 2.5vh;
-  margin-left: -10%;
+  /* margin-left: -10%; */
   width: 12vw;
   height: 28px;
   color: indigo;
