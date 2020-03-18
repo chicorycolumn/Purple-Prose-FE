@@ -13,6 +13,11 @@ const Navbar = () => {
   return (
     <div className={styles.navGrid}>
       <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />
+      <div className={styles.buttonLeftContainer}>
+        <button className={styles.buttonLeft}>Users</button>
+        <button className={styles.buttonLeft}>Topics</button>
+        <button className={styles.buttonLeft}>Write!</button>
+      </div>
       <div className={styles.searchbarContainer}>
         <input
           className={styles.searchBar}
@@ -26,9 +31,11 @@ const Navbar = () => {
         currentUser !== "" ? (
           <p className={styles.loggedInUser}>{currentUser}</p>
         ) : (
-          <button onClick={successfulLogIn}>Log In</button>
+          <button className={styles.buttonRight} onClick={successfulLogIn}>
+            Log In
+          </button>
         )}
-        <button>Sign up</button>
+        <button className={styles.buttonRight}>Sign up</button>
       </div>
     </div>
   );

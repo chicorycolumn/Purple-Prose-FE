@@ -1,0 +1,45 @@
+.topicContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.topicCard {
+  width: 180px;
+  background-color: rgb(213, 191, 255);
+  border: indigo solid 1.5px;
+  margin: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: indigo;
+}
+
+.slug {
+  font-size: 150%;
+  margin: 0%;
+  margin-top: 1vh;
+}
+
+.descriptionContainer {
+  margin: 0%;
+  margin-top: 0.5vh;
+  margin-bottom: 2.5vh;
+  height: 5vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.description {
+  font-style: italic;
+  margin: 0%;
+  margin: 1vh;
+}
+
+.articleCount {
+  margin: 0%;
+  /* margin-top: 1.5vh; */
+  margin-bottom: 1.5vh;
+}

@@ -1,8 +1,9 @@
 import React from "react";
 import { Router, Link, navigate } from "@reach/router";
 import styles from "./css/App.module.css";
-// import axios from "axios";
 import Navbar from "./Navbar";
+import Users from "./Users";
+import Topics from "./Topics";
 import Frontpage from "./Frontpage";
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
           Welcome to NC News
           <Router>
             <Frontpage path="/" />
-            {/* <Users path="/users/*" /><Topics path="/topics/*" /> */}
+            <Users path="/users/*" />
+            <Topics path="/topics/*" />
           </Router>
         </div>
       </div>

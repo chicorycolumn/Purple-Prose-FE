@@ -2,24 +2,24 @@
   position: fixed;
   width: 100%;
   display: grid;
-  grid-template-columns: 22% 48% 30%;
+  grid-template-columns: 11% 11% 48% 30%;
   background-color: white;
 }
 
 .searchbarContainer {
-  grid-column: 2 / 3;
+  grid-column: 3 / 4;
 }
 
 .searchBar {
   height: 25px;
   font-size: 12pt;
-  width: 35vw;
+  width: 20vw;
   margin-top: 2.5vh;
   padding-right: 20%;
 }
 
 .loginHolder {
-  grid-column: 3 / 3;
+  grid-column: 4;
   display: block;
   text-align: right;
   padding-right: 2vw;
@@ -27,15 +27,29 @@
 
 .ncLogo {
   background-color: yellow;
-  grid-column: 1 / 2;
+  grid-column: 1;
+  margin-left: -10%;
 }
 
-button {
+.buttonRight {
   border: rebeccapurple solid 1pt;
   margin: 0%;
   margin-top: 2.5vh;
   width: 13vw;
   height: 30px;
+}
+
+.buttonLeftContainer {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+}
+
+.buttonLeft {
+  border: yellow solid 1pt;
+  margin: 0%;
+  width: 10vw;
+  height: 23px;
 }
 
 .loggedInUser {
