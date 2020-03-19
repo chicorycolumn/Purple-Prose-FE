@@ -2,18 +2,18 @@
   background-color: rebeccapurple;
   /* background-color: #cda4ff; */
   position: fixed;
-  top: 72.5px;
+  top: 70px;
   width: 100%;
-  height: 21px;
+  height: 21.5px;
   display: flex;
   justify-content: space-between;
 }
 
-.buttonLeftContainer {
+.rightContainer {
   margin-right: 2.5px;
 }
 
-.buttonLeft {
+.rightButton {
   /* border: rebeccapurple solid 1pt; */
   width: 60px;
   background-color: white;
@@ -23,7 +23,7 @@
   border: rebeccapurple solid 1pt;
 }
 
-.buttonRightContainer {
+.leftContainer {
   display: flex;
   flex-direction: row;
   margin-left: 12.5px;
@@ -38,7 +38,8 @@
 
 .trigger {
   position: fixed;
-  width: 70px;
+  left: 7.5px;
+  width: 80px;
   background-color: white;
   color: indigo;
   font-weight: bold;
@@ -49,28 +50,27 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 95px;
-}
-
-.buttons {
-  border: black solid 1pt;
-  /* display: inline-block; */
-  padding: 2.5px;
-  margin-top: -2.5%;
-  border-top: none;
-  width: 70px;
-}
-
-.button3 {
-  background-color: rgb(25, 156, 25);
+  top: 91px;
 }
 
 .button1 {
-  background-color: rgb(0, 196, 0);
+  background-color: rgb(247, 241, 253);
+}
+
+.button3 {
+  background-color: rgb(239, 224, 255);
 }
 
 .button2 {
-  background-color: rgb(0, 172, 129);
+  background-color: rgb(245, 234, 255);
+}
+
+.dropButtons {
+  border: black solid 1pt;
+  border-top: none;
+  width: 80px;
+  text-align: center;
+  margin-left: -5px;
 }
 
 .littleButtons {
@@ -85,9 +85,9 @@
 }
 
 .asc {
-  left: 82px;
+  left: 87px;
 }
 
 .desc {
-  left: 105px;
+  left: 109px;
 }

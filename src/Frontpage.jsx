@@ -13,6 +13,10 @@ class Frontpage extends Component {
     this.setState({ articles, isLoading: false });
   };
 
+  passUpQueries = queries => {
+    fetchArticles(this.sneakyUpwardChange, queries);
+  };
+
   componentDidMount() {
     fetchArticles(this.sneakyUpwardChange);
   }
@@ -20,7 +24,7 @@ class Frontpage extends Component {
   render() {
     return (
       <div>
-        <SortTab />
+        <SortTab passUpQueries={this.passUpQueries} />
         <p>
           {this.state.isLoading
             ? "loading..."

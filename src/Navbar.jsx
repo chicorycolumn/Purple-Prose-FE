@@ -30,13 +30,18 @@ const Navbar = () => {
         {currentUser !== null &&
         currentUser !== undefined &&
         currentUser !== "" ? (
-          <p className={styles.loggedInUser}>{currentUser}</p>
+          <>
+            <p className={styles.loggedInUser}>{currentUser}</p>
+            <button className={styles.buttonRight}>Premium</button>
+          </>
         ) : (
-          <button className={styles.buttonRight} onClick={successfulLogIn}>
-            Log In
-          </button>
+          <>
+            <button className={styles.buttonRight} onClick={successfulLogIn}>
+              Log In
+            </button>
+            <button className={styles.buttonRight}>Sign up</button>
+          </>
         )}
-        <button className={styles.buttonRight}>Sign up</button>
       </div>
     </div>
   );

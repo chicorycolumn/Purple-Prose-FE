@@ -8,9 +8,11 @@ class SortTab extends React.Component {
     super();
 
     this.state = {
-      currentlySelectedFilter: "created_at",
+      currentFilter: "created_at",
+      currentlyFilterDisplay: "Sort by",
       sortDirection: "desc",
-      dropdownShowing: false
+      dropdownShowing: false,
+      isLoading: false
     };
 
     this.showDropdown = this.showDropdown.bind(this);
@@ -18,7 +20,6 @@ class SortTab extends React.Component {
   }
 
   showDropdown(event) {
-    console.log(event.target.innerText);
     event.preventDefault();
 
     this.setState({ dropdownShowing: true }, () => {
@@ -30,8 +31,8 @@ class SortTab extends React.Component {
     if (
       event &&
       event.target &&
-      event.target.innerText &&
-      event.target.innerText === "Sort by"
+      event.target.id &&
+      event.target.id === "triggerForDropdownFilters"
     ) {
       return;
     } else {
@@ -41,32 +42,63 @@ class SortTab extends React.Component {
     }
   }
 
+  handleFilterClick = (filter, displayName) => {
+    this.props.passUpQueries({
+      sort_by: filter,
+      order: this.state.sortDirection
+    });
+    this.setState({
+      currentFilter: filter,
+      currentlyFilterDisplay: displayName
+    });
+    this.closeDropdown();
+  };
+
+  handleDirectionClick = direction => {
+    this.props.passUpQueries({
+      sort_by: this.state.currentFilter,
+      order: direction
+    });
+    this.setState({ sortDirection: direction });
+  };
+
   render() {
     return (
       <>
         <div className={styles.fullWidthBar}>
-          <div className={styles.buttonRightContainer}>
+          <div className={styles.leftContainer}>
             <div className={styles.sortbar}>
-              <button className={styles.trigger} onClick={this.showDropdown}>
-                Sort by
+              <button
+                id="triggerForDropdownFilters"
+                className={styles.trigger}
+                onClick={this.showDropdown}
+              >
+                {this.state.currentlyFilterDisplay}
               </button>
               {this.state.dropdownShowing ? (
                 <div className={styles.dropdown}>
                   <button
-                    className={`${styles.button1} ${styles.buttons}`}
-                    onClick={this.closeDropdown}
+                    className={`${styles.button1} ${styles.dropButtons}`}
+                    onClick={() => {
+                      this.handleFilterClick("created_at", "date");
+                    }}
                   >
                     date
                   </button>
+
                   <button
-                    className={`${styles.button2} ${styles.buttons}`}
-                    onClick={this.closeDropdown}
+                    className={`${styles.button2} ${styles.dropButtons}`}
+                    onClick={() => {
+                      this.handleFilterClick("comment_count", "comments");
+                    }}
                   >
                     comments
                   </button>
                   <button
-                    className={`${styles.button3} ${styles.buttons}`}
-                    onClick={this.closeDropdown}
+                    className={`${styles.button3} ${styles.dropButtons}`}
+                    onClick={() => {
+                      this.handleFilterClick("votes", "votes");
+                    }}
                   >
                     votes
                   </button>
@@ -74,19 +106,33 @@ class SortTab extends React.Component {
               ) : (
                 ""
               )}
-              <p className={`${styles.asc} ${styles.littleButtons}`}>▲</p>
-              <p className={`${styles.desc} ${styles.littleButtons}`}>▼</p>
+              <p
+                onClick={() => {
+                  this.handleDirectionClick("asc");
+                }}
+                className={`${styles.asc} ${styles.littleButtons}`}
+              >
+                {this.state.sortDirection === "asc" ? "▲" : "▵"}
+              </p>
+              <p
+                onClick={() => {
+                  this.handleDirectionClick("desc");
+                }}
+                className={`${styles.desc} ${styles.littleButtons}`}
+              >
+                {this.state.sortDirection === "asc" ? "▿" : "▼"}
+              </p>
             </div>
           </div>
-          <div className={styles.buttonLeftContainer}>
+          <div className={styles.rightContainer}>
             <Link to={"/users"}>
-              <button className={styles.buttonLeft}>Users</button>
+              <button className={styles.rightButton}>Users</button>
             </Link>
             <Link to={"/topics"}>
-              <button className={styles.buttonLeft}>Topics</button>
+              <button className={styles.rightButton}>Topics</button>
             </Link>
             <Link to={"/write"}>
-              <button className={styles.buttonLeft}>Write!</button>
+              <button className={styles.rightButton}>Write!</button>
             </Link>
           </div>
         </div>

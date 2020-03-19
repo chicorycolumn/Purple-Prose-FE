@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 10% 1fr 20%;
   grid-template-rows: 115px;
-  border: indigo solid 1pt;
+  border: indigo dotted 1pt;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 2.5%;
@@ -98,7 +98,7 @@
   grid-row: 1 / 2;
   grid-column: 1;
   height: 99.25%;
-  margin-top: 0.5%;
+  margin-top: 1%;
   margin-left: 0.5%;
   background-color: #d7c9e9;
   width: 100%;
