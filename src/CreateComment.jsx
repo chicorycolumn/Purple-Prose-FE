@@ -7,11 +7,17 @@ import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
 
 class CreateComment extends React.Component {
-  state = { isLoading: false };
+  state = { isLoading: false, shallMakeInputBoxFlash: false };
 
   componentDidUpdate(prevProps) {
     if (prevProps.refreshTicket !== this.props.refreshTicket) {
       this.setState({ isLoading: false });
+    }
+
+    if (this.state.shallMakeInputBoxFlash) {
+      setTimeout(() => {
+        this.setState({ shallMakeInputBoxFlash: false });
+      }, 3000);
     }
   }
 
@@ -34,8 +40,12 @@ class CreateComment extends React.Component {
           <button
             className={styles.newCommentSubmitButton}
             onClick={e => {
-              this.props.submitNewComment(e);
-              this.setState({ isLoading: true });
+              if (this.props.newCommentInput === "") {
+                this.setState({ shallMakeInputBoxFlash: true });
+              } else {
+                this.props.submitNewComment(e);
+                this.setState({ isLoading: true });
+              }
             }}
           >
             {this.state.isLoading ? "submitting..." : "Say it!"}
@@ -43,9 +53,11 @@ class CreateComment extends React.Component {
         </div>
         <form>
           <textarea
+            required
             rows="3"
             cols="80"
-            className={styles.newCommentInputField}
+            className={`${styles.newCommentInputField} ${this.state
+              .shallMakeInputBoxFlash && styles.flashingNewCommentInputField}`}
             onChange={e => {
               this.props.sneakyUpwardNewCommentInput(e.target.value);
             }}

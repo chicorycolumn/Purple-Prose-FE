@@ -16,7 +16,8 @@ class SingleArticle extends React.Component {
     isLoading: true,
     refreshTicket: 0,
     upToDateWithCommentCount: true,
-    temporaryCommentIncrement: 0
+    temporaryCommentIncrement: 0,
+    userSubmitsEmpty: false
   };
 
   sneakyUpwardChange = (article, comments) => {
@@ -28,6 +29,10 @@ class SingleArticle extends React.Component {
       temporaryCommentIncrement: 0,
       upToDateWithCommentCount: true
     });
+  };
+
+  upwardEmptyCheckReset = () => {
+    this.setState({ userSubmitsEmpty: false });
   };
 
   sneakyUpwardNewCommentInput = newCommentInput => {
@@ -58,21 +63,25 @@ class SingleArticle extends React.Component {
 
   submitNewComment = event => {
     event.preventDefault();
-    postNewComment(
-      this.props.currentUser,
-      this.state.article.article_id,
-      this.state.newCommentInput
-    ).then(newlyComment => {
-      this.setState(currState => {
-        return {
-          newCommentInput: "",
-          createCommentDisplaying: false,
-          comments: [newlyComment, ...currState.comments],
-          upToDateWithCommentCount: false,
-          temporaryCommentIncrement: currState.temporaryCommentIncrement + 1
-        };
+
+    if (this.state.newCommentInput === "") {
+      this.setState({ userSubmitsEmpty: true });
+    } else
+      postNewComment(
+        this.props.currentUser,
+        this.state.article.article_id,
+        this.state.newCommentInput
+      ).then(newlyComment => {
+        this.setState(currState => {
+          return {
+            newCommentInput: "",
+            createCommentDisplaying: false,
+            comments: [newlyComment, ...currState.comments],
+            upToDateWithCommentCount: false,
+            temporaryCommentIncrement: currState.temporaryCommentIncrement + 1
+          };
+        });
       });
-    });
   };
 
   render() {
@@ -174,6 +183,8 @@ class SingleArticle extends React.Component {
                   sneakyUpwardNewCommentInput={this.sneakyUpwardNewCommentInput}
                   submitNewComment={this.submitNewComment}
                   refreshTicket={this.state.refreshTicket}
+                  upwardEmptyCheckReset={this.state.upwardEmptyCheckReset}
+                  userSubmitsEmpty={this.state.userSubmitsEmpty}
                 />
               )}
             </div>

@@ -231,3 +231,20 @@
   width: 97%;
   height: 27.5px;
 }
+
+@keyframes errorShimmer {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: #ae92d3;
+  }
+  100% {
+    background-color: white;
+  }
+}
+
+.flashingNewCommentInputField {
+  animation-name: errorShimmer;
+  animation-duration: 1.5s;
+}

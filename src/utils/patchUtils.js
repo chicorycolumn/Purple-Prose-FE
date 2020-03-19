@@ -12,7 +12,6 @@ const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
 // };
 
 export const postNewComment = async (username, article_id, body) => {
-  console.log(username, article_id, body);
   const res = await axios.post(`${baseUrl}/articles/${article_id}/comments`, {
     username,
     body

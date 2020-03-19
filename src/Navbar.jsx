@@ -9,7 +9,7 @@ const Navbar = props => {
   };
 
   const logYourselfOut = () => {
-    props.logInOrOut(null);
+    props.logInOrOut("");
   };
 
   return (

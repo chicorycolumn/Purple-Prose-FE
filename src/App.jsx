@@ -8,11 +8,20 @@ import Frontpage from "./Frontpage";
 import SingleArticle from "./SingleArticle";
 
 class App extends React.Component {
-  state = { currentUser: null };
+  state = { currentUser: "" };
 
   logInOrOut = currentUser => {
+    localStorage.setItem("currentUser", currentUser);
     this.setState({ currentUser });
   };
+
+  componentDidMount() {
+    const currentUser = localStorage.getItem("currentUser");
+
+    if (currentUser && currentUser !== "") {
+      this.setState({ currentUser });
+    }
+  }
 
   render() {
     return (

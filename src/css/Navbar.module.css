@@ -40,7 +40,6 @@
 } */
 
 .ncLogo {
-  background-color: yellow;
   margin-left: -1%;
   display: flex;
 }
@@ -64,4 +63,10 @@
   font-size: 100%;
   text-align: center;
   padding: 1px 6px 1px 6px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .navGrid {
+    background-color: blue;
+  }
 }
