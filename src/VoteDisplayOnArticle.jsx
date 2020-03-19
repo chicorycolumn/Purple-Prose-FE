@@ -22,7 +22,7 @@ class VoteDisplayOnArticle extends Component {
         voteDirection
       );
 
-      let newCastedVote = this.state.castedVote;
+      let newCastedVote = this.state.castedVote; // A CASE FOR LOCAL STORAGE HEY?
       // console.log("***", this.state.castedVote, newCastedVote, "***");
       if (newCastedVote < 1 && voteDirection === 1) {
         // console.log(this.state.castedVote, newCastedVote);

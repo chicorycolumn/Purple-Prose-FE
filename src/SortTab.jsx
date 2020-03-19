@@ -12,7 +12,7 @@ class SortTab extends React.Component {
       currentlyFilterDisplay: "Sort by",
       sortDirection: "desc",
       dropdownShowing: false,
-      isLoading: false
+      currentlyLoading: false
     };
 
     this.showDropdown = this.showDropdown.bind(this);
@@ -49,7 +49,8 @@ class SortTab extends React.Component {
     });
     this.setState({
       currentFilter: filter,
-      currentlyFilterDisplay: displayName
+      currentlyFilterDisplay: displayName,
+      currentlyLoading: true
     });
     this.closeDropdown();
   };
@@ -59,8 +60,14 @@ class SortTab extends React.Component {
       sort_by: this.state.currentFilter,
       order: direction
     });
-    this.setState({ sortDirection: direction });
+    this.setState({ sortDirection: direction, currentlyLoading: true });
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.ticket !== this.props.ticket) {
+      this.setState({ currentlyLoading: false });
+    }
+  }
 
   render() {
     return (
@@ -73,7 +80,11 @@ class SortTab extends React.Component {
                 className={styles.trigger}
                 onClick={this.showDropdown}
               >
-                {this.state.currentlyFilterDisplay}
+                {this.state.currentlyLoading ? (
+                  <p className={styles.loadingText}>loading...</p>
+                ) : (
+                  this.state.currentlyFilterDisplay
+                )}
               </button>
               {this.state.dropdownShowing ? (
                 <div className={styles.dropdown}>

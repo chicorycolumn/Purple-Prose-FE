@@ -91,3 +91,11 @@
 .desc {
   left: 109px;
 }
+
+.loadingText {
+  color: #b893e7;
+  font-weight: normal;
+  font-style: italic;
+  margin: 0%;
+  margin-left: 7.5px;
+}

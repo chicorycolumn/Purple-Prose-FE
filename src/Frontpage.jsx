@@ -24,7 +24,7 @@ class Frontpage extends Component {
   render() {
     return (
       <div>
-        <SortTab passUpQueries={this.passUpQueries} />
+        <SortTab passUpQueries={this.passUpQueries} ticket={Math.random()} />
         <p>
           {this.state.isLoading
             ? "loading..."
