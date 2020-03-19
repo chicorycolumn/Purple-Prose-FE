@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./css/SingleArticle.module.css";
 import { Router, Link, navigate } from "@reach/router";
-import { voteOnArticle } from "./utils/patchUtils";
+import { voteOnArticle, postNewComment } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
@@ -9,7 +9,7 @@ import CommentGrid from "./CommentGrid";
 class SingleArticle extends React.Component {
   state = {
     createCommentDisplaying: false,
-
+    newCommentInput: "",
     article: null,
     comments: null,
     isLoading: true,
@@ -28,6 +28,19 @@ class SingleArticle extends React.Component {
   componentDidMount() {
     fetchArticleWithComments(this.sneakyUpwardChange, this.props.article_id);
   }
+
+  submitNewComment = event => {
+    event.preventDefault();
+    postNewComment(
+      this.props.currentUser,
+      this.state.article.article_id,
+      this.state.newCommentInput
+    ).then(newlyComment => {
+      this.setState(currState => {
+        return { comments: [newlyComment, ...currState.comments] };
+      });
+    });
+  };
 
   render() {
     const lookup = [
@@ -84,7 +97,9 @@ class SingleArticle extends React.Component {
                 }}
                 className={styles.joinConvoButton}
               >
-                Join the conversation!
+                {this.state.createCommentDisplaying
+                  ? "Maybe later..."
+                  : "Join the conversation!"}
               </button>
 
               <div className={styles.leftHandSideContainer}>
@@ -129,7 +144,10 @@ class SingleArticle extends React.Component {
                       )}
                     </div>
 
-                    <button className={styles.newCommentSubmitButton}>
+                    <button
+                      className={styles.newCommentSubmitButton}
+                      onClick={this.submitNewComment}
+                    >
                       Say it!
                     </button>
                   </div>
@@ -138,6 +156,10 @@ class SingleArticle extends React.Component {
                       rows="3"
                       cols="80"
                       className={styles.newCommentInputField}
+                      onChange={event => {
+                        this.setState({ newCommentInput: event.target.value });
+                      }}
+                      value={this.state.newCommentInput}
                     ></textarea>
                   </form>
                 </div>

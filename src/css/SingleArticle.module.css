@@ -196,13 +196,13 @@
   border: rebeccapurple solid 1pt;
   margin: 0%;
   /* margin-top: 2.5vh; */
-  width: 13vw;
+  width: 80px;
   height: 30px;
   margin-top: -2.5px;
 }
 
 .newCommentInfo {
-  color: blue;
+  color: black;
   margin: 0%;
   height: 30px;
   /* margin-top: 2.5vh; */
@@ -211,7 +211,7 @@
 }
 
 .usernameOnComment {
-  color: black;
+  color: blue;
   margin: 0%;
   height: 30px;
   /* margin-top: 2.5vh; */
