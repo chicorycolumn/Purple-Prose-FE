@@ -18,8 +18,8 @@
   grid-column: 2 / 4;
   padding-right: 2.5%;
   margin: 0%;
-  margin-top: 1.5%;
-  margin-bottom: 1.5%;
+  margin-top: 0%;
+  margin-bottom: 2.5%;
   padding-top: 2.5%;
 }
 
@@ -35,13 +35,15 @@
   display: inline-block;
   margin: 0%;
   text-align: right;
+  font-style: italic;
+  font-size: 10pt;
 }
 
 .middleBottom {
   grid-row: 2;
   grid-column: 2 / 4;
   padding-top: 0%;
-  padding-bottom: 5%;
+  padding-bottom: 2.5%;
   margin: 0%;
 }
 
@@ -107,4 +109,14 @@
       word-wrap: break-word;
       display: block; */
   /* margin: 0; */
+}
+
+.deleteCommentButton {
+  margin-left: 5px;
+  border: none;
+  background-color: #d7c9e9;
+  color: indigo;
+  margin-bottom: -5px;
+  margin-top: -5px;
+  height: 20px;
 }

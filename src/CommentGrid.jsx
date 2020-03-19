@@ -2,10 +2,17 @@ import React from "react";
 import styles from "./css/CommentGrid.module.css";
 import { Router, Link, navigate } from "@reach/router";
 import { voteOnComment } from "./utils/patchUtils";
+import { deleteCommentByID } from "./utils/deleteUtils";
 import VoteDisplayOnComment from "./VoteDisplayOnComment";
 
 class CommentGrid extends React.Component {
   state = {};
+
+  deleteComment = () => {
+    deleteCommentByID(this.props.comment.comment_id);
+    this.props.sneakyUpwardDelete(this.props.comment.comment_id);
+    this.props.sneakyUpwardAmbicrement(-1);
+  };
 
   render() {
     const lookup = [
@@ -40,7 +47,18 @@ class CommentGrid extends React.Component {
     return (
       <div className={styles.containerGrid}>
         <div className={styles.middleTop}>
-          <p className={styles.author}>{this.props.comment.author}</p>
+          <div className={styles.usernameAndDeleteBox}>
+            <p className={styles.author}>{this.props.comment.author}</p>
+
+            {this.props.comment.author === this.props.currentUser && (
+              <button
+                className={styles.deleteCommentButton}
+                onClick={this.deleteComment}
+              >
+                Delete
+              </button>
+            )}
+          </div>
 
           <p className={styles.commentTime}>{`${
             lookup[new Date(this.props.comment.created_at).getMonth()]

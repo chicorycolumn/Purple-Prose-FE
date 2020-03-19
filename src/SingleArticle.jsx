@@ -5,6 +5,7 @@ import { voteOnArticle, postNewComment } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
+import CreateComment from "./CreateComment";
 
 class SingleArticle extends React.Component {
   state = {
@@ -13,7 +14,9 @@ class SingleArticle extends React.Component {
     article: null,
     comments: null,
     isLoading: true,
-    refreshTicket: 0
+    refreshTicket: 0,
+    upToDateWithCommentCount: true,
+    temporaryCommentIncrement: 0
   };
 
   sneakyUpwardChange = (article, comments) => {
@@ -21,7 +24,31 @@ class SingleArticle extends React.Component {
       article,
       comments,
       isLoading: false,
-      refreshTicket: Math.random()
+      refreshTicket: Math.random(),
+      temporaryCommentIncrement: 0,
+      upToDateWithCommentCount: true
+    });
+  };
+
+  sneakyUpwardNewCommentInput = newCommentInput => {
+    this.setState({ newCommentInput });
+  };
+
+  sneakyUpwardAmbicrement = crement => {
+    this.setState(currState => {
+      return {
+        temporaryCommentIncrement: currState.temporaryCommentIncrement + crement
+      };
+    });
+  };
+
+  sneakyUpwardDelete = comment_id => {
+    this.setState(currState => {
+      let newCommentArray = currState.comments.filter(
+        comment => comment.comment_id !== comment_id
+      );
+
+      return { comments: newCommentArray };
     });
   };
 
@@ -37,7 +64,13 @@ class SingleArticle extends React.Component {
       this.state.newCommentInput
     ).then(newlyComment => {
       this.setState(currState => {
-        return { comments: [newlyComment, ...currState.comments] };
+        return {
+          newCommentInput: "",
+          createCommentDisplaying: false,
+          comments: [newlyComment, ...currState.comments],
+          upToDateWithCommentCount: false,
+          temporaryCommentIncrement: currState.temporaryCommentIncrement + 1
+        };
       });
     });
   };
@@ -89,11 +122,15 @@ class SingleArticle extends React.Component {
 
               <button
                 onClick={() => {
-                  this.setState(currState => {
-                    return {
-                      createCommentDisplaying: !currState.createCommentDisplaying
-                    };
-                  });
+                  this.props.currentUser !== null &&
+                  this.props.currentUser !== undefined &&
+                  this.props.currentUser !== ""
+                    ? this.setState(currState => {
+                        return {
+                          createCommentDisplaying: !currState.createCommentDisplaying
+                        };
+                      })
+                    : alert("To vote on the latest news, log in or sign up!");
                 }}
                 className={styles.joinConvoButton}
               >
@@ -115,7 +152,8 @@ class SingleArticle extends React.Component {
                 <p className={styles.topic}>{this.state.article.topic}</p>
                 <p className={styles.comments}>
                   <span role="img">💬</span>
-                  {` ${this.state.article.comment_count} `}
+                  {` ${this.state.article.comment_count +
+                    this.state.temporaryCommentIncrement} `}
                 </p>
                 <p className={styles.created_at}>{`${
                   lookup[new Date(this.state.article.created_at).getMonth()]
@@ -130,39 +168,13 @@ class SingleArticle extends React.Component {
                 ).getFullYear()})`}</p>
               </div>
               {this.state.createCommentDisplaying && (
-                <div className={styles.newCommentOverbox}>
-                  <div className={styles.newCommentHeader}>
-                    <div className={styles.boxInHeader}>
-                      {this.props.currentUser && (
-                        <>
-                          <p className={styles.newCommentInfo}>posting as</p>
-
-                          <p className={styles.usernameOnComment}>
-                            {this.props.currentUser}
-                          </p>
-                        </>
-                      )}
-                    </div>
-
-                    <button
-                      className={styles.newCommentSubmitButton}
-                      onClick={this.submitNewComment}
-                    >
-                      Say it!
-                    </button>
-                  </div>
-                  <form>
-                    <textarea
-                      rows="3"
-                      cols="80"
-                      className={styles.newCommentInputField}
-                      onChange={event => {
-                        this.setState({ newCommentInput: event.target.value });
-                      }}
-                      value={this.state.newCommentInput}
-                    ></textarea>
-                  </form>
-                </div>
+                <CreateComment
+                  currentUser={this.props.currentUser}
+                  newCommentInput={this.state.newCommentInput}
+                  sneakyUpwardNewCommentInput={this.sneakyUpwardNewCommentInput}
+                  submitNewComment={this.submitNewComment}
+                  refreshTicket={this.state.refreshTicket}
+                />
               )}
             </div>
 
@@ -172,6 +184,8 @@ class SingleArticle extends React.Component {
                   comment={comment}
                   currentUser={this.props.currentUser}
                   article_id={this.state.article.article_id}
+                  sneakyUpwardDelete={this.sneakyUpwardDelete}
+                  sneakyUpwardAmbicrement={this.sneakyUpwardAmbicrement}
                 />
               ))}
             </div>
