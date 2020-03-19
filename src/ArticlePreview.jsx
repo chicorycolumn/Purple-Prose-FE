@@ -4,8 +4,6 @@ import { Router, Link, navigate } from "@reach/router";
 import { voteOnArticle } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 
-let currentUser = "jessjelly"; //CHANGE THIS TO SOME VARIABLE FROM SOMEWHERE BUT WHERE?
-
 const lookup = [
   "Jan",
   "Feb",
@@ -51,11 +49,11 @@ const ArticlePreview = props => {
       </Link>
 
       <div className={styles.leftHandSideContainer}>
-        <VoteDisplayOnArticle
-          currentUser={currentUser}
+        {/* <VoteDisplayOnArticle
+          currentUser={this.props.currentUser}
           article_id={article_id}
           votes={votes}
-        />
+        /> */}
       </div>
 
       <div className={styles.rightHandSideContainer}>

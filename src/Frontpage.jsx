@@ -29,7 +29,12 @@ class Frontpage extends Component {
           {this.state.isLoading
             ? "loading..."
             : this.state.articles.map(article => {
-                return <ArticlePreview article={article} />;
+                return (
+                  <ArticlePreview
+                    currentUser={this.props.currentUser}
+                    article={article}
+                  />
+                );
               })}
         </p>
       </div>

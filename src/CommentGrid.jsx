@@ -4,8 +4,6 @@ import { Router, Link, navigate } from "@reach/router";
 import { voteOnComment } from "./utils/patchUtils";
 import VoteDisplayOnComment from "./VoteDisplayOnComment";
 
-let currentUser = "jessjelly"; //CHANGE THIS TO SOME VARIABLE FROM SOMEWHERE BUT WHERE?
-
 class CommentGrid extends React.Component {
   state = {};
 
@@ -61,7 +59,7 @@ class CommentGrid extends React.Component {
 
         <div className={styles.leftHandSideContainer}>
           <VoteDisplayOnComment
-            currentUser={currentUser}
+            currentUser={this.props.currentUser}
             article_id={this.props.article_id}
             votes={this.props.comment.votes}
           />

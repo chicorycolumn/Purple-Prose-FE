@@ -97,7 +97,7 @@
 .comments {
   font-size: 25px;
   margin: 0%;
-  margin-bottom: -5%
+  margin-bottom: -5%;
   /* margin: 0; */
 }
 
@@ -108,4 +108,9 @@
   margin-bottom: 0%; */
   font-size: 12px;
   margin: 5%;
+}
+
+.voteEmoji {
+  font-size: 25px;
+  color: indigo;
 }

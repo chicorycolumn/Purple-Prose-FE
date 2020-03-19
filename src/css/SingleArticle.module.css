@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 10% 1fr 20%;
   grid-template-rows: 115px;
-  border: indigo dotted 1pt;
+  border: indigo dotted 0.5pt;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 2.5%;
@@ -17,6 +17,7 @@
   grid-column: 1 /4;
   padding: 2.5%;
   padding-top: 0%;
+  padding-bottom: 1.5%;
   margin: 0%;
   margin-top: 2.5%;
   /* border-bottom: #d7c9e9 dotted 1pt; */
@@ -161,4 +162,72 @@
     margin-bottom: 0%; */
   font-size: 12px;
   margin: 5%;
+}
+
+.joinConvoButton {
+  width: 100%;
+  grid-column: 1 / 4;
+  margin-top: 0%;
+  background-color: #d7c9e9;
+  border: none;
+  text-align: center;
+  text-indent: -10%;
+}
+
+.newCommentOverbox {
+  background-color: #d7c9e9;
+  width: auto;
+  grid-column: 1 / 4;
+  text-align: left;
+  padding: 5%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}
+
+.newCommentInputField {
+  background-color: white;
+  width: 95%;
+  height: 80px;
+  margin: 0%;
+  padding: 1%;
+}
+
+.newCommentSubmitButton {
+  border: rebeccapurple solid 1pt;
+  margin: 0%;
+  /* margin-top: 2.5vh; */
+  width: 13vw;
+  height: 30px;
+  margin-top: -2.5px;
+}
+
+.newCommentInfo {
+  color: blue;
+  margin: 0%;
+  height: 30px;
+  /* margin-top: 2.5vh; */
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.usernameOnComment {
+  color: black;
+  margin: 0%;
+  height: 30px;
+  /* margin-top: 2.5vh; */
+  display: inline-block;
+}
+
+.boxInHeader {
+  width: 100%;
+  text-align: right;
+}
+
+.newCommentHeader {
+  display: flex;
+
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 97%;
+  height: 27.5px;
 }

@@ -6,13 +6,23 @@ import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
 
-let currentUser = "jessjelly"; //CHANGE THIS TO SOME VARIABLE FROM SOMEWHERE BUT WHERE?
-
 class SingleArticle extends React.Component {
-  state = { article: null, comments: null, isLoading: true };
+  state = {
+    createCommentDisplaying: false,
+
+    article: null,
+    comments: null,
+    isLoading: true,
+    refreshTicket: 0
+  };
 
   sneakyUpwardChange = (article, comments) => {
-    this.setState({ article, comments, isLoading: false });
+    this.setState({
+      article,
+      comments,
+      isLoading: false,
+      refreshTicket: Math.random()
+    });
   };
 
   componentDidMount() {
@@ -64,12 +74,26 @@ class SingleArticle extends React.Component {
                 <p className={styles.bodyText}>{this.state.article.body}</p>
               </div>
 
+              <button
+                onClick={() => {
+                  this.setState(currState => {
+                    return {
+                      createCommentDisplaying: !currState.createCommentDisplaying
+                    };
+                  });
+                }}
+                className={styles.joinConvoButton}
+              >
+                Join the conversation!
+              </button>
+
               <div className={styles.leftHandSideContainer}>
-                <VoteDisplayOnArticle
-                  currentUser={currentUser}
+                {/* <VoteDisplayOnArticle
+                  currentUser={this.props.currentUser}
                   article_id={this.state.article.article_id}
                   votes={this.state.article.votes}
-                />
+                  refreshTicket={this.state.refreshTicket}
+                /> */}
               </div>
 
               <div className={styles.rightHandSideContainer}>
@@ -90,12 +114,41 @@ class SingleArticle extends React.Component {
                   this.state.article.created_at
                 ).getFullYear()})`}</p>
               </div>
+              {this.state.createCommentDisplaying && (
+                <div className={styles.newCommentOverbox}>
+                  <div className={styles.newCommentHeader}>
+                    <div className={styles.boxInHeader}>
+                      {this.props.currentUser && (
+                        <>
+                          <p className={styles.newCommentInfo}>posting as</p>
+
+                          <p className={styles.usernameOnComment}>
+                            {this.props.currentUser}
+                          </p>
+                        </>
+                      )}
+                    </div>
+
+                    <button className={styles.newCommentSubmitButton}>
+                      Say it!
+                    </button>
+                  </div>
+                  <form>
+                    <textarea
+                      rows="3"
+                      cols="80"
+                      className={styles.newCommentInputField}
+                    ></textarea>
+                  </form>
+                </div>
+              )}
             </div>
+
             <div>
               {this.state.comments.map(comment => (
                 <CommentGrid
                   comment={comment}
-                  currentUser={currentUser}
+                  currentUser={this.props.currentUser}
                   article_id={this.state.article.article_id}
                 />
               ))}

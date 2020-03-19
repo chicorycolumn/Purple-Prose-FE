@@ -7,23 +7,37 @@ import Topics from "./Topics";
 import Frontpage from "./Frontpage";
 import SingleArticle from "./SingleArticle";
 
-function App() {
-  return (
-    <>
-      <Navbar />
-      <div className={styles.App}>
-        <header className="NC News"></header>
-        <div>
-          <Router>
-            <Frontpage path="/" />
-            <SingleArticle path="/articles/:article_id" />
-            <Users path="/users/*" />
-            <Topics path="/topics/*" />
-          </Router>
+class App extends React.Component {
+  state = { currentUser: null };
+
+  logInOrOut = currentUser => {
+    this.setState({ currentUser });
+  };
+
+  render() {
+    return (
+      <>
+        <Navbar
+          logInOrOut={this.logInOrOut}
+          currentUser={this.state.currentUser}
+        />
+        <div className={styles.App}>
+          <header className="NC News"></header>
+          <div>
+            <Router>
+              <Frontpage currentUser={this.props.currentUser} path="/" />
+              <SingleArticle
+                currentUser={this.state.currentUser}
+                path="/articles/:article_id"
+              />
+              <Users path="/users/*" />
+              <Topics path="/topics/*" />
+            </Router>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default App;

@@ -3,12 +3,13 @@ import ncnewslogo from "./logoncnews.png";
 import styles from "./css/Navbar.module.css";
 import { Router, Link, navigate } from "@reach/router";
 
-const currentUser = "jessjelly";
+const Navbar = props => {
+  const logYourselfIn = () => {
+    props.logInOrOut("jessjelly");
+  };
 
-const Navbar = () => {
-  const successfulLogIn = () => {
-    alert("You have logged in as jessjelly");
-    //WHERE SHOULD THIS SET STATE, THE VARIABLE (GLOBAL?) OF CURRENTUSER?s
+  const logYourselfOut = () => {
+    props.logInOrOut(null);
   };
 
   return (
@@ -27,16 +28,18 @@ const Navbar = () => {
         />
       </div>
       <div className={styles.loginHolder}>
-        {currentUser !== null &&
-        currentUser !== undefined &&
-        currentUser !== "" ? (
+        {props.currentUser !== null &&
+        props.currentUser !== undefined &&
+        props.currentUser !== "" ? (
           <>
-            <p className={styles.loggedInUser}>{currentUser}</p>
-            <button className={styles.buttonRight}>Premium</button>
+            <p className={styles.loggedInUser}>{props.currentUser}</p>
+            <button onClick={logYourselfOut} className={styles.buttonRight}>
+              Log out
+            </button>
           </>
         ) : (
           <>
-            <button className={styles.buttonRight} onClick={successfulLogIn}>
+            <button className={styles.buttonRight} onClick={logYourselfIn}>
               Log In
             </button>
             <button className={styles.buttonRight}>Sign up</button>

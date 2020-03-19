@@ -2,6 +2,17 @@ import React from "react";
 import axios from "axios";
 const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
 
+export const queryUserVoteOnArticle = (cb, voting_user, article_id) => {
+  axios
+    .get(
+      `${baseUrl}/articles/votes?voting_user=${voting_user}&article_id=${article_id}`
+    )
+    .then(res => res.data)
+    .then(data => {
+      cb(data["article_votes_junction"]);
+    });
+};
+
 export const fetchArticleWithComments = (cb, article_id) => {
   Promise.all([
     axios.get(`${baseUrl}/articles/${article_id}`).then(res => res.data),
