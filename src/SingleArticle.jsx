@@ -143,12 +143,12 @@ class SingleArticle extends React.Component {
               </button>
 
               <div className={styles.leftHandSideContainer}>
-                {/* <VoteDisplayOnArticle
-                currentUser={this.props.currentUser}
-                article_id={this.state.article.article_id}
-                votes={this.state.article.votes}
-                refreshTicket={this.state.refreshTicket}
-              /> */}
+                <VoteDisplayOnArticle
+                  currentUser={this.props.currentUser}
+                  article_id={this.state.article.article_id}
+                  votes={this.state.article.votes}
+                  refreshTicket={this.state.refreshTicket}
+                />
               </div>
 
               <div className={styles.rightHandSideContainer}>
