@@ -3,6 +3,8 @@ import { Router, Link, navigate } from "@reach/router";
 import { fetchArticles } from "./utils/getUtils";
 import ArticlePreview from "./ArticlePreview";
 import SortTab from "./SortTab";
+import noArticlesYetBackground from "./images/emptypage.jpg";
+import styles from "./css/Frontpage.module.css";
 
 class Frontpage extends Component {
   state = {
@@ -61,18 +63,36 @@ class Frontpage extends Component {
     return (
       <div>
         <SortTab passUpQueries={this.passUpQueries} ticket={Math.random()} />
-        <p>
-          {this.state.isLoading
-            ? "loading..."
-            : this.state.articles.map(article => {
-                return (
-                  <ArticlePreview
-                    currentUser={this.props.currentUser}
-                    article={article}
-                  />
-                );
-              })}
-        </p>
+
+        {this.state.isLoading ? (
+          "loading..."
+        ) : this.state.articles.length ? (
+          this.state.articles.map(article => {
+            return (
+              <ArticlePreview
+                currentUser={this.props.currentUser}
+                article={article}
+              />
+            );
+          })
+        ) : (
+          <div className={styles.errorImageHolder}>
+            <img
+              className={styles.errorImage}
+              src={noArticlesYetBackground}
+              alt="Pens and paper"
+            />
+            <p className={styles.errorText}>
+              No articles found for this topic.
+            </p>
+
+            <br />
+
+            <p className={styles.errorText}>
+              Why not be the first to write one!
+            </p>
+          </div>
+        )}
       </div>
     );
   }
