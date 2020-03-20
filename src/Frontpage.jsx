@@ -18,7 +18,17 @@ class Frontpage extends Component {
   };
 
   componentDidMount() {
-    fetchArticles(this.sneakyUpwardChange);
+    if (this.props.location.search) {
+      const qArr = this.props.location.search.replace("?", "").split("=");
+
+      const qObj = {};
+
+      qObj[qArr[0]] = qArr[1];
+
+      fetchArticles(this.sneakyUpwardChange, qObj);
+    } else {
+      fetchArticles(this.sneakyUpwardChange);
+    }
   }
 
   render() {

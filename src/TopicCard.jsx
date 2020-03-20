@@ -29,7 +29,7 @@ class TopicCard extends React.Component {
               style={{ textDecoration: "none" }}
               to={`/articles?topic=${topic.slug}`}
             >
-              <div className={styles.topicCard} onClick={this.handleClick}>
+              <div className={styles.topicCard}>
                 <h1 className={styles.slug}>{topic.slug}</h1>
                 <div className={styles.descriptionContainer}>
                   <p className={styles.description}>{topic.description}</p>

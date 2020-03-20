@@ -20,31 +20,33 @@ const Navbar = props => {
         <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
       </Link>
       {/* </div> */}
-      <div className={styles.searchbarContainer}>
-        <input
-          className={styles.searchBar}
-          type="text"
-          placeholder="Browse away!"
-        />
-      </div>
-      <div className={styles.loginHolder}>
-        {props.currentUser !== null &&
-        props.currentUser !== undefined &&
-        props.currentUser !== "" ? (
-          <>
-            <p className={styles.loggedInUser}>{props.currentUser}</p>
-            <button onClick={logYourselfOut} className={styles.buttonRight}>
-              Log out
-            </button>
-          </>
-        ) : (
-          <>
-            <button className={styles.buttonRight} onClick={logYourselfIn}>
-              Log In
-            </button>
-            <button className={styles.buttonRight}>Sign up</button>
-          </>
-        )}
+      <div className={styles.searchbarAndLoginContainer}>
+        <div className={styles.searchbarContainer}>
+          <input
+            className={styles.searchBar}
+            type="text"
+            placeholder="Browse.."
+          />
+        </div>
+        <div className={styles.loginHolder}>
+          {props.currentUser !== null &&
+          props.currentUser !== undefined &&
+          props.currentUser !== "" ? (
+            <>
+              <p className={styles.loggedInUser}>{props.currentUser}</p>
+              <button onClick={logYourselfOut} className={styles.buttonRight}>
+                Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <button className={styles.buttonRight} onClick={logYourselfIn}>
+                Log In
+              </button>
+              <button className={styles.buttonRight}>Sign up</button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
