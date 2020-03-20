@@ -17,15 +17,27 @@ class VoteDisplayOnArticle extends Component {
   };
 
   sneakyUpwardChange = article_votes_junction => {
-    console.log(`SUC: cast as ${article_votes_junction[0]["inc_votes"]}`);
-    this.setState({
-      castedVote: article_votes_junction[0]["inc_votes"],
-      castedVoteValueAtMount: article_votes_junction[0]["inc_votes"]
-    });
+    console.log(`AVJx ${JSON.stringify(article_votes_junction)}`);
+
+    if (article_votes_junction.length === 0) {
+      this.setState({
+        castedVote: 0,
+        castedVoteValueAtMount: 0
+      });
+    }
+
+    // console.log(`SUC: cast as ${article_votes_junction[0]["inc_votes"]}`);
+    else
+      this.setState({
+        castedVote: article_votes_junction[0]["inc_votes"],
+        castedVoteValueAtMount: article_votes_junction[0]["inc_votes"]
+      });
   };
 
   componentDidMount() {
-    console.log("mount");
+    console.log(
+      `gonna invoke fetch util with article id ${this.props.article_id} and ${this.props.currentUser}`
+    );
     if (this.props.currentUser) {
       queryUserVoteOnArticle(
         this.sneakyUpwardChange,
@@ -36,16 +48,16 @@ class VoteDisplayOnArticle extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("update");
+    // console.log("update");
     if (prevProps.refreshTicket !== this.props.refreshTicket) {
       this.setState({ hasParentRefreshed: true });
     }
   }
 
   handleVote = voteDirection => {
-    console.log(
-      `beginning of handleVote, cast is ${this.state.castedVote} and voteDir is ${voteDirection}`
-    );
+    // console.log(
+    //   `beginning of handleVote, cast is ${this.state.castedVote} and voteDir is ${voteDirection}`
+    // );
     if (
       !(
         this.props.currentUser !== null &&
@@ -58,7 +70,7 @@ class VoteDisplayOnArticle extends Component {
       const { article_id, currentUser } = this.props;
       //If nullifying or de novo:
       if (voteDirection !== this.state.castedVote) {
-        console.log(`sending to db...`);
+        // console.log(`sending to db...`);
         //Send off to database.
         voteOnArticle(currentUser, article_id, voteDirection);
 
@@ -75,10 +87,10 @@ class VoteDisplayOnArticle extends Component {
 
         //Set a local change so user sees immediate (optim ren).
         this.setState(currState => {
-          console.log(
-            `setting local change where new cast will be ${currState.castedVote +
-              voteDirection}`
-          );
+          // console.log(
+          //   `setting local change where new cast will be ${currState.castedVote +
+          //     voteDirection}`
+          // );
           return {
             castedVote: currState.castedVote + voteDirection,
             error: false,
@@ -109,11 +121,11 @@ class VoteDisplayOnArticle extends Component {
   };
 
   render() {
-    console.log(this.state.hasParentRefreshed);
-    console.log(`CVAM ${this.state.castedVoteValueAtMount}`);
-    console.log(
-      `start of render, cast:${this.state.castedVote} parentVote:${this.props.votes}`
-    );
+    // console.log(this.state.hasParentRefreshed);
+    // console.log(`CVAM ${this.state.castedVoteValueAtMount}`);
+    // console.log(
+    //   `start of render, cast:${this.state.castedVote} parentVote:${this.props.votes}`
+    // );
     return (
       <p className={styles.votes}>
         <span

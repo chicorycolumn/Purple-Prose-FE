@@ -9,9 +9,6 @@ export const queryUserVoteOnArticle = (cb, voting_user, article_id) => {
     )
     .then(res => res.data)
     .then(data => {
-      // console.log("**** IN UTIL");
-      // console.log(voting_user, article_id);
-      // console.dir(data);
       cb(data["article_votes_junction"]);
     });
 };

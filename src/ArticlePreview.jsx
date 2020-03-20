@@ -49,11 +49,11 @@ const ArticlePreview = props => {
       </Link>
 
       <div className={styles.leftHandSideContainer}>
-        {/* <VoteDisplayOnArticle
-          currentUser={this.props.currentUser}
+        <VoteDisplayOnArticle
+          currentUser={props.currentUser}
           article_id={article_id}
           votes={votes}
-        /> */}
+        />
       </div>
 
       <div className={styles.rightHandSideContainer}>

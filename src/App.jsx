@@ -40,9 +40,9 @@ class App extends React.Component {
           <header className="NC News"></header>
           <div>
             <Router>
-              <Frontpage currentUser={this.props.currentUser} path="/" />
+              <Frontpage currentUser={this.state.currentUser} path="/" />
               <Frontpage
-                currentUser={this.props.currentUser}
+                currentUser={this.state.currentUser}
                 path="/articles/*"
               />
               <SingleArticle
