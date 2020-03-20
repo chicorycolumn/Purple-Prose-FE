@@ -6,7 +6,8 @@ import { fetchArticleCountsByTopic } from "./utils/getUtils";
 class TopicCard extends React.Component {
   state = {
     articleCounts: null,
-    isLoading: true
+    isLoading: true,
+    err: null
   };
 
   sneakyUpwardChange = articleCounts => {
@@ -21,6 +22,9 @@ class TopicCard extends React.Component {
   }
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
     return (
       <div className={styles.topicContainer}>
         {this.props.topics.map(topic => {

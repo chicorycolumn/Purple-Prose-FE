@@ -7,7 +7,7 @@ import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
 
 class CreateComment extends React.Component {
-  state = { isLoading: false, shallMakeInputBoxFlash: false };
+  state = { isLoading: false, shallMakeInputBoxFlash: false, err: null };
 
   componentDidUpdate(prevProps) {
     if (prevProps.refreshTicket !== this.props.refreshTicket) {
@@ -22,6 +22,9 @@ class CreateComment extends React.Component {
   }
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
     return (
       <div className={styles.newCommentOverbox}>
         <div className={styles.newCommentHeader}>

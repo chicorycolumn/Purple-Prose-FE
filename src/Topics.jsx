@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { Router, Link, navigate } from "@reach/router";
 import { fetchTopics } from "./utils/getUtils";
 import TopicCard from "./TopicCard";
 
 class Users extends Component {
   state = {
     topics: null,
-    isLoading: true
+    isLoading: true,
+    err: null
   };
 
   sneakyUpwardChange = topics => {
@@ -17,6 +19,10 @@ class Users extends Component {
   }
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
+
     return (
       <div>
         <p>

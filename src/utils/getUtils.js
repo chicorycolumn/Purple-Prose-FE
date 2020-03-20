@@ -16,16 +16,19 @@ export const queryUserVoteOnArticle = (cb, voting_user, article_id) => {
 export const fetchArticleWithComments = (cb, article_id) => {
   Promise.all([
     axios.get(`${baseUrl}/articles/${article_id}`).then(res => res.data),
-
     axios
       .get(`${baseUrl}/articles/${article_id}/comments`)
       .then(res => res.data)
-  ]).then(resArr => {
-    const articleData = resArr[0];
-    const commentData = resArr[1];
-    console.log(commentData["comments"]);
-    cb(articleData["article"], commentData["comments"]);
-  });
+  ])
+    .then(resArr => {
+      const articleData = resArr[0];
+      const commentData = resArr[1];
+      console.log(777);
+      cb(null, articleData["article"], commentData["comments"]);
+    })
+    .catch(err => {
+      cb(err);
+    });
 };
 
 export const fetchArticles = (cb, qObj) => {
@@ -86,7 +89,8 @@ export const fetchUsers = cb => {
     .then(res => res.data)
     .then(data => {
       cb(data["users"]);
-    });
+    })
+    .catch(err => console.log(err));
 };
 
 export const fetchTopics = cb => {

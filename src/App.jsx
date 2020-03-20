@@ -6,9 +6,12 @@ import Users from "./Users";
 import Topics from "./Topics";
 import Frontpage from "./Frontpage";
 import SingleArticle from "./SingleArticle";
+import ErrorPage from "./ErrorPage";
+
+//ArticlePreview and Navbar are RSC so have no error block added.
 
 class App extends React.Component {
-  state = { currentUser: "" };
+  state = { currentUser: "", err: null };
 
   logInOrOut = currentUser => {
     localStorage.setItem("currentUser", currentUser);
@@ -24,6 +27,9 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
     return (
       <>
         <Navbar
@@ -45,6 +51,8 @@ class App extends React.Component {
               />
               <Users path="/users/*" />
               <Topics path="/topics/*" />
+              <ErrorPage path="/error" />
+              <ErrorPage errCode="500" default />
             </Router>
           </div>
         </div>

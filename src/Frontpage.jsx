@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Router, Link, navigate } from "@reach/router";
 import { fetchArticles } from "./utils/getUtils";
 import ArticlePreview from "./ArticlePreview";
 import SortTab from "./SortTab";
@@ -6,7 +7,8 @@ import SortTab from "./SortTab";
 class Frontpage extends Component {
   state = {
     articles: null,
-    isLoading: true
+    isLoading: true,
+    err: null
   };
 
   sneakyUpwardChange = articles => {
@@ -15,6 +17,13 @@ class Frontpage extends Component {
 
   passUpQueries = queries => {
     fetchArticles(this.sneakyUpwardChange, queries);
+    // .catch(err => {
+    //   console.log("***************");
+    //   console.log(err);
+    //   this.setState({
+    //     err
+    //   });
+    // });
   };
 
   componentDidMount() {
@@ -26,12 +35,29 @@ class Frontpage extends Component {
       qObj[qArr[0]] = qArr[1];
 
       fetchArticles(this.sneakyUpwardChange, qObj);
+      // .catch(err => {
+      //   console.log("***************");
+      //   console.log(err);
+      //   this.setState({
+      //     err
+      //   });
+      // });
     } else {
       fetchArticles(this.sneakyUpwardChange);
+      // .catch(err => {
+      //   console.log("***************");
+      //   console.log(err);
+      //   this.setState({
+      //     err
+      //   });
+      // });
     }
   }
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
     return (
       <div>
         <SortTab passUpQueries={this.passUpQueries} ticket={Math.random()} />

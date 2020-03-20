@@ -12,7 +12,8 @@ class SortTab extends React.Component {
       currentlyFilterDisplay: "Sort by",
       sortDirection: "desc",
       dropdownShowing: false,
-      currentlyLoading: false
+      currentlyLoading: false,
+      err: null
     };
 
     this.showDropdown = this.showDropdown.bind(this);
@@ -70,6 +71,9 @@ class SortTab extends React.Component {
   }
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
     return (
       <>
         <div className={styles.fullWidthBar}>

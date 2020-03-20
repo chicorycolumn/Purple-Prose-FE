@@ -17,18 +17,8 @@ class SingleArticle extends React.Component {
     refreshTicket: 0,
     upToDateWithCommentCount: true,
     temporaryCommentIncrement: 0,
-    userSubmitsEmpty: false
-  };
-
-  sneakyUpwardChange = (article, comments) => {
-    this.setState({
-      article,
-      comments,
-      isLoading: false,
-      refreshTicket: Math.random(),
-      temporaryCommentIncrement: 0,
-      upToDateWithCommentCount: true
-    });
+    userSubmitsEmpty: false,
+    err: null
   };
 
   upwardEmptyCheckReset = () => {
@@ -55,6 +45,20 @@ class SingleArticle extends React.Component {
 
       return { comments: newCommentArray };
     });
+  };
+
+  sneakyUpwardChange = (err, article, comments) => {
+    if (err) {
+      this.setState({ err });
+    } else
+      this.setState({
+        article,
+        comments,
+        isLoading: false,
+        refreshTicket: Math.random(),
+        temporaryCommentIncrement: 0,
+        upToDateWithCommentCount: true
+      });
   };
 
   componentDidMount() {
@@ -85,6 +89,10 @@ class SingleArticle extends React.Component {
   };
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
+
     const lookup = [
       "Jan",
       "Feb",
@@ -99,20 +107,6 @@ class SingleArticle extends React.Component {
       "Nov",
       "Dec"
     ];
-    // const {
-    //   title,
-    //   author,
-    //   topic,
-    //   created_at,
-    //   article_id,
-    //   votes
-    // } = this.state.article;
-    // const year = new Date(created_at).getFullYear();
-    // const month = new Date(created_at).getMonth();
-    // const day = new Date(created_at).getDate();
-    // const hour = new Date(created_at).getHours();
-    // const minute = new Date(created_at).getMinutes();
-    // const formattedDate = `${lookup[month]} ${day} ${hour}:${minute} (${year})`;
     return (
       <>
         {this.state.isLoading ? (
@@ -150,11 +144,11 @@ class SingleArticle extends React.Component {
 
               <div className={styles.leftHandSideContainer}>
                 {/* <VoteDisplayOnArticle
-                  currentUser={this.props.currentUser}
-                  article_id={this.state.article.article_id}
-                  votes={this.state.article.votes}
-                  refreshTicket={this.state.refreshTicket}
-                /> */}
+                currentUser={this.props.currentUser}
+                article_id={this.state.article.article_id}
+                votes={this.state.article.votes}
+                refreshTicket={this.state.refreshTicket}
+              /> */}
               </div>
 
               <div className={styles.rightHandSideContainer}>

@@ -1,0 +1,10 @@
+.errorImage {
+  height: 100%;
+
+  width: 50vw;
+}
+
+.errorImageHolder {
+  display: flex;
+  justify-content: center;
+}

@@ -6,7 +6,7 @@ import { deleteCommentByID } from "./utils/deleteUtils";
 import VoteDisplayOnComment from "./VoteDisplayOnComment";
 
 class CommentGrid extends React.Component {
-  state = {};
+  state = { err: null };
 
   deleteComment = () => {
     deleteCommentByID(this.props.comment.comment_id);
@@ -15,6 +15,9 @@ class CommentGrid extends React.Component {
   };
 
   render() {
+    if (this.state.err) {
+      navigate("/error", { state: { err: this.state.err } });
+    }
     const lookup = [
       "Jan",
       "Feb",

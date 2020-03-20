@@ -1,5 +1,5 @@
 import React from "react";
-import ncnewslogo from "./logoncnews.png";
+import ncnewslogo from "./images/logoncnews.png";
 import styles from "./css/Navbar.module.css";
 import { Router, Link, navigate } from "@reach/router";
 
