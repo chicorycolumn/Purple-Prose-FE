@@ -14,9 +14,10 @@ class SingleArticle extends React.Component {
     article: null,
     comments: null,
     isLoading: true,
-    refreshTicket: 0,
-    upToDateWithCommentCount: true,
-    temporaryCommentIncrement: 0,
+    votes: 0,
+    // refreshTicket: 0,
+    // upToDateWithCommentCount: true,
+    // temporaryCommentIncrement: 0,
     userSubmitsEmpty: false,
     err: null
   };
@@ -55,10 +56,17 @@ class SingleArticle extends React.Component {
         article,
         comments,
         isLoading: false,
-        refreshTicket: Math.random(),
-        temporaryCommentIncrement: 0,
-        upToDateWithCommentCount: true
+        votes: article.votes
+        // refreshTicket: Math.random(),
+        // temporaryCommentIncrement: 0,
+        // upToDateWithCommentCount: true
       });
+  };
+
+  voteOnArticleUpstream = voteDirection => {
+    this.setState(currState => {
+      return { votes: currState.votes + voteDirection };
+    });
   };
 
   componentDidMount() {
@@ -146,8 +154,9 @@ class SingleArticle extends React.Component {
                 <VoteDisplayOnArticle
                   currentUser={this.props.currentUser}
                   article_id={this.state.article.article_id}
-                  votes={this.state.article.votes}
-                  refreshTicket={this.state.refreshTicket}
+                  votes={this.state.votes}
+                  voteOnArticleUpstream={this.voteOnArticleUpstream}
+                  // refreshTicket={this.state.refreshTicket}
                 />
               </div>
 

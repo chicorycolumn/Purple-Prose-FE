@@ -11,33 +11,30 @@ import { queryUserVoteOnArticle } from "./utils/getUtils";
 class VoteDisplayOnArticle extends Component {
   state = {
     castedVote: 0,
-    error: false,
-    hasParentRefreshed: true,
-    castedVoteValueAtMount: 0
+    error: false
+    // hasParentRefreshed: true,
+    // castedVoteValueAtMount: 0
   };
 
   sneakyUpwardChange = article_votes_junction => {
-    console.log(`AVJx ${JSON.stringify(article_votes_junction)}`);
+    // console.log(`AVJx ${JSON.stringify(article_votes_junction)}`);
 
     if (article_votes_junction.length === 0) {
       this.setState({
-        castedVote: 0,
-        castedVoteValueAtMount: 0
+        castedVote: 0
+        // castedVoteValueAtMount: 0
       });
     }
 
     // console.log(`SUC: cast as ${article_votes_junction[0]["inc_votes"]}`);
     else
       this.setState({
-        castedVote: article_votes_junction[0]["inc_votes"],
-        castedVoteValueAtMount: article_votes_junction[0]["inc_votes"]
+        castedVote: article_votes_junction[0]["inc_votes"]
+        // castedVoteValueAtMount: article_votes_junction[0]["inc_votes"]
       });
   };
 
   componentDidMount() {
-    console.log(
-      `gonna invoke fetch util with article id ${this.props.article_id} and ${this.props.currentUser}`
-    );
     if (this.props.currentUser) {
       queryUserVoteOnArticle(
         this.sneakyUpwardChange,
@@ -47,10 +44,16 @@ class VoteDisplayOnArticle extends Component {
     }
   }
 
+  // componentDidUpdate(prevProps) {
+  //   // console.log("update");
+  //   if (prevProps.refreshTicket !== this.props.refreshTicket) {
+  //     this.setState({ hasParentRefreshed: true });
+  //   }
+  // }
+
   componentDidUpdate(prevProps) {
-    // console.log("update");
-    if (prevProps.refreshTicket !== this.props.refreshTicket) {
-      this.setState({ hasParentRefreshed: true });
+    if (prevProps.votes !== this.props.votes) {
+      //this.setState({}); // Is this permissible, an empty object to force re-render?
     }
   }
 
@@ -84,7 +87,8 @@ class VoteDisplayOnArticle extends Component {
         //     };
         //   })
         // );
-
+        // console.log(this.props);
+        this.props.voteOnArticleUpstream(voteDirection);
         //Set a local change so user sees immediate (optim ren).
         this.setState(currState => {
           // console.log(
@@ -93,8 +97,8 @@ class VoteDisplayOnArticle extends Component {
           // );
           return {
             castedVote: currState.castedVote + voteDirection,
-            error: false,
-            hasParentRefreshed: false
+            error: false
+            // hasParentRefreshed: false
           };
         });
       }
@@ -140,14 +144,15 @@ class VoteDisplayOnArticle extends Component {
           {this.state.castedVote.toString() === "1" ? "▲" : "▵"}
         </span>
         <p className={styles.voteCount}>
-          {(this.props.votes || 0) +
+          {this.props.votes}
+          {/* {(this.props.votes || 0) +
             (this.state.hasParentRefreshed &&
             this.state.castedVoteValueAtMount === 0
               ? 0
               : this.state.castedVote) -
             (this.state.castedVoteValueAtMount !== 0
               ? this.state.castedVoteValueAtMount
-              : 0)}
+              : 0)} */}
         </p>
         <span
           className={styles.voteEmoji}

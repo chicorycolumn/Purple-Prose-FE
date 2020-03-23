@@ -49,13 +49,9 @@ export const fetchArticles = (cb, qObj) => {
     });
 };
 
-export const fetchArticleByID = (cb, article_id) => {
-  axios
-    .get(`${baseUrl}/articles/${article_id}`)
-    .then(res => res.data)
-    .then(data => {
-      cb(data["article"]);
-    });
+// I AM AIMING TO MAKE THIS ONE SOLELY PROMISE AND NOT CALLBACK BASED.
+export const fetchArticleByID = article_id => {
+  return axios.get(`${baseUrl}/articles/${article_id}`).then(res => res.data);
 };
 
 export const fetchArticleCountsByTopic = (cb, topicsArray) => {

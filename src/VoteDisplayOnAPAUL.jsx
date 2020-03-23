@@ -3,11 +3,14 @@ import { voteOnArticle } from "./utils/patchUtils";
 import styles from "./css/ArticlePreview.module.css";
 import { queryUserVoteOnArticle } from "./utils/getUtils";
 
-//The intention of all this is to check the actual number of votes an article has to display the user having voted new votecount.
-//It basically works, just that you don't see the visual feedback if you already have a downvote on sth, then refresh page (which sets voteBuffer to 0 instead of -1)
-//and so then yes the request is sent off fine, but you dont see the feedback. Should be resolvable by using jxn table that already exists to populate whether
+/*The intention of all this is to check the actual number of votes an article has 
+to display the user having voted new votecount.
+//It basically works, just that you don't see the visual feedback if you already 
+have a downvote on sth, then refresh page (which sets voteBuffer to 0 instead of -1)
+//and so then yes the request is sent off fine, but you dont see the feedback. 
+Should be resolvable by using jxn table that already exists to populate whether
 //up arrow should be red or blue kinda thing.
-
+*/
 class VoteDisplayOnArticle extends Component {
   state = {
     castedVote: 0,
