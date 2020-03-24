@@ -52,7 +52,7 @@ class App extends React.Component {
               <Users path="/users/*" />
               <Topics path="/topics/*" />
               <ErrorPage path="/error" />
-              <ErrorPage errCode="500" default />
+              <ErrorPage errCode="404" default />
             </Router>
           </div>
         </div>

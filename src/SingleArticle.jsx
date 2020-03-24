@@ -6,6 +6,7 @@ import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
 import CreateComment from "./CreateComment";
+import DateFormat from "./DateFormat";
 
 class SingleArticle extends React.Component {
   state = {
@@ -101,20 +102,6 @@ class SingleArticle extends React.Component {
       navigate("/error", { state: { err: this.state.err } });
     }
 
-    const lookup = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ];
     return (
       <>
         {this.state.isLoading ? (
@@ -167,7 +154,12 @@ class SingleArticle extends React.Component {
                   {` ${this.state.article.comment_count +
                     this.state.temporaryCommentIncrement} `}
                 </p>
-                <p className={styles.created_at}>{`${
+
+                <p className={styles.created_at}>
+                  <DateFormat created_at={this.state.article.created_at} />
+                </p>
+
+                {/* <p className={styles.created_at}>{`${
                   lookup[new Date(this.state.article.created_at).getMonth()]
                 } ${new Date(
                   this.state.article.created_at
@@ -177,7 +169,7 @@ class SingleArticle extends React.Component {
                   this.state.article.created_at
                 ).getMinutes()} (${new Date(
                   this.state.article.created_at
-                ).getFullYear()})`}</p>
+                ).getFullYear()})`}</p> */}
               </div>
               {this.state.createCommentDisplaying && (
                 <CreateComment

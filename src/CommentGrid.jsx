@@ -4,6 +4,7 @@ import { Router, Link, navigate } from "@reach/router";
 import { voteOnComment } from "./utils/patchUtils";
 import { deleteCommentByID } from "./utils/deleteUtils";
 import VoteDisplayOnComment from "./VoteDisplayOnComment";
+import DateFormat from "./DateFormat";
 
 class CommentGrid extends React.Component {
   state = { err: null };
@@ -18,20 +19,7 @@ class CommentGrid extends React.Component {
     if (this.state.err) {
       navigate("/error", { state: { err: this.state.err } });
     }
-    const lookup = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ];
+
     // const {
     //   title,
     //   author,
@@ -63,7 +51,10 @@ class CommentGrid extends React.Component {
             )}
           </div>
 
-          <p className={styles.commentTime}>{`${
+          <p className={styles.commentTime}>
+            <DateFormat created_at={this.props.comment.created_at} />
+          </p>
+          {/* <p className={styles.commentTime}>{`${
             lookup[new Date(this.props.comment.created_at).getMonth()]
           } ${new Date(this.props.comment.created_at).getDate()} ${new Date(
             this.props.comment.created_at
@@ -71,7 +62,7 @@ class CommentGrid extends React.Component {
             this.props.comment.created_at
           ).getMinutes()} (${new Date(
             this.props.comment.created_at
-          ).getFullYear()})`}</p>
+          ).getFullYear()})`}</p> */}
         </div>
 
         <div className={styles.middleBottom}>

@@ -4,30 +4,9 @@ import { Router, Link, navigate } from "@reach/router";
 import { voteOnArticle } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID } from "./utils/getUtils";
-
-const lookup = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
-];
+import DateFormat from "./DateFormat";
 
 class ArticlePreview extends React.Component {
-  // const year = new Date(created_at).getFullYear();
-  // const month = new Date(created_at).getMonth();
-  // const day = new Date(created_at).getDate();
-  // const hour = new Date(created_at).getHours();
-  // const minute = new Date(created_at).getMinutes();
-  // const formattedDate = `${lookup[month]} ${day} ${hour}:${minute} (${year})`;
-
   state = { article: null, votes: 0 };
 
   componentDidMount() {
@@ -78,6 +57,9 @@ class ArticlePreview extends React.Component {
           <p className={styles.comments}>
             <span role="img">💬</span>
             {` ${comment_count} `}
+          </p>
+          <p className={styles.created_at}>
+            <DateFormat created_at={created_at} />
           </p>
           {/* <p className={styles.created_at}>{formattedDate}</p> */}
         </div>
