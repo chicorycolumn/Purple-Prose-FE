@@ -10,12 +10,6 @@ class VoteDisplayOnArticle extends Component {
     currentUser: ""
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.currentUser === "" && this.state.currentUser) {
-      this.setState({});
-    }
-  }
-
   sneakyUpwardChange = article_votes_junction => {
     if (article_votes_junction.length === 0) {
       this.setState({

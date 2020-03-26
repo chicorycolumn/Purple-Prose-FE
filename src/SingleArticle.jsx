@@ -16,12 +16,10 @@ class SingleArticle extends React.Component {
     comments: null,
     isLoading: true,
     votes: 0,
-    // refreshTicket: 0,
-    // upToDateWithCommentCount: true,
-    // temporaryCommentIncrement: 0,
     userSubmitsEmpty: false,
     err: null,
-    currentUser: ""
+    currentUser: "",
+    comment_count: 0
   };
 
   componentDidMount() {
@@ -30,8 +28,20 @@ class SingleArticle extends React.Component {
       fetchArticleWithComments(this.sneakyUpwardChange, this.props.article_id)
     ]).then(resArr => {
       const currentUser = resArr[0];
-      this.setState({ currentUser });
+      this.setState(currState => {
+        return {
+          currentUser
+        };
+      });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.article === null && this.state.article) {
+      this.setState(currState => {
+        return { comment_count: currState.article.comment_count };
+      });
+    }
   }
 
   upwardEmptyCheckReset = () => {
@@ -42,21 +52,16 @@ class SingleArticle extends React.Component {
     this.setState({ newCommentInput });
   };
 
-  sneakyUpwardAmbicrement = crement => {
-    this.setState(currState => {
-      return {
-        temporaryCommentIncrement: currState.temporaryCommentIncrement + crement
-      };
-    });
-  };
-
   sneakyUpwardDelete = comment_id => {
     this.setState(currState => {
       let newCommentArray = currState.comments.filter(
         comment => comment.comment_id !== comment_id
       );
 
-      return { comments: newCommentArray };
+      return {
+        comments: newCommentArray,
+        comment_count: currState.comment_count - 1
+      };
     });
   };
 
@@ -69,9 +74,6 @@ class SingleArticle extends React.Component {
         comments,
         isLoading: false,
         votes: article.votes
-        // refreshTicket: Math.random(),
-        // temporaryCommentIncrement: 0,
-        // upToDateWithCommentCount: true
       });
   };
 
@@ -97,8 +99,7 @@ class SingleArticle extends React.Component {
             newCommentInput: "",
             createCommentDisplaying: false,
             comments: [newlyComment, ...currState.comments],
-            upToDateWithCommentCount: false,
-            temporaryCommentIncrement: currState.temporaryCommentIncrement + 1
+            comment_count: currState.comment_count + 1
           };
         });
       });
@@ -157,9 +158,7 @@ class SingleArticle extends React.Component {
                 <p className={styles.topic}>{this.state.article.topic}</p>
                 <p className={styles.comments}>
                   <span role="img">💬</span>
-                  {this.state.article.comment_count}
-                  {/* {` ${this.state.article.comment_count +
-                    this.state.temporaryCommentIncrement} `} */}
+                  {this.state.comment_count}
                 </p>
 
                 <p className={styles.created_at}>
@@ -184,7 +183,6 @@ class SingleArticle extends React.Component {
                   comment={comment}
                   article_id={this.state.article.article_id}
                   sneakyUpwardDelete={this.sneakyUpwardDelete}
-                  sneakyUpwardAmbicrement={this.sneakyUpwardAmbicrement}
                 />
               ))}
             </div>

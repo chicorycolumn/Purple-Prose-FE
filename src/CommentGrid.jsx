@@ -20,7 +20,6 @@ class CommentGrid extends React.Component {
   deleteComment = () => {
     deleteCommentByID(this.props.comment.comment_id);
     this.props.sneakyUpwardDelete(this.props.comment.comment_id);
-    this.props.sneakyUpwardAmbicrement(-1);
   };
 
   render() {

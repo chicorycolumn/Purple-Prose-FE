@@ -166,6 +166,9 @@
 
 .joinConvoButton {
   width: 100%;
+  height: 40px;
+  font-size: 18px;
+  color: indigo;
   grid-column: 1 / 4;
   margin-top: 0%;
   background-color: var(--shade-lilac);
