@@ -157,25 +157,14 @@ class SingleArticle extends React.Component {
                 <p className={styles.topic}>{this.state.article.topic}</p>
                 <p className={styles.comments}>
                   <span role="img">💬</span>
-                  {` ${this.state.article.comment_count +
-                    this.state.temporaryCommentIncrement} `}
+                  {this.state.article.comment_count}
+                  {/* {` ${this.state.article.comment_count +
+                    this.state.temporaryCommentIncrement} `} */}
                 </p>
 
                 <p className={styles.created_at}>
                   <DateFormat created_at={this.state.article.created_at} />
                 </p>
-
-                {/* <p className={styles.created_at}>{`${
-                  lookup[new Date(this.state.article.created_at).getMonth()]
-                } ${new Date(
-                  this.state.article.created_at
-                ).getDate()} ${new Date(
-                  this.state.article.created_at
-                ).getHours()}:${new Date(
-                  this.state.article.created_at
-                ).getMinutes()} (${new Date(
-                  this.state.article.created_at
-                ).getFullYear()})`}</p> */}
               </div>
               {this.state.createCommentDisplaying && (
                 <CreateComment

@@ -85,7 +85,7 @@ class VoteDisplayOnArticle extends Component {
         >
           {this.state.castedVote.toString() === "1" ? "▲" : "▵"}
         </span>
-        <p className={styles.voteCount}>{this.props.votes}</p>
+        <p className={styles.voteCount}>{this.props.votes || 0}</p>
         <span
           className={styles.voteEmoji}
           onClick={() => {
