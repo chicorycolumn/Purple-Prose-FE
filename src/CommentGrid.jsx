@@ -7,7 +7,15 @@ import VoteDisplayOnComment from "./VoteDisplayOnComment";
 import DateFormat from "./DateFormat";
 
 class CommentGrid extends React.Component {
-  state = { err: null };
+  state = { err: null, currentUser: "" };
+
+  componentDidMount() {
+    const currentUser = localStorage.getItem("currentUser");
+
+    this.setState({
+      currentUser
+    });
+  }
 
   deleteComment = () => {
     deleteCommentByID(this.props.comment.comment_id);
@@ -41,7 +49,7 @@ class CommentGrid extends React.Component {
           <div className={styles.usernameAndDeleteBox}>
             <p className={styles.author}>{this.props.comment.author}</p>
 
-            {this.props.comment.author === this.props.currentUser && (
+            {this.props.comment.author === this.state.currentUser && (
               <button
                 className={styles.deleteCommentButton}
                 onClick={this.deleteComment}
@@ -71,7 +79,6 @@ class CommentGrid extends React.Component {
 
         <div className={styles.leftHandSideContainer}>
           <VoteDisplayOnComment
-            currentUser={this.props.currentUser}
             article_id={this.props.article_id}
             votes={this.props.comment.votes}
           />

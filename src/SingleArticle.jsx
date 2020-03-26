@@ -20,8 +20,19 @@ class SingleArticle extends React.Component {
     // upToDateWithCommentCount: true,
     // temporaryCommentIncrement: 0,
     userSubmitsEmpty: false,
-    err: null
+    err: null,
+    currentUser: ""
   };
+
+  componentDidMount() {
+    return Promise.all([
+      localStorage.getItem("currentUser"),
+      fetchArticleWithComments(this.sneakyUpwardChange, this.props.article_id)
+    ]).then(resArr => {
+      const currentUser = resArr[0];
+      this.setState({ currentUser });
+    });
+  }
 
   upwardEmptyCheckReset = () => {
     this.setState({ userSubmitsEmpty: false });
@@ -70,10 +81,6 @@ class SingleArticle extends React.Component {
     });
   };
 
-  componentDidMount() {
-    fetchArticleWithComments(this.sneakyUpwardChange, this.props.article_id);
-  }
-
   submitNewComment = event => {
     event.preventDefault();
 
@@ -81,7 +88,7 @@ class SingleArticle extends React.Component {
       this.setState({ userSubmitsEmpty: true });
     } else
       postNewComment(
-        this.props.currentUser,
+        this.state.currentUser,
         this.state.article.article_id,
         this.state.newCommentInput
       ).then(newlyComment => {
@@ -120,9 +127,9 @@ class SingleArticle extends React.Component {
 
               <button
                 onClick={() => {
-                  this.props.currentUser !== null &&
-                  this.props.currentUser !== undefined &&
-                  this.props.currentUser !== ""
+                  this.state.currentUser !== null &&
+                  this.state.currentUser !== undefined &&
+                  this.state.currentUser !== ""
                     ? this.setState(currState => {
                         return {
                           createCommentDisplaying: !currState.createCommentDisplaying
@@ -139,7 +146,6 @@ class SingleArticle extends React.Component {
 
               <div className={styles.leftHandSideContainer}>
                 <VoteDisplayOnArticle
-                  currentUser={this.props.currentUser}
                   article_id={this.state.article.article_id}
                   votes={this.state.votes}
                   voteOnArticleUpstream={this.voteOnArticleUpstream}
@@ -173,7 +179,6 @@ class SingleArticle extends React.Component {
               </div>
               {this.state.createCommentDisplaying && (
                 <CreateComment
-                  currentUser={this.props.currentUser}
                   newCommentInput={this.state.newCommentInput}
                   sneakyUpwardNewCommentInput={this.sneakyUpwardNewCommentInput}
                   submitNewComment={this.submitNewComment}
@@ -188,7 +193,6 @@ class SingleArticle extends React.Component {
               {this.state.comments.map(comment => (
                 <CommentGrid
                   comment={comment}
-                  currentUser={this.props.currentUser}
                   article_id={this.state.article.article_id}
                   sneakyUpwardDelete={this.sneakyUpwardDelete}
                   sneakyUpwardAmbicrement={this.sneakyUpwardAmbicrement}

@@ -35,7 +35,7 @@ class App extends React.Component {
           // logInOrOut={this.logInOrOut}
           currentUser={this.state.currentUser}
         />
-        <div className={styles.App}>
+        <body className={styles.App}>
           <header className="NC News"></header>
           <div>
             <Router>
@@ -54,7 +54,7 @@ class App extends React.Component {
               <ErrorPage errCode="404" default />
             </Router>
           </div>
-        </div>
+        </body>
       </>
     );
   }

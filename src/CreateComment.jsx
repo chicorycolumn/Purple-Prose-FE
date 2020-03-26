@@ -7,7 +7,20 @@ import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
 
 class CreateComment extends React.Component {
-  state = { isLoading: false, shallMakeInputBoxFlash: false, err: null };
+  state = {
+    isLoading: false,
+    shallMakeInputBoxFlash: false,
+    err: null,
+    currentUser: ""
+  };
+
+  componentDidMount() {
+    const currentUser = localStorage.getItem("currentUser");
+
+    this.setState({
+      currentUser
+    });
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.refreshTicket !== this.props.refreshTicket) {
@@ -29,12 +42,12 @@ class CreateComment extends React.Component {
       <div className={styles.newCommentOverbox}>
         <div className={styles.newCommentHeader}>
           <div className={styles.boxInHeader}>
-            {this.props.currentUser && (
+            {this.state.currentUser && (
               <>
                 <p className={styles.newCommentInfo}>posting as</p>
 
                 <p className={styles.usernameOnComment}>
-                  {this.props.currentUser}
+                  {this.state.currentUser}
                 </p>
               </>
             )}

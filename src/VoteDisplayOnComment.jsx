@@ -8,15 +8,24 @@ import styles from "./css/CommentGrid.module.css";
 //up arrow should be red or blue kinda thing.
 
 class VoteDisplayOnComment extends Component {
-  state = { castedVote: 0 };
+  state = { castedVote: 0, currentUser: "" };
+
+  componentDidMount() {
+    const currentUser = localStorage.getItem("currentUser");
+
+    this.setState({
+      currentUser
+    });
+  }
+
   handleVote = voteDirection => {
     if (
-      this.props.currentUser !== null &&
-      this.props.currentUser !== undefined &&
-      this.props.currentUser !== ""
+      this.state.currentUser !== null &&
+      this.state.currentUser !== undefined &&
+      this.state.currentUser !== ""
     ) {
       voteOnComment(
-        this.props.currentUser,
+        this.state.currentUser,
         this.props.article_id,
         voteDirection
       );
