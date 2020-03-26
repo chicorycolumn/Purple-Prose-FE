@@ -13,17 +13,16 @@ import ErrorPage from "./ErrorPage";
 class App extends React.Component {
   state = { currentUser: "", err: null };
 
-  logInOrOut = currentUser => {
-    localStorage.setItem("currentUser", currentUser);
-    this.setState({ currentUser });
-  };
+  // logInOrOut = currentUser => {
+  //   localStorage.setItem("currentUser", currentUser);
+  //   this.setState({ currentUser });
+  // };
 
   componentDidMount() {
-    const currentUser = localStorage.getItem("currentUser");
-
-    if (currentUser && currentUser !== "") {
-      this.setState({ currentUser });
-    }
+    //const currentUserToken = localStorage.getItem("currentUserToken");
+    // if (currentUser && currentUser !== "") {
+    //   this.setState({ currentUser });
+    // }
   }
 
   render() {
@@ -33,7 +32,7 @@ class App extends React.Component {
     return (
       <>
         <Navbar
-          logInOrOut={this.logInOrOut}
+          // logInOrOut={this.logInOrOut}
           currentUser={this.state.currentUser}
         />
         <div className={styles.App}>

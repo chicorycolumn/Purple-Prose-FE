@@ -60,7 +60,7 @@
   padding-top: 0%;
   margin: 0%;
   margin-top: 2.5%;
-  border-bottom: #d7c9e9 dotted 1pt;
+  border-bottom: var(--shade-lilac) dotted 1pt;
 }
 
 .commentsContainer {
@@ -70,7 +70,7 @@
   padding-top: 0%;
   margin: 0%;
   margin-top: 2.5%;
-  border-bottom: #d7c9e9 dotted 1pt;
+  border-bottom: var(--shade-lilac) dotted 1pt;
   color: blue;
 }
 
@@ -86,7 +86,7 @@
   grid-column: 1;
   height: 99.25%;
   margin-top: 0.5%;
-  /* background-color: #d7c9e9; */
+  /* background-color: var(--shade-lilac); */
 
   width: 100%;
   justify-content: center;
@@ -114,7 +114,7 @@
 .deleteCommentButton {
   margin-left: 5px;
   border: none;
-  background-color: #d7c9e9;
+  background-color: var(--shade-lilac);
   color: indigo;
   margin-bottom: -5px;
   margin-top: -5px;

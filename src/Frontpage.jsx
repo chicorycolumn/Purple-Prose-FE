@@ -65,7 +65,11 @@ class Frontpage extends Component {
         <SortTab passUpQueries={this.passUpQueries} ticket={Math.random()} />
 
         {this.state.isLoading ? (
-          "loading..."
+          <>
+            <br />
+            <br />
+            <br />l o a d i n g . . .
+          </>
         ) : this.state.articles.length ? (
           this.state.articles.map(article => {
             return (

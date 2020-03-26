@@ -3,22 +3,17 @@ import styles from "./css/SortTab.module.css";
 import { Router, Link, navigate } from "@reach/router";
 
 class SortTab extends React.Component {
-  constructor() {
-    // CAN YOU REMOVE THIS COSTRCOTR LATER?
-    super();
+  state = {
+    currentFilter: "created_at",
+    currentlyFilterDisplay: "Sort by",
+    sortDirection: "desc",
+    dropdownShowing: false,
+    currentlyLoading: false,
+    err: null
+  };
 
-    this.state = {
-      currentFilter: "created_at",
-      currentlyFilterDisplay: "Sort by",
-      sortDirection: "desc",
-      dropdownShowing: false,
-      currentlyLoading: false,
-      err: null
-    };
-
-    this.showDropdown = this.showDropdown.bind(this);
-    this.closeDropdown = this.closeDropdown.bind(this);
-  }
+  showDropdown = this.showDropdown.bind(this);
+  closeDropdown = this.closeDropdown.bind(this);
 
   showDropdown(event) {
     event.preventDefault();

@@ -1,6 +1,24 @@
 import React from "react";
 import axios from "axios";
 const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
+const token = localStorage.getItem("currentUserToken");
+
+export const fetchUsers = cb => {
+  axios
+    .get(`${baseUrl}/users`, {
+      headers: { Authorization: `BEARER ${token}` }
+    })
+    .then(res => {
+      console.log("***");
+      console.dir(res);
+      console.log("***");
+      return res.data;
+    })
+    .then(data => {
+      cb(data["users"]);
+    })
+    .catch(err => console.log(err));
+};
 
 export const queryUserVoteOnArticle = (cb, voting_user, article_id) => {
   axios
@@ -77,16 +95,6 @@ export const fetchArticleCountsByTopic = (cb, topicsArray) => {
 
     cb(articleCounts);
   });
-};
-
-export const fetchUsers = cb => {
-  axios
-    .get(`${baseUrl}/users`)
-    .then(res => res.data)
-    .then(data => {
-      cb(data["users"]);
-    })
-    .catch(err => console.log(err));
 };
 
 export const fetchTopics = cb => {

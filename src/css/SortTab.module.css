@@ -54,15 +54,15 @@
 }
 
 .button1 {
-  background-color: rgb(247, 241, 253);
-}
-
-.button3 {
-  background-color: rgb(239, 224, 255);
+  background-color: var(--soft-lilac1);
 }
 
 .button2 {
-  background-color: rgb(245, 234, 255);
+  background-color: var(--soft-lilac2);
+}
+
+.button3 {
+  background-color: var(--soft-lilac3);
 }
 
 .dropButtons {
@@ -93,7 +93,7 @@
 }
 
 .loadingText {
-  color: #b893e7;
+  color: var(--dark-lilac);
   font-weight: normal;
   font-style: italic;
   margin: 0%;

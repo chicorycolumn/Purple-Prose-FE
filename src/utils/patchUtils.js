@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
-
+// const token = localStorage.getItem("currentUserToken");
 // export const voteOnArticle = (voting_user, article_id, inc_votes) => {
 //   console.log("in util..");
 
@@ -10,6 +10,28 @@ const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
 //     voting_user
 //   });
 // };
+
+export const patchAsLogin = async (username, password) => {
+  console.log(username, password);
+  const res = await axios.patch(`${baseUrl}/login`, {
+    username,
+    password
+  });
+  return Promise.all([
+    localStorage.setItem("currentUserToken", res.data.token),
+    localStorage.setItem("currentUser", res.data.username)
+  ]).then(x => {
+    return "completed login attempt";
+  });
+};
+
+export const postNewUser = async (username, article_id, body) => {
+  const res = await axios.post(`${baseUrl}/users`, {
+    username,
+    body
+  });
+  //return res.data.comment;
+};
 
 export const postNewComment = async (username, article_id, body) => {
   const res = await axios.post(`${baseUrl}/articles/${article_id}/comments`, {

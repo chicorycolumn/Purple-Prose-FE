@@ -30,7 +30,7 @@
   padding-top: 0%;
   margin: 0%;
   margin-top: 2.5%;
-  border-bottom: #d7c9e9 dotted 1pt;
+  border-bottom: var(--shade-lilac) dotted 1pt;
   color: blue;
 }
 
@@ -65,7 +65,7 @@
   flex-direction: column;
   justify-content: space-around;
   grid-row: 1;
-  border-bottom: #d7c9e9 dotted 1pt;
+  border-bottom: var(--shade-lilac) dotted 1pt;
   height: 98.5%;
 }
 
@@ -101,7 +101,7 @@
   height: 99.25%;
   margin-top: 1%;
   margin-left: 0.5%;
-  background-color: #d7c9e9;
+  background-color: var(--shade-lilac);
   width: 100%;
   justify-content: center;
   grid-row: 1;
@@ -115,7 +115,7 @@
   grid-column: 3;
   height: 99.8%;
   width: 100%;
-  background-color: #d7c9e9;
+  background-color: var(--shade-lilac);
   grid-row: 1;
 }
 
@@ -168,14 +168,14 @@
   width: 100%;
   grid-column: 1 / 4;
   margin-top: 0%;
-  background-color: #d7c9e9;
+  background-color: var(--shade-lilac);
   border: none;
   text-align: center;
   text-indent: -10%;
 }
 
 .newCommentOverbox {
-  background-color: #d7c9e9;
+  background-color: var(--shade-lilac);
   width: auto;
   grid-column: 1 / 4;
   text-align: left;
@@ -237,7 +237,7 @@
     background-color: white;
   }
   50% {
-    background-color: #ae92d3;
+    background-color: var(--shimmer-lilac);
   }
   100% {
     background-color: white;

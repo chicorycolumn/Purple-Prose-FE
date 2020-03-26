@@ -1,6 +1,18 @@
+:root {
+  --light-lilac: #e4daf0; /*Background neutral.*/
+  --shade-lilac: #d7c9e9; /*Main colour of elements.*/
+  --dark-lilac: #b893e7; /*Just for loading text, so far.*/
+  --rebecca: rebeccapurple; /*Nice strong fill colour.*/
+  --indigo: indigo; /*Border.*/
+  --shimmer-lilac: #ae92d3;
+  --soft-lilac1: #f7f1fd; /*These three more rarely, just for dropdowns..*/
+  --soft-lilac2: #f5eaff;
+  --soft-lilac3: #efe0ff;
+}
+
 .App {
   text-align: center;
-  background-color: #e4daf0;
+  background-color: var(--light-lilac);
   margin: auto;
   width: auto;
   height: auto;

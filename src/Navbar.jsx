@@ -2,16 +2,9 @@ import React from "react";
 import ncnewslogo from "./images/logoncnews.png";
 import styles from "./css/Navbar.module.css";
 import { Router, Link, navigate } from "@reach/router";
+import Login from "./Login";
 
 const Navbar = props => {
-  const logYourselfIn = () => {
-    props.logInOrOut("jessjelly");
-  };
-
-  const logYourselfOut = () => {
-    props.logInOrOut("");
-  };
-
   return (
     <div className={styles.navGrid}>
       {/* <div className={styles.leftContainer}> */}
@@ -28,25 +21,10 @@ const Navbar = props => {
             placeholder="Browse.."
           />
         </div>
-        <div className={styles.loginHolder}>
-          {props.currentUser !== null &&
-          props.currentUser !== undefined &&
-          props.currentUser !== "" ? (
-            <>
-              <p className={styles.loggedInUser}>{props.currentUser}</p>
-              <button onClick={logYourselfOut} className={styles.buttonRight}>
-                Log out
-              </button>
-            </>
-          ) : (
-            <>
-              <button className={styles.buttonRight} onClick={logYourselfIn}>
-                Log In
-              </button>
-              <button className={styles.buttonRight}>Sign up</button>
-            </>
-          )}
-        </div>
+        <Login
+          currentUser={props.currentUser}
+          // logInOrOut={props.logInOrOut}
+        />
       </div>
     </div>
   );
