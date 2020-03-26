@@ -17,12 +17,15 @@ export const patchAsLogin = async (username, password) => {
     username,
     password
   });
-  return Promise.all([
-    localStorage.setItem("currentUserToken", res.data.token),
-    localStorage.setItem("currentUser", res.data.username)
-  ]).then(x => {
-    return "completed login attempt";
-  });
+  if (res.data.loginError) {
+    return { loginError: res.data.loginError };
+  } else
+    return Promise.all([
+      localStorage.setItem("currentUserToken", res.data.token),
+      localStorage.setItem("currentUser", res.data.username)
+    ]).then(() => {
+      return { loginError: null };
+    });
 };
 
 export const postNewUser = async (username, article_id, body) => {

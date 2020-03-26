@@ -11,7 +11,7 @@ class Login extends React.Component {
     currentUserToken: "",
     usernameInput: "",
     passwordInput: "",
-    toggle: false
+    loginError: ""
   };
 
   componentDidMount() {
@@ -20,31 +20,39 @@ class Login extends React.Component {
 
     this.setState({
       currentUser,
-      currentUserToken
+      currentUserToken,
+      loginError: ""
     });
   }
 
   showLoginBox = () => {
     this.setState(currState => {
-      return { loginBoxShowing: !currState.loginBoxShowing };
+      return {
+        loginBoxShowing: !currState.loginBoxShowing,
+        loginError: ""
+      };
     });
   };
 
   sendLoginDetails = event => {
     event.preventDefault();
     patchAsLogin(this.state.usernameInput, this.state.passwordInput).then(
-      msg => {
-        console.log(msg);
+      feedback => {
+        if (feedback.loginError) {
+          this.setState({ loginError: feedback.loginError });
+        } else {
+          const currentUserToken = localStorage.getItem("currentUserToken");
+          const currentUser = localStorage.getItem("currentUser");
 
-        const currentUserToken = localStorage.getItem("currentUserToken");
-        const currentUser = localStorage.getItem("currentUser");
-
-        this.setState({
-          usernameInput: "",
-          passwordInput: "",
-          currentUser,
-          currentUserToken
-        });
+          this.setState({
+            loginBoxShowing: false,
+            usernameInput: "",
+            passwordInput: "",
+            currentUser,
+            currentUserToken,
+            loginError: ""
+          });
+        }
       }
     );
   };
@@ -66,11 +74,26 @@ class Login extends React.Component {
         {this.state.loginBoxShowing ? (
           <div className={styles.fullPageBox}>
             <div className={styles.loginBox}>
+              <span
+                onClick={() => {
+                  this.setState({ loginBoxShowing: false });
+                }}
+                role="img"
+                className={styles.exitX}
+              >
+                ❌
+              </span>
+
               <img
                 className={styles.welcomeBackImage}
                 src={loginImage}
                 alt="A triangle that says welcome back."
               />
+              <p>
+                {this.state.loginError
+                  ? this.state.loginError
+                  : "Welcome back!"}
+              </p>
               <form>
                 <input
                   className={styles.enterUsername}
