@@ -25,15 +25,24 @@ class SingleArticle extends React.Component {
   componentDidMount() {
     return Promise.all([
       localStorage.getItem("currentUser"),
-      fetchArticleWithComments(this.sneakyUpwardChange, this.props.article_id)
-    ]).then(resArr => {
-      const currentUser = resArr[0];
-      this.setState(currState => {
-        return {
-          currentUser
-        };
-      });
-    });
+      fetchArticleWithComments(this.props.article_id)
+    ])
+      .then(resArr => {
+        const currentUser = resArr[0];
+        const [err, article, comments] = resArr[1];
+
+        if (err) {
+          this.setState({ err, currentUser });
+        } else
+          this.setState({
+            article,
+            comments,
+            isLoading: false,
+            votes: article.votes,
+            currentUser
+          });
+      })
+      .catch(err => navigate("/error", { state: { err } }));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -63,18 +72,6 @@ class SingleArticle extends React.Component {
         comment_count: currState.comment_count - 1
       };
     });
-  };
-
-  sneakyUpwardChange = (err, article, comments) => {
-    if (err) {
-      this.setState({ err });
-    } else
-      this.setState({
-        article,
-        comments,
-        isLoading: false,
-        votes: article.votes
-      });
   };
 
   voteOnArticleUpstream = voteDirection => {
