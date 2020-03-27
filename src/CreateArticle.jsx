@@ -28,11 +28,35 @@ class CreateComment extends React.Component {
     });
   }
 
-  showDropdown = () => {
-    this.setState(currState => {
-      return { dropdownShowing: !currState.dropdownShowing };
-    });
-  };
+  showDropdown = this.showDropdown.bind(this);
+  closeDropdown = this.closeDropdown.bind(this);
+
+  showDropdown(e) {
+    e.preventDefault();
+    if (this.state.dropdownShowing) {
+      this.setState({ dropdownShowing: false }, () => {
+        document.removeEventListener("mouseout", this.closeDropdown);
+      });
+    } else
+      this.setState({ dropdownShowing: true }, () => {
+        document.addEventListener("click", this.closeDropdown);
+      });
+  }
+
+  closeDropdown(event) {
+    if (
+      event &&
+      event.target &&
+      event.target.id &&
+      event.target.id === "triggerForDropdownFilters"
+    ) {
+      return;
+    } else {
+      this.setState({ dropdownShowing: false }, () => {
+        document.removeEventListener("mouseout", this.closeDropdown);
+      });
+    }
+  }
 
   handleTopic = topic => {
     this.setState({ topicInput: topic.slug, dropdownShowing: false });
@@ -85,13 +109,16 @@ class CreateComment extends React.Component {
               value={this.state.titleInput}
             ></textarea>
 
+            <div className={styles.separator}></div>
+
             <div className={styles.dropdownHolder}>
               <button
                 id="triggerForDropdownFilters"
-                className={styles.trigger}
+                className={`${styles.trigger} ${this.state
+                  .shallMakeTopicFlash && styles.flashingField}`}
                 onClick={e => {
                   e.preventDefault();
-                  this.showDropdown();
+                  this.showDropdown(e);
                 }}
               >
                 {this.state.topicInput === ""
@@ -136,10 +163,17 @@ class CreateComment extends React.Component {
           onClick={e => {
             e.preventDefault();
 
-            if (this.state.titleInput === "") {
-              this.setState({ shallMakeTitleFlash: true });
-            } else if (this.state.bodyInput === "") {
-              this.setState({ shallMakeBodyFlash: true });
+            if (
+              this.state.titleInput === "" ||
+              this.state.topicInput === "" ||
+              this.state.bodyInput === ""
+            ) {
+              this.setState({
+                shallMakeTitleFlash:
+                  this.state.titleInput === "" ? true : false,
+                shallMakeBodyFlash: this.state.bodyInput === "" ? true : false,
+                shallMakeTopicFlash: this.state.topicInput === "" ? true : false
+              });
             } else {
               this.submitArticle();
               this.setState({ isLoading: true });
