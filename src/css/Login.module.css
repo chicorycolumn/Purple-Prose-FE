@@ -114,6 +114,10 @@
   top: -20px;
   text-align: center;
   /* padding: 1px 6px 1px 6px; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
 }
 
 .welcomeBackImage {
