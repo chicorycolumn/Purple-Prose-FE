@@ -1,0 +1,167 @@
+.dropdownHolder {
+  display: flex;
+  flex-direction: column;
+  width: 120%;
+  height: 100%;
+  background-color: yellow;
+}
+
+.trigger {
+  position: relative;
+  width: 100%;
+  height: 58.5px;
+  min-height: 58.5px;
+  background-color: white;
+  color: indigo;
+  font-weight: bold;
+  border: rebeccapurple solid 1pt;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  cursor: pointer;
+  background-color: rebeccapurple;
+  width: 100%;
+  min-height: 144px;
+  max-height: 250px; /* you can change as you need it */
+  overflow: auto; /* to get scroll */
+}
+
+.button1 {
+  background-color: var(--soft-lilac1);
+}
+
+.dropButtons {
+  border-left: indigo solid 2pt;
+  border-top: none;
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  font-size: 100%;
+}
+
+.overbox {
+  background-color: var(--shade-lilac);
+  width: auto;
+  grid-column: 1 / 4;
+  text-align: left;
+  padding: 5%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}
+
+.topbox {
+  height: 60px;
+  width: 97%;
+  padding: 0px;
+  background-color: hotpink;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.titleField {
+  resize: none;
+  background-color: greenyellow;
+  width: 200%;
+  height: 45px;
+  margin: 0%;
+  padding: 1%;
+  font-size: 18px;
+  font-family: arial;
+}
+
+.topicField {
+  resize: none;
+  background-color: lightcyan;
+  width: 100%;
+  height: 45px;
+  margin: 0%;
+  padding: 1%;
+  font-size: 18px;
+  font-family: arial;
+  position: relative;
+}
+
+.bodyInputField {
+  resize: none;
+  background-color: white;
+  width: 95%;
+  height: 200px;
+  margin: 0%;
+  padding: 1%;
+  font-family: arial;
+}
+
+.articleSubmitButton {
+  border: rebeccapurple solid 1pt;
+  margin: 0%;
+  /* margin-top: 2.5vh; */
+  width: 80px;
+  height: 30px;
+  margin-top: -2.5px;
+  cursor: pointer;
+}
+
+.newCommentInfo {
+  color: black;
+  margin: 0%;
+  height: 30px;
+  /* margin-top: 2.5vh; */
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.usernameOnComment {
+  color: blue;
+  margin: 0%;
+  height: 30px;
+  /* margin-top: 2.5vh; */
+  display: inline-block;
+}
+
+.boxInHeader {
+  width: 100%;
+  text-align: right;
+}
+
+.header {
+  display: flex;
+
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 97%;
+  height: 27.5px;
+}
+
+@keyframes errorShimmer {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: var(--shimmer-lilac);
+  }
+  100% {
+    background-color: white;
+  }
+}
+
+.flashingField {
+  animation-name: errorShimmer;
+  animation-duration: 1.5s;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .topic {
+    font-size: 90%;
+  }
+  .created_at {
+    font-size: 10px;
+  }
+}

@@ -46,6 +46,14 @@ export const postNewComment = async (username, article_id, body) => {
   return res.data.comment;
 };
 
+export const postNewArticle = (author, title, body, topic) => {
+  return axios
+    .post(`${baseUrl}/articles`, { author, title, body, topic })
+    .then(article => {
+      return article.data.article;
+    });
+};
+
 export const voteOnArticle = async (voting_user, article_id, inc_votes) => {
   const res = await axios.patch(`${baseUrl}/articles/${article_id}`, {
     inc_votes,

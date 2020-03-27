@@ -164,6 +164,7 @@
 }
 
 .newCommentInputField {
+  resize: none;
   background-color: white;
   width: 95%;
   height: 80px;
