@@ -19,6 +19,17 @@ export const fetchUsers = cb => {
     });
 };
 
+export const queryUserVoteOnComment = (voting_user, comment_id) => {
+  return axios
+    .get(
+      `${baseUrl}/comments/votes?voting_user=${voting_user}&comment_id=${comment_id}`
+    )
+    .then(res => res.data)
+    .then(data => {
+      return data["comment_votes_junction"];
+    });
+};
+
 export const queryUserVoteOnArticle = (voting_user, article_id) => {
   return axios
     .get(

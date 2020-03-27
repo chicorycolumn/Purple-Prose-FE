@@ -7,17 +7,26 @@ import VoteDisplayOnComment from "./VoteDisplayOnComment";
 import DateFormat from "./DateFormat";
 
 class CommentGrid extends React.Component {
-  state = { err: null, currentUser: "" };
+  state = { err: null, currentUser: "", votes: 0 };
 
   componentDidMount() {
     const currentUser = localStorage.getItem("currentUser");
     this.setState({
-      currentUser
+      currentUser,
+      votes: this.props.comment.votes
     });
   }
 
+  upwardVoteOnComment = voteDirection => {
+    this.setState(currState => {
+      return { votes: currState.votes + voteDirection };
+    });
+  };
+
   deleteComment = () => {
-    deleteCommentByID(this.props.comment.comment_id);
+    deleteCommentByID(this.props.comment.comment_id).then(() => {
+      window.location.reload(false);
+    });
     this.props.upwardDeleteComment(this.props.comment.comment_id);
   };
 
@@ -52,8 +61,10 @@ class CommentGrid extends React.Component {
 
         <div className={styles.leftHandSideContainer}>
           <VoteDisplayOnComment
-            article_id={this.props.article_id}
-            votes={this.props.comment.votes}
+            // article_id={this.props.article_id}
+            votes={this.state.votes}
+            upwardVoteOnComment={this.upwardVoteOnComment}
+            comment_id={this.props.comment.comment_id}
           />
         </div>
       </div>

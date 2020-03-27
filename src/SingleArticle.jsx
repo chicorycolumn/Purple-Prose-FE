@@ -91,13 +91,17 @@ class SingleArticle extends React.Component {
         this.state.article.article_id,
         this.state.newCommentInput
       ).then(newlyComment => {
-        this.setState(currState => {
-          return {
-            newCommentInput: "",
-            createCommentDisplaying: false,
-            comments: [newlyComment, ...currState.comments],
-            comment_count: currState.comment_count + 1
-          };
+        Promise.all([
+          this.setState(currState => {
+            return {
+              newCommentInput: "",
+              createCommentDisplaying: false,
+              comments: [newlyComment, ...currState.comments],
+              comment_count: currState.comment_count + 1
+            };
+          })
+        ]).then(() => {
+          window.location.reload(false);
         });
       });
   };

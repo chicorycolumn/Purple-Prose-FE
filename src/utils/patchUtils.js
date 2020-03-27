@@ -55,12 +55,21 @@ export const voteOnArticle = async (voting_user, article_id, inc_votes) => {
   return res;
 };
 
-export const voteOnComment = (voting_user, article_id, inc_votes) => {
-  //THIS FXNTY IS ACTUALLY NOT UP IN THE BACKEND YET!
-  // axios
-  //   .patch(`${baseUrl}/articles/${article_id}`, {
-  //     inc_votes,
-  //     voting_user
-  //   })
-  //   .catch(e => console.log(e));
+export const voteOnComment = async (voting_user, comment_id, inc_votes) => {
+  const res = await axios.patch(`${baseUrl}/comments/${comment_id}`, {
+    inc_votes,
+    voting_user
+  });
+
+  return res;
 };
+
+// export const voteOnComment = (voting_user, article_id, inc_votes) => {
+//   //THIS FXNTY IS ACTUALLY NOT UP IN THE BACKEND YET!
+//   // axios
+//   //   .patch(`${baseUrl}/articles/${article_id}`, {
+//   //     inc_votes,
+//   //     voting_user
+//   //   })
+//   //   .catch(e => console.log(e));
+// };
