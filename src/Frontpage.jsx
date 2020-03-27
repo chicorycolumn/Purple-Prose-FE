@@ -13,62 +13,32 @@ class Frontpage extends Component {
     err: null
   };
 
-  sneakyUpwardChange = articles => {
-    console.dir(articles);
+  passUpQueries = queries => {
+    window.location.reload(false);
+  };
+
+  componentDidMount() {
+    const qObj = {};
+
+    const qArr = this.props.location.search.replace("?", "").split("=");
+
+    qObj[qArr[0]] = qArr[1];
 
     const sort_by = localStorage.getItem("sort_by") || "created_at";
     const order = localStorage.getItem("order") || "desc";
 
-    if (sort_by === "votes") {
-      articles.sort((a, b) =>
-        order === "desc" ? b.votes - a.votes : a.votes - b.votes
-      );
-    }
+    qObj.sort_by = sort_by;
+    qObj.order = order;
 
-    this.setState({ articles, isLoading: false });
-  };
+    fetchArticles(qObj).then(articles => {
+      if (sort_by === "votes") {
+        articles.sort((a, b) =>
+          order === "desc" ? b.votes - a.votes : a.votes - b.votes
+        );
+      }
 
-  passUpQueries = queries => {
-    window.location.reload(false);
-    // fetchArticles(this.sneakyUpwardChange, queries);
-
-    // .catch(err => {
-    //   console.log("***************");
-    //   console.log(err);
-    //   this.setState({
-    //     err
-    //   });
-    // });
-  };
-
-  componentDidMount() {
-    if (this.props.location.search) {
-      const qArr = this.props.location.search.replace("?", "").split("=");
-
-      const qObj = {};
-
-      qObj[qArr[0]] = qArr[1];
-
-      fetchArticles(this.sneakyUpwardChange, qObj);
-      // .catch(err => {
-      //   console.log("***************");
-      //   console.log(err);
-      //   this.setState({
-      //     err
-      //   });
-      // });
-    } else {
-      const sort_by = localStorage.getItem("sort_by") || "created_at";
-      const order = localStorage.getItem("order") || "desc";
-      fetchArticles(this.sneakyUpwardChange, { sort_by, order });
-      // .catch(err => {
-      //   console.log("***************");
-      //   console.log(err);
-      //   this.setState({
-      //     err
-      //   });
-      // });
-    }
+      this.setState({ articles, isLoading: false });
+    });
   }
 
   render() {
@@ -77,7 +47,7 @@ class Frontpage extends Component {
     }
     return (
       <div>
-        <SortTab passUpQueries={this.passUpQueries} ticket={Math.random()} />
+        <SortTab passUpQueries={this.passUpQueries} />
 
         {this.state.isLoading ? (
           <>

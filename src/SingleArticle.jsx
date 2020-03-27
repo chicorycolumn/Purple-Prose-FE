@@ -57,11 +57,11 @@ class SingleArticle extends React.Component {
     this.setState({ userSubmitsEmpty: false });
   };
 
-  sneakyUpwardNewCommentInput = newCommentInput => {
+  upwardNewCommentInput = newCommentInput => {
     this.setState({ newCommentInput });
   };
 
-  sneakyUpwardDelete = comment_id => {
+  upwardDeleteComment = comment_id => {
     this.setState(currState => {
       let newCommentArray = currState.comments.filter(
         comment => comment.comment_id !== comment_id
@@ -74,7 +74,7 @@ class SingleArticle extends React.Component {
     });
   };
 
-  voteOnArticleUpstream = voteDirection => {
+  upwardVoteOnArticle = voteDirection => {
     this.setState(currState => {
       return { votes: currState.votes + voteDirection };
     });
@@ -146,7 +146,7 @@ class SingleArticle extends React.Component {
                 <VoteDisplayOnArticle
                   article_id={this.state.article.article_id}
                   votes={this.state.votes}
-                  voteOnArticleUpstream={this.voteOnArticleUpstream}
+                  upwardVoteOnArticle={this.upwardVoteOnArticle}
                   // refreshTicket={this.state.refreshTicket}
                 />
               </div>
@@ -165,9 +165,8 @@ class SingleArticle extends React.Component {
               {this.state.createCommentDisplaying && (
                 <CreateComment
                   newCommentInput={this.state.newCommentInput}
-                  sneakyUpwardNewCommentInput={this.sneakyUpwardNewCommentInput}
+                  upwardNewCommentInput={this.upwardNewCommentInput}
                   submitNewComment={this.submitNewComment}
-                  refreshTicket={this.state.refreshTicket}
                   upwardEmptyCheckReset={this.state.upwardEmptyCheckReset}
                   userSubmitsEmpty={this.state.userSubmitsEmpty}
                 />
@@ -179,7 +178,7 @@ class SingleArticle extends React.Component {
                 <CommentGrid
                   comment={comment}
                   article_id={this.state.article.article_id}
-                  sneakyUpwardDelete={this.sneakyUpwardDelete}
+                  upwardDeleteComment={this.upwardDeleteComment}
                 />
               ))}
             </div>

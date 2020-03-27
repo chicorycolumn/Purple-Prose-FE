@@ -20,14 +20,14 @@ export const fetchUsers = cb => {
     .catch(err => console.log(err));
 };
 
-export const queryUserVoteOnArticle = (cb, voting_user, article_id) => {
-  axios
+export const queryUserVoteOnArticle = (voting_user, article_id) => {
+  return axios
     .get(
       `${baseUrl}/articles/votes?voting_user=${voting_user}&article_id=${article_id}`
     )
     .then(res => res.data)
     .then(data => {
-      cb(data["article_votes_junction"]);
+      return data["article_votes_junction"];
     });
 };
 
@@ -46,7 +46,7 @@ export const fetchArticleWithComments = article_id => {
   });
 };
 
-export const fetchArticles = (cb, qObj) => {
+export const fetchArticles = qObj => {
   let qString = "";
 
   if (qObj && Object.keys(qObj).length) {
@@ -56,11 +56,11 @@ export const fetchArticles = (cb, qObj) => {
     );
     qString = "?" + qStringArray.join("&");
   }
-  axios
+  return axios
     .get(`${baseUrl}/articles/${qString}`)
     .then(res => res.data)
     .then(data => {
-      cb(data["articles"]);
+      return data["articles"];
     });
 };
 

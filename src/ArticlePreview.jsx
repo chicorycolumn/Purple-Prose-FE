@@ -17,7 +17,7 @@ class ArticlePreview extends React.Component {
     });
   }
 
-  voteOnArticleUpstream = voteDirection => {
+  upwardVoteOnArticle = voteDirection => {
     this.setState(currState => {
       return { votes: currState.votes + voteDirection };
     });
@@ -49,7 +49,7 @@ class ArticlePreview extends React.Component {
           <VoteDisplayOnArticle
             article_id={article_id}
             votes={this.state.votes}
-            voteOnArticleUpstream={this.voteOnArticleUpstream}
+            upwardVoteOnArticle={this.upwardVoteOnArticle}
           />
         </div>
 
@@ -62,7 +62,6 @@ class ArticlePreview extends React.Component {
           <p className={styles.created_at}>
             <DateFormat created_at={created_at} />
           </p>
-          {/* <p className={styles.created_at}>{formattedDate}</p> */}
         </div>
       </div>
     );

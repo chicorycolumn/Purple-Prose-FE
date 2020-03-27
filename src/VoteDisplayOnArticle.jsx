@@ -16,24 +16,21 @@ class VoteDisplayOnArticle extends Component {
     return Promise.all([this.setState({ currentUser })]).then(res => {
       if (this.state.currentUser) {
         queryUserVoteOnArticle(
-          this.sneakyUpwardChange,
           this.state.currentUser,
           this.props.article_id
-        );
+        ).then(article_votes_junction => {
+          if (article_votes_junction.length === 0) {
+            this.setState({
+              castedVote: 0
+            });
+          } else
+            this.setState({
+              castedVote: article_votes_junction[0]["inc_votes"]
+            });
+        });
       }
     });
   }
-
-  sneakyUpwardChange = article_votes_junction => {
-    if (article_votes_junction.length === 0) {
-      this.setState({
-        castedVote: 0
-      });
-    } else
-      this.setState({
-        castedVote: article_votes_junction[0]["inc_votes"]
-      });
-  };
 
   handleVote = voteDirection => {
     if (
@@ -53,7 +50,7 @@ class VoteDisplayOnArticle extends Component {
         //Send off to database.
         voteOnArticle(currentUser, article_id, voteDirection);
 
-        this.props.voteOnArticleUpstream(voteDirection);
+        this.props.upwardVoteOnArticle(voteDirection);
 
         //Set a local change so user sees immediate (optim ren).
         this.setState(currState => {

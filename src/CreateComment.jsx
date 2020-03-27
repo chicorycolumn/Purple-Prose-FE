@@ -16,25 +16,18 @@ class CreateComment extends React.Component {
 
   componentDidMount() {
     const currentUser = localStorage.getItem("currentUser");
-
     this.setState({
       currentUser
     });
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.refreshTicket !== this.props.refreshTicket) {
-      this.setState({ isLoading: false });
-    }
-
+  render() {
     if (this.state.shallMakeInputBoxFlash) {
       setTimeout(() => {
         this.setState({ shallMakeInputBoxFlash: false });
       }, 3000);
     }
-  }
 
-  render() {
     if (this.state.err) {
       navigate("/error", { state: { err: this.state.err } });
     }
@@ -75,7 +68,7 @@ class CreateComment extends React.Component {
             className={`${styles.newCommentInputField} ${this.state
               .shallMakeInputBoxFlash && styles.flashingNewCommentInputField}`}
             onChange={e => {
-              this.props.sneakyUpwardNewCommentInput(e.target.value);
+              this.props.upwardNewCommentInput(e.target.value);
             }}
             value={this.props.newCommentInput}
           ></textarea>

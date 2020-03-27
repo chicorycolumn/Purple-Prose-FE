@@ -13,28 +13,13 @@ import ErrorPage from "./ErrorPage";
 class App extends React.Component {
   state = { currentUser: "", err: null };
 
-  // logInOrOut = currentUser => {
-  //   localStorage.setItem("currentUser", currentUser);
-  //   this.setState({ currentUser });
-  // };
-
-  componentDidMount() {
-    //const currentUserToken = localStorage.getItem("currentUserToken");
-    // if (currentUser && currentUser !== "") {
-    //   this.setState({ currentUser });
-    // }
-  }
-
   render() {
     if (this.state.err) {
       navigate("/error", { state: { err: this.state.err } });
     }
     return (
       <>
-        <Navbar
-          // logInOrOut={this.logInOrOut}
-          currentUser={this.state.currentUser}
-        />
+        <Navbar currentUser={this.state.currentUser} />
         <body className={styles.App}>
           <header className="NC News"></header>
           <div>

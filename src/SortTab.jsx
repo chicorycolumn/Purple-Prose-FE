@@ -70,12 +70,6 @@ class SortTab extends React.Component {
     this.setState({ sortDirection: direction, currentlyLoading: true });
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.ticket !== this.props.ticket) {
-      this.setState({ currentlyLoading: false });
-    }
-  }
-
   render() {
     if (this.state.err) {
       navigate("/error", { state: { err: this.state.err } });
