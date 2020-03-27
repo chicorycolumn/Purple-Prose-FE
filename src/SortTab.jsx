@@ -8,13 +8,19 @@ class SortTab extends React.Component {
     sortDirection: "desc",
     dropdownShowing: false,
     currentlyLoading: false,
-    err: null
+    err: null,
+    currentUser: ""
   };
 
   componentDidMount() {
     const sort_by = localStorage.getItem("sort_by") || "created_at";
     const order = localStorage.getItem("order") || "desc";
-    this.setState({ sortDirection: order, currentFilter: sort_by });
+    const currentUser = localStorage.getItem("currentUser");
+    this.setState({
+      currentUser,
+      sortDirection: order,
+      currentFilter: sort_by
+    });
   }
 
   showDropdown = this.showDropdown.bind(this);
@@ -144,9 +150,20 @@ class SortTab extends React.Component {
             <Link to={"/topics"}>
               <button className={styles.rightButton}>Topics</button>
             </Link>
-            <Link to={"/write"}>
-              <button className={styles.rightButton}>Write!</button>
-            </Link>
+            {this.state.currentUser ? (
+              <Link to={"/write"}>
+                <button className={styles.rightButton}>Write!</button>
+              </Link>
+            ) : (
+              <button
+                onClick={alert(
+                  "To share your wonderful thoughts, log in or sign up!"
+                )}
+                className={styles.rightButton}
+              >
+                Write!
+              </button>
+            )}
           </div>
         </div>
       </>

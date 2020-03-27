@@ -7,11 +7,19 @@ import Topics from "./Topics";
 import Frontpage from "./Frontpage";
 import SingleArticle from "./SingleArticle";
 import ErrorPage from "./ErrorPage";
+import CreateArticle from "./CreateArticle";
 
 //ArticlePreview and Navbar are RSC so have no error block added.
 
 class App extends React.Component {
   state = { currentUser: "", err: null };
+
+  componentDidMount() {
+    const currentUser = localStorage.getItem("currentUser");
+    this.setState({
+      currentUser
+    });
+  }
 
   render() {
     if (this.state.err) {
@@ -34,6 +42,7 @@ class App extends React.Component {
                 path="/articles/:article_id"
               />
               <Users path="/users/*" />
+              <CreateArticle path="/write/" />
               <Topics path="/topics/*" />
               <ErrorPage path="/error" />
               <ErrorPage errCode="404" default />
