@@ -3,15 +3,16 @@ import axios from "axios";
 const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
 const token = localStorage.getItem("currentUserToken");
 
-export const fetchUsers = cb => {
+export const fetchUsers = () => {
   return axios
-    .get(`${baseUrl}/users`, {
-      headers: { Authorization: `BEARER ${token}` }
-    })
+    .get(
+      `${baseUrl}/users`
+      // ,
+      // {
+      //   headers: { Authorization: `BEARER ${token}` }
+      // }
+    )
     .then(res => {
-      console.log("***");
-      console.dir(res);
-      console.log("***");
       return res.data;
     })
     .then(data => {

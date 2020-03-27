@@ -239,10 +239,10 @@ class Login extends React.Component {
                       this.setState({
                         signupError: `Please choose a password, ${this.state.usernameSignupInput}`
                       });
-                    } else if (this.state.passwordSignupInput.length < 6) {
+                    } else if (this.state.passwordSignupInput.length < 4) {
                       e.preventDefault();
                       this.setState({
-                        signupError: `Password should be at least six characters, ${this.state.usernameSignupInput}`
+                        signupError: `Password should be at least four characters, ${this.state.usernameSignupInput}`
                       });
                     } else {
                       e.preventDefault();
@@ -266,7 +266,9 @@ class Login extends React.Component {
           this.state.currentUser !== undefined &&
           this.state.currentUser !== "" ? (
             <>
-              <p className={styles.loggedInUser}>{this.state.currentUser}</p>
+              <div className={styles.loggedInUserContainer}>
+                <p className={styles.loggedInUser}>{this.state.currentUser}</p>
+              </div>
               <form>
                 <button
                   type="submit"

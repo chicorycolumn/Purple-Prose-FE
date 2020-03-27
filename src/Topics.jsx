@@ -3,7 +3,7 @@ import { Router, Link, navigate } from "@reach/router";
 import { fetchTopics } from "./utils/getUtils";
 import TopicCard from "./TopicCard";
 
-class Users extends Component {
+class Topics extends Component {
   state = {
     topics: null,
     isLoading: true,
@@ -35,4 +35,4 @@ class Users extends Component {
   }
 }
 
-export default Users;
+export default Topics;

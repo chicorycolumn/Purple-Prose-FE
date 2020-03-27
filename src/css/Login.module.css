@@ -89,8 +89,19 @@
   cursor: pointer;
 }
 
+.loggedInUserContainer {
+  /* background-color: gold; */
+  /* border: black dotted 1px; */
+  margin: 0%;
+  margin-top: 2.5vh;
+  width: 150px;
+  min-width: 17vw;
+  height: 30px;
+}
+
 .loggedInUser {
   display: block;
+  font-style: italic;
   margin: 0%;
   margin-top: 3.25vh;
   /* margin-left: -10%; */
@@ -99,8 +110,10 @@
   color: indigo;
   font-size: 100%;
   padding: 0px;
-  /* padding: 1px 6px 1px 6px; */
+  position: relative;
+  top: -20px;
   text-align: center;
+  /* padding: 1px 6px 1px 6px; */
 }
 
 .welcomeBackImage {
@@ -148,6 +161,11 @@
     width: 77.5px;
   }
 
+  .loggedInUserContainer {
+    margin: 0px;
+    width: 77.5px;
+  }
+
   .loginHolder {
     position: relative;
     right: 5px;
@@ -155,7 +173,16 @@
   .loggedInUser {
     margin: 0%;
     position: relative;
-    top: 5px;
-    width: 41%;
+    top: 8px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
   }
+  /* .loggedInUser {
+    font-size: 8px;
+  } */
 }
