@@ -14,6 +14,17 @@ class Frontpage extends Component {
   };
 
   sneakyUpwardChange = articles => {
+    console.dir(articles);
+
+    const sort_by = localStorage.getItem("sort_by") || "created_at";
+    const order = localStorage.getItem("order") || "desc";
+
+    if (sort_by === "votes") {
+      articles.sort((a, b) =>
+        order === "desc" ? b.votes - a.votes : a.votes - b.votes
+      );
+    }
+
     this.setState({ articles, isLoading: false });
   };
 
