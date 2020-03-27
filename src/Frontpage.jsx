@@ -18,7 +18,9 @@ class Frontpage extends Component {
   };
 
   passUpQueries = queries => {
-    fetchArticles(this.sneakyUpwardChange, queries);
+    window.location.reload(false);
+    // fetchArticles(this.sneakyUpwardChange, queries);
+
     // .catch(err => {
     //   console.log("***************");
     //   console.log(err);
@@ -45,7 +47,9 @@ class Frontpage extends Component {
       //   });
       // });
     } else {
-      fetchArticles(this.sneakyUpwardChange);
+      const sort_by = localStorage.getItem("sort_by") || "created_at";
+      const order = localStorage.getItem("order") || "desc";
+      fetchArticles(this.sneakyUpwardChange, { sort_by, order });
       // .catch(err => {
       //   console.log("***************");
       //   console.log(err);
@@ -73,10 +77,9 @@ class Frontpage extends Component {
         ) : this.state.articles.length ? (
           this.state.articles.map(article => {
             return (
-              <ArticlePreview
-                currentUser={this.props.currentUser}
-                article={article}
-              />
+              <div id={article.article_id}>
+                <ArticlePreview article={article} />
+              </div>
             );
           })
         ) : (

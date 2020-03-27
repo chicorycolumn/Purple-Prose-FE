@@ -2,23 +2,13 @@ import React, { Component } from "react";
 import { voteOnArticle } from "./utils/patchUtils";
 import styles from "./css/ArticlePreview.module.css";
 import { queryUserVoteOnArticle } from "./utils/getUtils";
+import { fetchArticleByID } from "./utils/getUtils";
 
 class VoteDisplayOnArticle extends Component {
   state = {
     castedVote: 0,
     error: false,
     currentUser: ""
-  };
-
-  sneakyUpwardChange = article_votes_junction => {
-    if (article_votes_junction.length === 0) {
-      this.setState({
-        castedVote: 0
-      });
-    } else
-      this.setState({
-        castedVote: article_votes_junction[0]["inc_votes"]
-      });
   };
 
   componentDidMount() {
@@ -33,6 +23,17 @@ class VoteDisplayOnArticle extends Component {
       }
     });
   }
+
+  sneakyUpwardChange = article_votes_junction => {
+    if (article_votes_junction.length === 0) {
+      this.setState({
+        castedVote: 0
+      });
+    } else
+      this.setState({
+        castedVote: article_votes_junction[0]["inc_votes"]
+      });
+  };
 
   handleVote = voteDirection => {
     if (
@@ -79,7 +80,7 @@ class VoteDisplayOnArticle extends Component {
         >
           {this.state.castedVote.toString() === "1" ? "▲" : "▵"}
         </span>
-        <p className={styles.voteCount}>{this.props.votes || 0}</p>
+        <p className={styles.voteCount}>{this.props.votes}</p>
         <span
           className={styles.voteEmoji}
           onClick={() => {

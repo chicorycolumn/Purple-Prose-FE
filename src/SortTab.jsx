@@ -5,12 +5,17 @@ import { Router, Link, navigate } from "@reach/router";
 class SortTab extends React.Component {
   state = {
     currentFilter: "created_at",
-    currentlyFilterDisplay: "Sort by",
     sortDirection: "desc",
     dropdownShowing: false,
     currentlyLoading: false,
     err: null
   };
+
+  componentDidMount() {
+    const sort_by = localStorage.getItem("sort_by") || "created_at";
+    const order = localStorage.getItem("order") || "desc";
+    this.setState({ sortDirection: order, currentFilter: sort_by });
+  }
 
   showDropdown = this.showDropdown.bind(this);
   closeDropdown = this.closeDropdown.bind(this);
@@ -38,20 +43,26 @@ class SortTab extends React.Component {
     }
   }
 
-  handleFilterClick = (filter, displayName) => {
+  handleFilterClick = filter => {
+    localStorage.setItem("sort_by", filter);
+    localStorage.setItem("order", this.state.sortDirection);
+
     this.props.passUpQueries({
       sort_by: filter,
       order: this.state.sortDirection
     });
+
     this.setState({
       currentFilter: filter,
-      currentlyFilterDisplay: displayName,
       currentlyLoading: true
     });
     this.closeDropdown();
   };
 
   handleDirectionClick = direction => {
+    localStorage.setItem("sort_by", this.state.currentFilter);
+    localStorage.setItem("order", direction);
+
     this.props.passUpQueries({
       sort_by: this.state.currentFilter,
       order: direction
@@ -81,8 +92,12 @@ class SortTab extends React.Component {
               >
                 {this.state.currentlyLoading ? (
                   <p className={styles.loadingText}>loading...</p>
+                ) : this.state.currentFilter === "comment_count" ? (
+                  "by comments"
+                ) : this.state.currentFilter === "votes" ? (
+                  "by votes"
                 ) : (
-                  this.state.currentlyFilterDisplay
+                  "by date"
                 )}
               </button>
               {this.state.dropdownShowing ? (
@@ -90,7 +105,7 @@ class SortTab extends React.Component {
                   <button
                     className={`${styles.button1} ${styles.dropButtons}`}
                     onClick={() => {
-                      this.handleFilterClick("created_at", "date");
+                      this.handleFilterClick("created_at");
                     }}
                   >
                     date
@@ -99,7 +114,7 @@ class SortTab extends React.Component {
                   <button
                     className={`${styles.button2} ${styles.dropButtons}`}
                     onClick={() => {
-                      this.handleFilterClick("comment_count", "comments");
+                      this.handleFilterClick("comment_count");
                     }}
                   >
                     comments
@@ -107,7 +122,7 @@ class SortTab extends React.Component {
                   <button
                     className={`${styles.button3} ${styles.dropButtons}`}
                     onClick={() => {
-                      this.handleFilterClick("votes", "votes");
+                      this.handleFilterClick("votes");
                     }}
                   >
                     votes

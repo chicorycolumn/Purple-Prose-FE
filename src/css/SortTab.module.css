@@ -38,12 +38,14 @@
 
 .trigger {
   position: fixed;
-  left: 7.5px;
-  width: 80px;
+  left: 0.5px;
+  width: 92px;
+  height: 21px;
   background-color: white;
   color: indigo;
   font-weight: bold;
   border: rebeccapurple solid 1pt;
+  font-size: 12px;
 }
 
 .dropdown {
@@ -79,6 +81,7 @@
   background-color: white;
   color: rebeccapurple;
   margin: 0%;
+  margin-left: 5px;
   border: rebeccapurple solid 1pt;
   height: 18px;
   width: 20px;

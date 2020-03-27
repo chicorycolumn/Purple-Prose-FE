@@ -7,12 +7,14 @@ import { fetchArticleByID } from "./utils/getUtils";
 import DateFormat from "./DateFormat";
 
 class ArticlePreview extends React.Component {
-  state = { article: null, votes: 0 };
+  state = { article: null, votes: null };
 
   componentDidMount() {
-    fetchArticleByID(this.props.article.article_id).then(data =>
-      this.setState({ article: data["article"], votes: data["article"].votes })
-    );
+    fetchArticleByID(this.props.article.article_id).then(data => {
+      console.log(data["article"]);
+
+      this.setState({ article: data["article"], votes: data["article"].votes });
+    });
   }
 
   voteOnArticleUpstream = voteDirection => {
@@ -45,7 +47,6 @@ class ArticlePreview extends React.Component {
 
         <div className={styles.leftHandSideContainer}>
           <VoteDisplayOnArticle
-            currentUser={this.props.currentUser}
             article_id={article_id}
             votes={this.state.votes}
             voteOnArticleUpstream={this.voteOnArticleUpstream}
