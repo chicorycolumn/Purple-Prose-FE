@@ -10,14 +10,11 @@ class TopicCard extends React.Component {
     err: null
   };
 
-  sneakyUpwardChange = articleCounts => {
-    this.setState({ articleCounts, isLoading: false });
-  };
-
   componentDidMount() {
-    fetchArticleCountsByTopic(
-      this.sneakyUpwardChange,
-      this.props.topics.map(topic => topic.slug)
+    fetchArticleCountsByTopic(this.props.topics.map(topic => topic.slug)).then(
+      articleCounts => {
+        this.setState({ articleCounts, isLoading: false });
+      }
     );
   }
 

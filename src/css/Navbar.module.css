@@ -16,12 +16,6 @@
   right: 3%;
 }
 
-/* .leftContainer {
-  display: flex;
-  width: 25%;
-  justify-content: space-between;
-} */
-
 .searchbarContainer {
   display: flex;
   position: relative;
@@ -36,17 +30,13 @@
   width: 100%;
   margin-top: 2.5vh;
   margin-left: 5px;
+  cursor: pointer;
 }
-
-/* .buttonLeftContainer {
-  display: flex;
-  flex-direction: column;
-  margin-left: -2%;
-} */
 
 .ncLogo {
   margin-left: -1%;
   display: flex;
+  cursor: pointer;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {

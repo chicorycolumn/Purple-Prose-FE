@@ -7,12 +7,10 @@ import Login from "./Login";
 const Navbar = props => {
   return (
     <div className={styles.navGrid}>
-      {/* <div className={styles.leftContainer}> */}
       <Link to={"/"}>
         {" "}
         <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
       </Link>
-      {/* </div> */}
       <div className={styles.searchbarAndLoginContainer}>
         <div className={styles.searchbarContainer}>
           <input
@@ -21,10 +19,7 @@ const Navbar = props => {
             placeholder="Browse.."
           />
         </div>
-        <Login
-          currentUser={props.currentUser}
-          // logInOrOut={props.logInOrOut}
-        />
+        <Login currentUser={props.currentUser} />
       </div>
     </div>
   );

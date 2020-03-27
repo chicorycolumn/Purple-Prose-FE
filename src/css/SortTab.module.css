@@ -21,6 +21,7 @@
   font-weight: bold;
   position: relative;
   border: rebeccapurple solid 1pt;
+  cursor: pointer;
 }
 
 .leftContainer {
@@ -46,6 +47,7 @@
   font-weight: bold;
   border: rebeccapurple solid 1pt;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .dropdown {
@@ -53,6 +55,7 @@
   flex-direction: column;
   position: fixed;
   top: 91px;
+  cursor: pointer;
 }
 
 .button1 {
@@ -73,6 +76,7 @@
   width: 80px;
   text-align: center;
   margin-left: -5px;
+  cursor: pointer;
 }
 
 .littleButtons {
@@ -85,6 +89,7 @@
   border: rebeccapurple solid 1pt;
   height: 18px;
   width: 20px;
+  cursor: pointer;
 }
 
 .asc {

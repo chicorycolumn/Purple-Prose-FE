@@ -66,29 +66,27 @@ class VoteDisplayOnArticle extends Component {
   render() {
     return (
       <p className={styles.votes}>
-        <span
+        <button
           className={styles.voteEmoji}
           onClick={() => {
             if (this.state.castedVote !== 1) {
               this.handleVote(1);
             }
           }}
-          role="img"
         >
           {this.state.castedVote.toString() === "1" ? "▲" : "▵"}
-        </span>
+        </button>
         <p className={styles.voteCount}>{this.props.votes}</p>
-        <span
+        <button
           className={styles.voteEmoji}
           onClick={() => {
             if (this.state.castedVote !== -1) {
               this.handleVote(-1);
             }
           }}
-          role="img"
         >
           {this.state.castedVote.toString() === "-1" ? "▼" : "▿"}
-        </span>
+        </button>
       </p>
     );
   }

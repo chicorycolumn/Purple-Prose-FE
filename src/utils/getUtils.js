@@ -4,7 +4,7 @@ const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
 const token = localStorage.getItem("currentUserToken");
 
 export const fetchUsers = cb => {
-  axios
+  return axios
     .get(`${baseUrl}/users`, {
       headers: { Authorization: `BEARER ${token}` }
     })
@@ -15,9 +15,8 @@ export const fetchUsers = cb => {
       return res.data;
     })
     .then(data => {
-      cb(data["users"]);
-    })
-    .catch(err => console.log(err));
+      return data["users"];
+    });
 };
 
 export const queryUserVoteOnArticle = (voting_user, article_id) => {
@@ -64,12 +63,11 @@ export const fetchArticles = qObj => {
     });
 };
 
-// I AM AIMING TO MAKE THIS ONE SOLELY PROMISE AND NOT CALLBACK BASED.
 export const fetchArticleByID = article_id => {
   return axios.get(`${baseUrl}/articles/${article_id}`).then(res => res.data);
 };
 
-export const fetchArticleCountsByTopic = (cb, topicsArray) => {
+export const fetchArticleCountsByTopic = topicsArray => {
   console.log(topicsArray);
 
   const promisesArr = [];
@@ -82,7 +80,7 @@ export const fetchArticleCountsByTopic = (cb, topicsArray) => {
     )
   );
 
-  Promise.all(promisesArr).then(resArr => {
+  return Promise.all(promisesArr).then(resArr => {
     const articleCounts = {};
 
     for (let i = 0; i < topicsArray.length; i++) {
@@ -90,25 +88,15 @@ export const fetchArticleCountsByTopic = (cb, topicsArray) => {
       articleCounts[topicsArray[i]] = resArr[i].articles.length;
     }
 
-    cb(articleCounts);
+    return articleCounts;
   });
 };
 
-export const fetchTopics = cb => {
-  // cb([
-  //   { description: "Please be civil.", slug: "politics" },
-  //   { description: "For all pet related questions", slug: "pets" },
-  //   { description: "Star crossed lovers", slug: "astronomy" },
-  //   { description: "Live. Laugh. Lift.", slug: "fitness" },
-  //   { description: "stitch me up, scotty", slug: "embroidery" },
-  //   { description: "Code is love, code is life", slug: "coding" },
-  //   { description: "FOOTIE!", slug: "football" },
-  //   { description: "Hey good looking, what you got cooking?", slug: "cooking" }
-  // ]);
-  axios
+export const fetchTopics = () => {
+  return axios
     .get(`${baseUrl}/topics`)
     .then(res => res.data)
     .then(data => {
-      cb(data["topics"]);
+      return data["topics"];
     });
 };

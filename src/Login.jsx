@@ -36,7 +36,12 @@ class Login extends React.Component {
       return {
         loginBoxShowing: !currState.loginBoxShowing,
         signupBoxShowing: false,
-        loginError: ""
+        usernameInput: "",
+        passwordInput: "",
+        loginError: "",
+        usernameSignupInput: "",
+        passwordSignupInput: "",
+        signupError: ""
       };
     });
   };
@@ -45,62 +50,58 @@ class Login extends React.Component {
     this.setState(currState => {
       return {
         signupBoxShowing: !currState.signupBoxShowing,
-        loginBoxShowing: false
+        loginBoxShowing: false,
+        usernameInput: "",
+        passwordInput: "",
+        loginError: "",
+        usernameSignupInput: "",
+        passwordSignupInput: "",
+        signupError: ""
       };
     });
   };
 
   sendLoginDetails = event => {
-    event.preventDefault();
-    patchAsLogin(this.state.usernameInput, this.state.passwordInput).then(
-      feedback => {
-        if (feedback.loginError) {
-          this.setState({ loginError: feedback.loginError });
-        } else {
-          const currentUserToken = localStorage.getItem("currentUserToken");
-          const currentUser = localStorage.getItem("currentUser");
-          window.location.reload(false);
-          this.setState({
-            loginBoxShowing: false,
-            usernameInput: "",
-            passwordInput: "",
-            currentUser,
-            currentUserToken,
-            loginError: ""
-          });
-        }
-      }
-    );
-  };
+    if (event) {
+      event.preventDefault();
+    }
 
-  sendSignupDetails = event => {
-    event.preventDefault();
-    // axios
-    //   .post("https://nc-news-c-matus.herokuapp.com/api/users", {
-    //     username: "flo",
-    //     password: "flo"
-    //   })
-    //   .then(x => console.log(x));
-
-    console.log(
-      `gonna sign up with ${this.state.usernameSignupInput} and ${this.state.passwordSignupInput}`
-    );
-
-    postNewUser(
-      this.state.usernameSignupInput,
-      this.state.passwordSignupInput
+    patchAsLogin(
+      this.state.usernameInput || this.state.usernameSignupInput,
+      this.state.passwordInput || this.state.passwordSignupInput
     ).then(feedback => {
-      console.log("getting some feedback...");
-      if (feedback.err) {
-        console.log(`feedback.err is ${feedback.err}`);
-        this.setState({ signupError: feedback.err });
+      if (feedback.loginError) {
+        this.setState({ loginError: feedback.loginError });
       } else {
-        console.log(`feedback.user IS ${feedback.user}`);
+        const currentUserToken = localStorage.getItem("currentUserToken");
+        const currentUser = localStorage.getItem("currentUser");
+        window.location.reload(false);
+        this.setState({
+          loginBoxShowing: false,
+          usernameInput: "",
+          passwordInput: "",
+          currentUser,
+          currentUserToken,
+          loginError: ""
+        });
       }
     });
   };
 
-  logOut = event => {
+  sendSignupDetails = () => {
+    postNewUser(
+      this.state.usernameSignupInput,
+      this.state.passwordSignupInput
+    ).then(feedback => {
+      if (feedback.err) {
+        this.setState({ signupError: feedback.err });
+      } else {
+        this.sendLoginDetails();
+      }
+    });
+  };
+
+  logOut = () => {
     localStorage.setItem("currentUserToken", "");
     localStorage.setItem("currentUser", "");
   };
@@ -111,7 +112,7 @@ class Login extends React.Component {
         {this.state.loginBoxShowing ? (
           <div className={styles.fullPageBox}>
             <div className={styles.loginBox}>
-              <span
+              <button
                 onClick={() => {
                   this.setState({
                     loginBoxShowing: false,
@@ -119,11 +120,12 @@ class Login extends React.Component {
                     passwordInput: ""
                   });
                 }}
-                role="img"
                 className={styles.exitX}
               >
-                ❌
-              </span>
+                <span role="img" aria-label="red cross">
+                  ❌
+                </span>
+              </button>
 
               <img
                 className={styles.welcomeBackImage}
@@ -173,7 +175,7 @@ class Login extends React.Component {
         {this.state.signupBoxShowing ? (
           <div className={styles.fullPageBox}>
             <div className={styles.signupBox}>
-              <span
+              <button
                 onClick={() => {
                   this.setState({
                     signupBoxShowing: false,
@@ -181,18 +183,23 @@ class Login extends React.Component {
                     passwordSignupInput: ""
                   });
                 }}
-                role="img"
-                className={styles.exitX}
+                className={styles.exitX2}
               >
-                ❌
-              </span>
+                <span role="img" aria-label="red cross">
+                  ❌
+                </span>
+              </button>
 
               <img
                 className={styles.welcomeBackImage}
                 src={signupImage}
                 alt="A triangle that says join us."
               />
-              <p className={styles.welcomeOrErrorText}>Join us!</p>
+              <div className={styles.errorTextHolder}>
+                <p className={styles.welcomeOrErrorText}>
+                  {this.state.signupError ? this.state.signupError : "Join us!"}
+                </p>
+              </div>
               <form>
                 <input
                   className={styles.enterUsername}
@@ -215,7 +222,33 @@ class Login extends React.Component {
                 />
                 <br />
                 <button
-                  onClick={this.sendSignupDetails}
+                  onClick={e => {
+                    if (!this.state.usernameSignupInput) {
+                      e.preventDefault();
+                      this.setState({
+                        signupError: "Please choose a username"
+                      });
+                    } else if (this.state.usernameSignupInput.length > 12) {
+                      e.preventDefault();
+                      this.setState({
+                        signupError:
+                          "Username should be less than 12 characters"
+                      });
+                    } else if (!this.state.passwordSignupInput) {
+                      e.preventDefault();
+                      this.setState({
+                        signupError: `Please choose a password, ${this.state.usernameSignupInput}`
+                      });
+                    } else if (this.state.passwordSignupInput.length < 6) {
+                      e.preventDefault();
+                      this.setState({
+                        signupError: `Password should be at least six characters, ${this.state.usernameSignupInput}`
+                      });
+                    } else {
+                      e.preventDefault();
+                      this.sendSignupDetails();
+                    }
+                  }}
                   className={styles.loginButtonFromForm}
                   type="submit"
                 >

@@ -47,10 +47,7 @@ class SortTab extends React.Component {
     localStorage.setItem("sort_by", filter);
     localStorage.setItem("order", this.state.sortDirection);
 
-    this.props.passUpQueries({
-      sort_by: filter,
-      order: this.state.sortDirection
-    });
+    window.location.reload(false);
 
     this.setState({
       currentFilter: filter,
@@ -63,10 +60,7 @@ class SortTab extends React.Component {
     localStorage.setItem("sort_by", this.state.currentFilter);
     localStorage.setItem("order", direction);
 
-    this.props.passUpQueries({
-      sort_by: this.state.currentFilter,
-      order: direction
-    });
+    window.location.reload(false);
     this.setState({ sortDirection: direction, currentlyLoading: true });
   };
 

@@ -9,12 +9,10 @@ class Users extends Component {
     err: null
   };
 
-  sneakyUpwardChange = users => {
-    this.setState({ users, isLoading: false });
-  };
-
   componentDidMount() {
-    fetchUsers(this.sneakyUpwardChange);
+    fetchUsers().then(users => {
+      this.setState({ users, isLoading: false });
+    });
   }
 
   render() {

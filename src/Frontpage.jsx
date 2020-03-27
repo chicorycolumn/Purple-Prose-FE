@@ -13,10 +13,6 @@ class Frontpage extends Component {
     err: null
   };
 
-  passUpQueries = queries => {
-    window.location.reload(false);
-  };
-
   componentDidMount() {
     const qObj = {};
 
@@ -30,15 +26,17 @@ class Frontpage extends Component {
     qObj.sort_by = sort_by;
     qObj.order = order;
 
-    fetchArticles(qObj).then(articles => {
-      if (sort_by === "votes") {
-        articles.sort((a, b) =>
-          order === "desc" ? b.votes - a.votes : a.votes - b.votes
-        );
-      }
+    fetchArticles(qObj)
+      .then(articles => {
+        if (sort_by === "votes") {
+          articles.sort((a, b) =>
+            order === "desc" ? b.votes - a.votes : a.votes - b.votes
+          );
+        }
 
-      this.setState({ articles, isLoading: false });
-    });
+        this.setState({ articles, isLoading: false });
+      })
+      .catch(err => this.setState({ err }));
   }
 
   render() {
@@ -47,7 +45,7 @@ class Frontpage extends Component {
     }
     return (
       <div>
-        <SortTab passUpQueries={this.passUpQueries} />
+        <SortTab reloadArticles={this.reloadArticles} />
 
         {this.state.isLoading ? (
           <>

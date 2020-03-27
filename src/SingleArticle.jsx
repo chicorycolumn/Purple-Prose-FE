@@ -147,7 +147,6 @@ class SingleArticle extends React.Component {
                   article_id={this.state.article.article_id}
                   votes={this.state.votes}
                   upwardVoteOnArticle={this.upwardVoteOnArticle}
-                  // refreshTicket={this.state.refreshTicket}
                 />
               </div>
 

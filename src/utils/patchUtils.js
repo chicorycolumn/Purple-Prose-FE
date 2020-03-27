@@ -12,8 +12,6 @@ const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
 // };
 
 export const patchAsLogin = async (username, password) => {
-  // console.log(username, password);
-  console.log("inside patchAsLogin");
   const res = await axios.patch(`${baseUrl}/login`, {
     username,
     password
@@ -30,22 +28,14 @@ export const patchAsLogin = async (username, password) => {
 };
 
 export const postNewUser = async (username, password) => {
-  // axios
-  //   .post("https://nc-news-c-matus.herokuapp.com/api/users", {
-  //     username: "mo",
-  //     password: "mo"
-  //   })
-  //   .then(x => console.log(x));
-  console.log("inside postNewUser");
-  console.log({
-    username,
-    password
-  });
-  const res = await axios.post(`${baseUrl}/users`, {
-    username,
-    password
-  });
-  return res.data;
+  return axios
+    .post(`${baseUrl}/users`, {
+      username,
+      password
+    })
+    .then(res => {
+      return res.data;
+    });
 };
 
 export const postNewComment = async (username, article_id, body) => {
