@@ -11,3 +11,12 @@ export const deleteCommentByID = comment_id => {
     // }
   );
 };
+
+export const deleteArticleByID = article_id => {
+  return axios.delete(
+    `${baseUrl}/articles/${article_id}`
+    // , {
+    //   headers: { Authorization: `BEARER ${token}` }
+    // }
+  );
+};

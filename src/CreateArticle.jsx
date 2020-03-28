@@ -1,11 +1,17 @@
 import React from "react";
 import styles from "./css/CreateArticle.module.css";
 import { Router, Link, navigate } from "@reach/router";
-import { postNewArticle, postNewTopic } from "./utils/patchUtils";
-import { fetchTopics } from "./utils/getUtils";
+import {
+  postNewArticle,
+  postNewTopic,
+  patchArticleDetails
+} from "./utils/patchUtils";
+import { fetchTopics, fetchArticleByID } from "./utils/getUtils";
 
 class CreateComment extends React.Component {
   state = {
+    editMode: false,
+    article: null,
     shallMakeBodyFlash: false,
     shallMakeTitleFlash: false,
     shallMakeTopicFlash: false,
@@ -21,11 +27,21 @@ class CreateComment extends React.Component {
   };
 
   componentDidMount() {
-    fetchTopics().then(topics => {
+    Promise.all([
+      fetchTopics(),
+      this.props.article_id ? fetchArticleByID(this.props.article_id) : null
+    ]).then(resArr => {
+      const topics = resArr[0];
+      const articleData = resArr[1];
       const currentUser = localStorage.getItem("currentUser");
       this.setState({
         currentUser,
-        topics
+        topics,
+        editMode: this.props.editMode || false,
+        article: articleData ? articleData.article : null,
+        bodyInput: articleData ? articleData.article.body : "",
+        titleInput: articleData ? articleData.article.title : "",
+        topicInput: articleData ? articleData.article.topic : ""
       });
     });
   }
@@ -78,21 +94,42 @@ class CreateComment extends React.Component {
         topic => topic.slug.toLowerCase() === topicInput.toLowerCase()
       )
     ) {
-      postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
-        newlyPostedArticle => {
-          navigate(`/articles/${newlyPostedArticle.article_id}`);
-        }
-      );
-    } else {
-      postNewTopic(topicInput, topicDescriptionInput || "A new topic...").then(
-        () => {
-          postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
+      this.state.editMode
+        ? patchArticleDetails(
+            this.state.article.article_id,
+            currentUser,
+            titleInput,
+            bodyInput,
+            topicInput
+          ).then(newlyUpdatedArticle => {
+            navigate(`/articles/${newlyUpdatedArticle.article_id}`);
+          })
+        : postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
             newlyPostedArticle => {
               navigate(`/articles/${newlyPostedArticle.article_id}`);
             }
           );
-        }
-      );
+    } else {
+      postNewTopic(
+        topicInput.toLowerCase(),
+        topicDescriptionInput || "A new topic..."
+      ).then(() => {
+        this.state.editMode
+          ? patchArticleDetails(
+              this.state.article.article_id,
+              currentUser,
+              titleInput,
+              bodyInput,
+              topicInput
+            ).then(newlyUpdatedArticle => {
+              navigate(`/articles/${newlyUpdatedArticle.article_id}`);
+            })
+          : postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
+              newlyPostedArticle => {
+                navigate(`/articles/${newlyPostedArticle.article_id}`);
+              }
+            );
+      });
     }
   };
 
@@ -268,11 +305,16 @@ class CreateComment extends React.Component {
               });
             } else {
               this.submitArticle();
+
               this.setState({ isLoading: true });
             }
           }}
         >
-          {this.state.isLoading ? "submitting..." : "Say it!"}
+          {this.state.isLoading
+            ? "submitting..."
+            : this.state.editMode
+            ? "Edit it!"
+            : "Say it!"}
         </button>
       </form>
     );

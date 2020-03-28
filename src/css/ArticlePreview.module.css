@@ -30,12 +30,6 @@
   /* background-color: burlywood; */
 }
 
-.author {
-  grid-column: 2;
-  grid-row: 1;
-  color: indigo;
-}
-
 /* .body {
   margin-top: 0%;
   grid-row: 2;
@@ -119,8 +113,74 @@
   cursor: pointer;
 }
 
+.author {
+  color: indigo;
+  margin: 0px 5%;
+  /* background-color: tomato; */
+}
+
+.deleteAndEditHolder {
+  /* background-color: turquoise; */
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.deleteAndEditButton {
+  border: none;
+  background-color: var(--shade-lilac);
+  height: 20px;
+
+  width: 60px;
+  color: indigo;
+  font-weight: bold;
+  /* position: relative; */
+  padding: 0px;
+  margin: 0px 5%;
+  align-self: center;
+  /* left: 43%;
+  top: -10px; */
+  cursor: pointer;
+}
+
+.buttonEdMob {
+  display: none;
+}
+.buttonEd {
+  margin: 0px;
+}
+
+.authorAndButtonsContainer {
+  grid-column: 2;
+  grid-row: 1;
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 16px 0px;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
   .topic {
-    font-size: 90%;
+    font-size: 75%;
+  }
+  .deleteAndEditButton {
+    margin: 0px 2px;
+    /* border: indigo solid 0.5pt; */
+  }
+  .deleteAndEditHolder {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .author {
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+  .buttonEd {
+    display: none;
+  }
+  .buttonEdMob {
+    display: inline-block;
   }
 }

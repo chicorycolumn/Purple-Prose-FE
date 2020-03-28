@@ -41,6 +41,11 @@ class App extends React.Component {
                 currentUser={this.state.currentUser}
                 path="/articles/:article_id"
               />
+              <CreateArticle
+                currentUser={this.state.currentUser}
+                editMode={true}
+                path="/articles/:article_id/edit"
+              />
               <Users path="/users/*" />
               <CreateArticle path="/write/" />
               <Topics path="/topics/*" />

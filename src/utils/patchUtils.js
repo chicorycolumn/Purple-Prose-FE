@@ -54,6 +54,14 @@ export const postNewArticle = (author, title, body, topic) => {
     });
 };
 
+export const patchArticleDetails = (article_id, author, title, body, topic) => {
+  return axios
+    .patch(`${baseUrl}/articles/${article_id}`, { title, body, topic })
+    .then(article => {
+      return article.data.article;
+    });
+};
+
 export const postNewTopic = (slug, description) => {
   return axios.post(`${baseUrl}/topics`, { slug, description }).then(topic => {
     console.log(topic);

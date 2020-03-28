@@ -4,16 +4,21 @@ import { Router, Link, navigate } from "@reach/router";
 import { voteOnArticle } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID } from "./utils/getUtils";
+import { deleteArticleByID } from "./utils/deleteUtils";
 import DateFormat from "./DateFormat";
 
 class ArticlePreview extends React.Component {
-  state = { article: null, votes: null };
+  state = { article: null, votes: null, currentUser: "" };
 
   componentDidMount() {
-    fetchArticleByID(this.props.article.article_id).then(data => {
-      console.log(data["article"]);
+    const currentUser = localStorage.getItem("currentUser");
 
-      this.setState({ article: data["article"], votes: data["article"].votes });
+    fetchArticleByID(this.props.article.article_id).then(data => {
+      this.setState({
+        currentUser,
+        article: data["article"],
+        votes: data["article"].votes
+      });
     });
   }
 
@@ -22,6 +27,20 @@ class ArticlePreview extends React.Component {
       return { votes: currState.votes + voteDirection };
     });
   };
+
+  deleteArticle(e) {
+    e.preventDefault();
+    var retVal = window.confirm(
+      `Hiya ${this.state.currentUser}! You're about to delete your ${this.state.article.topic} article.`
+    );
+    if (retVal === true) {
+      deleteArticleByID(this.props.article.article_id).then(() => {
+        window.location.reload(false);
+      });
+    } else {
+      return;
+    }
+  }
 
   render() {
     const {
@@ -41,7 +60,49 @@ class ArticlePreview extends React.Component {
         >
           <div className={styles.centralContainer}>
             <p className={styles.title}>{title}</p>
-            <p className={styles.author}>by {author}</p>
+
+            <div className={styles.authorAndButtonsContainer}>
+              {this.state.currentUser === this.props.article.author ? (
+                <div className={styles.deleteAndEditHolder}>
+                  <button
+                    className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
+                    onClick={e => {
+                      e.preventDefault();
+                      navigate(
+                        `/articles/${this.props.article.article_id}/edit`
+                      );
+                    }}
+                  >
+                    Edit
+                  </button>
+
+                  <p className={styles.author}>by {author}</p>
+                  <div className={styles.mobileContainer}>
+                    <button
+                      className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
+                      onClick={e => {
+                        e.preventDefault();
+                        navigate(
+                          `/articles/edit/${this.props.article.article_id}`
+                        );
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
+                      onClick={e => {
+                        this.deleteArticle(e);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <p className={styles.author}>by {author}</p>
+              )}
+            </div>
           </div>
         </Link>
 
