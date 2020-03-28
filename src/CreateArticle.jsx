@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./css/CreateArticle.module.css";
 import { Router, Link, navigate } from "@reach/router";
-import { postNewArticle } from "./utils/patchUtils";
+import { postNewArticle, postNewTopic } from "./utils/patchUtils";
 import { fetchTopics } from "./utils/getUtils";
 
 class CreateComment extends React.Component {
@@ -14,8 +14,10 @@ class CreateComment extends React.Component {
     bodyInput: "",
     titleInput: "",
     topicInput: "",
+    topicDescriptionInput: "",
     topics: null,
-    dropdownShowing: false
+    dropdownShowing: false,
+    newTopicFieldShowing: false
   };
 
   componentDidMount() {
@@ -63,31 +65,68 @@ class CreateComment extends React.Component {
   };
 
   submitArticle = () => {
-    const { currentUser, titleInput, bodyInput, topicInput } = this.state;
-    postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
-      newlyPostedArticle => {
-        console.log(newlyPostedArticle);
-        navigate(`/articles/${newlyPostedArticle.article_id}`);
-      }
-    );
+    const {
+      currentUser,
+      titleInput,
+      bodyInput,
+      topicInput,
+      topicDescriptionInput
+    } = this.state;
+
+    if (
+      this.state.topics.some(
+        topic => topic.slug.toLowerCase() === topicInput.toLowerCase()
+      )
+    ) {
+      postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
+        newlyPostedArticle => {
+          navigate(`/articles/${newlyPostedArticle.article_id}`);
+        }
+      );
+    } else {
+      postNewTopic(topicInput, topicDescriptionInput || "A new topic...").then(
+        () => {
+          postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
+            newlyPostedArticle => {
+              navigate(`/articles/${newlyPostedArticle.article_id}`);
+            }
+          );
+        }
+      );
+    }
   };
 
   render() {
+    // [
+    //   "shallMakeBodyFlash",
+    //   "shallMakeTitleFlash",
+    //   "shallMakeTopicFlash"
+    // ].forEach(item => {
+    //   if (`this.state.${item}`) {
+    //     setTimeout(() => {
+    //       let stateObj = {};
+    //       stateObj[item] = false;
+    //       this.setState(stateObj);
+    //     }, 2000);
+    //   }
+    // });
+
     if (this.state.shallMakeBodyFlash) {
       setTimeout(() => {
         this.setState({ shallMakeBodyFlash: false });
-      }, 3000);
+      }, 2000);
     }
     if (this.state.shallMakeTitleFlash) {
       setTimeout(() => {
         this.setState({ shallMakeTitleFlash: false });
-      }, 3000);
+      }, 2000);
     }
     if (this.state.shallMakeTopicFlash) {
       setTimeout(() => {
         this.setState({ shallMakeTopicFlash: false });
-      }, 3000);
+      }, 2000);
     }
+
     if (this.state.err) {
       navigate("/error", { state: { err: this.state.err } });
     }
@@ -103,6 +142,7 @@ class CreateComment extends React.Component {
               required
               rows="2"
               cols="80"
+              maxLength="70"
               onChange={e => {
                 this.setState({ titleInput: e.target.value });
               }}
@@ -111,39 +151,91 @@ class CreateComment extends React.Component {
 
             <div className={styles.separator}></div>
 
-            <div className={styles.dropdownHolder}>
-              <button
-                id="triggerForDropdownFilters"
-                className={`${styles.trigger} ${this.state
-                  .shallMakeTopicFlash && styles.flashingField}`}
-                onClick={e => {
-                  e.preventDefault();
-                  this.showDropdown(e);
-                }}
-              >
-                {this.state.topicInput === ""
-                  ? "Select topic"
-                  : this.state.topicInput}
-              </button>
+            {this.state.newTopicFieldShowing ? (
+              <div className={styles.newTopicFieldOverarch}>
+                <input
+                  maxLength="12"
+                  placeholder="New topic"
+                  className={`${styles.newTopicField} ${this.state
+                    .shallMakeTopicFlash && styles.flashingField}`}
+                  onChange={e => {
+                    this.setState({ topicInput: e.target.value });
+                  }}
+                  value={this.state.topicInput}
+                ></input>
+                <button
+                  onClick={() => {
+                    this.setState({
+                      newTopicFieldShowing: false,
+                      topicInput: ""
+                    });
+                  }}
+                  className={styles.exitX}
+                >
+                  <span role="img" aria-label="red cross">
+                    ❌
+                  </span>
+                </button>
+              </div>
+            ) : (
+              <div className={styles.dropdownHolder}>
+                <button
+                  id="triggerForDropdownFilters"
+                  className={`${styles.trigger} ${this.state
+                    .shallMakeTopicFlash && styles.flashingField}`}
+                  onClick={e => {
+                    e.preventDefault();
+                    this.showDropdown(e);
+                  }}
+                >
+                  {this.state.topicInput === ""
+                    ? "Select topic"
+                    : this.state.topicInput}
+                </button>
 
-              {this.state.dropdownShowing ? (
-                <div className={styles.dropdown}>
-                  {this.state.topics.map(topic => (
-                    <button
-                      className={`${styles.button1} ${styles.dropButtons}`}
-                      onClick={e => {
-                        e.preventDefault();
-                        this.handleTopic(topic);
-                      }}
-                    >
-                      {topic.slug}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
+                {this.state.dropdownShowing ? (
+                  <div className={styles.dropdown}>
+                    {this.state.topics.map((topic, index) =>
+                      index === 0 ? (
+                        <>
+                          <button
+                            className={`${styles.buttonNew} ${styles.dropButtons}`}
+                            onClick={e => {
+                              e.preventDefault();
+                              this.setState({ newTopicFieldShowing: true });
+                            }}
+                          >
+                            Create new topic
+                          </button>
+                          <button
+                            className={`${styles.button1} ${styles.dropButtons}`}
+                            onClick={e => {
+                              e.preventDefault();
+                              this.handleTopic(topic);
+                            }}
+                          >
+                            {topic.slug}
+                          </button>
+                        </>
+                      ) : (
+                        <button
+                          className={`${styles.button1} ${styles.dropButtons}`}
+                          onClick={e => {
+                            e.preventDefault();
+                            this.handleTopic(topic);
+                          }}
+                        >
+                          {topic.slug}
+                        </button>
+                      )
+                    )}
+                    )
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            )}
           </div>
           <textarea
             required

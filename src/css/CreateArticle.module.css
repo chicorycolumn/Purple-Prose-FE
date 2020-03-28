@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 120%;
   height: 100%;
+  max-width: 250px;
   /* background-color: yellow; */
 }
 
@@ -14,10 +15,16 @@
   min-height: 144px;
   max-height: 250px; /* you can change as you need it */
   overflow: auto; /* to get scroll */
+  overflow-x: hidden;
 }
 
 .button1 {
   background-color: var(--soft-lilac1);
+}
+
+.buttonNew {
+  background-color: var(--soft-lilac1);
+  font-style: italic;
 }
 
 .dropButtons {
@@ -55,8 +62,9 @@
 
 .trigger {
   position: relative;
-  width: 100%;
-  height: 80%;
+  width: 101%;
+  height: 85%;
+  left: -3px;
   min-height: 58.5px;
   background-color: white;
   color: indigo;
@@ -64,6 +72,46 @@
   border: rebeccapurple solid 1pt;
   font-size: 16px;
   cursor: pointer;
+}
+
+.newTopicField {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+  height: 54px;
+  background-color: white;
+  color: indigo;
+  font-weight: bold;
+  border: rebeccapurple solid 1pt;
+  font-size: 18px;
+  cursor: scroll;
+  width: 100%;
+  text-align: center;
+}
+
+.exitX {
+  grid-row: 1;
+  grid-column: 1;
+  top: -2.5px;
+  left: 2.5px;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+}
+
+.newTopicFieldOverarch {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  width: 120%;
+  max-width: 250px;
+  justify-items: right;
+  padding: 0px;
 }
 
 .separator {
@@ -165,10 +213,33 @@
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  .topic {
-    font-size: 90%;
+  .dropButtons {
+    font-size: 12px;
   }
-  .created_at {
+
+  .newTopicField {
+    width: 105%;
+    left: 5px;
+  }
+
+  .trigger {
+    width: 110%;
+  }
+
+  .dropdown {
+    width: 110%;
+    left: -3px;
+  }
+
+  .topbox {
+    width: 96%;
+  }
+
+  .exitX {
+    top: -1.5px;
+    left: 6.5px;
     font-size: 10px;
+    width: 20px;
+    height: 20px;
   }
 }

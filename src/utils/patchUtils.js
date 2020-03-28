@@ -54,6 +54,12 @@ export const postNewArticle = (author, title, body, topic) => {
     });
 };
 
+export const postNewTopic = (slug, description) => {
+  return axios.post(`${baseUrl}/topics`, { slug, description }).then(topic => {
+    console.log(topic);
+  });
+};
+
 export const voteOnArticle = async (voting_user, article_id, inc_votes) => {
   const res = await axios.patch(`${baseUrl}/articles/${article_id}`, {
     inc_votes,
