@@ -33,34 +33,35 @@ class CreateComment extends React.Component {
     }
     return (
       <div className={styles.newCommentOverbox}>
-        <div className={styles.newCommentHeader}>
-          <div className={styles.boxInHeader}>
-            {this.state.currentUser && (
-              <>
-                <p className={styles.newCommentInfo}>posting as</p>
-
-                <p className={styles.usernameOnComment}>
-                  {this.state.currentUser}
-                </p>
-              </>
-            )}
-          </div>
-
-          <button
-            className={styles.newCommentSubmitButton}
-            onClick={e => {
-              if (this.props.newCommentInput === "") {
-                this.setState({ shallMakeInputBoxFlash: true });
-              } else {
-                this.props.submitNewComment(e);
-                this.setState({ isLoading: true });
-              }
-            }}
-          >
-            {this.state.isLoading ? "submitting..." : "Say it!"}
-          </button>
-        </div>
         <form>
+          <div className={styles.newCommentHeader}>
+            <div className={styles.boxInHeader}>
+              {this.state.currentUser && (
+                <>
+                  <p className={styles.newCommentInfo}>posting as</p>
+
+                  <p className={styles.usernameOnComment}>
+                    {this.state.currentUser}
+                  </p>
+                </>
+              )}
+            </div>
+
+            <button
+              className={styles.newCommentSubmitButton}
+              onClick={e => {
+                e.preventDefault();
+                if (this.props.newCommentInput === "") {
+                  this.setState({ shallMakeInputBoxFlash: true });
+                } else {
+                  this.props.submitNewComment(e);
+                  this.setState({ isLoading: true });
+                }
+              }}
+            >
+              {this.state.isLoading ? "submitting..." : "Say it!"}
+            </button>
+          </div>
           <textarea
             required
             rows="3"

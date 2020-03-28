@@ -196,7 +196,7 @@ class CreateComment extends React.Component {
                   className={`${styles.newTopicField} ${this.state
                     .shallMakeTopicFlash && styles.flashingField}`}
                   onChange={e => {
-                    this.setState({ topicInput: e.target.value });
+                    this.setState({ topicInput: e.target.value.toLowerCase() });
                   }}
                   value={this.state.topicInput}
                 ></input>

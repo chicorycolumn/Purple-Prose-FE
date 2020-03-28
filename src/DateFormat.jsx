@@ -23,8 +23,10 @@ const DateFormat = props => {
   const month = new Date(created_at).getMonth();
   const day = new Date(created_at).getDate();
   const hour = new Date(created_at).getHours();
-  const minute = new Date(created_at).getMinutes();
-  const formattedDate = `${lookup[month]} ${day} ${hour}:${minute} (${year})`;
+  const minute = new Date(created_at).getMinutes().toString();
+  const formattedDate = `${lookup[month]} ${day} ${hour}:${
+    minute.length === 1 ? 0 + minute : minute
+  } (${year})`;
 
   return <>{formattedDate}</>;
 };
