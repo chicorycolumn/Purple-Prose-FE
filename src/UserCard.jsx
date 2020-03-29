@@ -12,7 +12,7 @@ class UserCard extends React.Component {
 
   componentDidMount() {
     fetchArticles({ author: this.props.user.username }).then(articles => {
-      this.setState({ articleCounts: articles.length });
+      this.setState({ articleCounts: articles.length, isLoading: false });
     });
   }
 
@@ -26,7 +26,10 @@ class UserCard extends React.Component {
         <h1 className={styles.slug}>{this.props.user.username}</h1>
 
         <p className={styles.description}>
-          {this.state.articleCounts} articles
+          {this.state.isLoading
+            ? ". . articles"
+            : this.state.articleCounts +
+              (this.state.articleCounts === 1 ? " article" : " articles")}
         </p>
       </div>
     );

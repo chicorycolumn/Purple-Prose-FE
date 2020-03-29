@@ -6,7 +6,8 @@ import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
 import CreateComment from "./CreateComment";
-import DateFormat from "./DateFormat";
+import { deleteArticleByID } from "./utils/deleteUtils";
+import { formatDate } from "./utils/formatDate";
 
 class SingleArticle extends React.Component {
   state = {
@@ -43,6 +44,20 @@ class SingleArticle extends React.Component {
           });
       })
       .catch(err => navigate("/error", { state: { err } }));
+  }
+
+  deleteArticle(e) {
+    e.preventDefault();
+    var retVal = window.confirm(
+      `Hiya ${this.state.currentUser}! You're about to delete your ${this.state.article.topic} article.`
+    );
+    if (retVal === true) {
+      deleteArticleByID(this.props.article.article_id).then(() => {
+        window.location.reload(false);
+      });
+    } else {
+      return;
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -120,7 +135,53 @@ class SingleArticle extends React.Component {
             <div className={styles.containerGrid}>
               <div className={styles.centralContainer}>
                 <p className={styles.title}>{this.state.article.title}</p>
-                <p className={styles.author}>by {this.state.article.author}</p>
+
+                <div className={styles.authorAndButtonsContainer}>
+                  {this.state.currentUser === this.state.article.author ? (
+                    <div className={styles.deleteAndEditHolder}>
+                      <button
+                        className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
+                        onClick={e => {
+                          e.preventDefault();
+                          navigate(
+                            `/articles/${this.state.article.article_id}/edit`
+                          );
+                        }}
+                      >
+                        Edit
+                      </button>
+
+                      <p className={styles.author}>
+                        by {this.state.article.author}
+                      </p>
+                      <div className={styles.mobileContainer}>
+                        <button
+                          className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
+                          onClick={e => {
+                            e.preventDefault();
+                            navigate(
+                              `/articles/edit/${this.state.article.article_id}`
+                            );
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
+                          onClick={e => {
+                            this.deleteArticle(e);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className={styles.author}>
+                      by {this.state.article.author}
+                    </p>
+                  )}
+                </div>
               </div>
 
               <div className={styles.bodyContainer}>
@@ -162,7 +223,7 @@ class SingleArticle extends React.Component {
                 </p>
 
                 <p className={styles.created_at}>
-                  <DateFormat created_at={this.state.article.created_at} />
+                  {formatDate(this.state.article.created_at)}
                 </p>
               </div>
               {this.state.createCommentDisplaying && (

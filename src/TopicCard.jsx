@@ -37,9 +37,11 @@ class TopicCard extends React.Component {
                 </div>
                 <p className={styles.articleCount}>
                   {this.state.isLoading
-                    ? "..."
-                    : this.state.articleCounts[topic.slug]}
-                  {" articles"}
+                    ? ". . articles"
+                    : this.state.articleCounts[topic.slug] +
+                      (this.state.articleCounts[topic.slug] === 1
+                        ? " article"
+                        : " articles")}
                 </p>
               </div>
             </Link>

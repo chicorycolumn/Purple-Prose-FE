@@ -7,18 +7,21 @@
   margin-right: 5%;
   margin-top: 2.5%;
   margin-bottom: 2.5%;
-  /* padding: 1%; */
-  /* grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr); */
 }
 
 .centralContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  grid-column: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0px 5px;
+  /* white-space: nowrap; */
 }
 
 .title {
+  /* border: firebrick solid 2pt; */
   font-size: 3vh;
   text-align: center;
   max-height: 50%;
@@ -27,7 +30,13 @@
   grid-column: 2;
   grid-row: 1;
   color: indigo;
-  /* background-color: burlywood; */
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  hyphens: auto;
+  word-break: break-word; */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /* .body {
@@ -62,12 +71,18 @@
 .topic {
   background-color: indigo;
   /* align-self: stretch; */
-  width: 100%;
-  height: 25px;
+  width: 94%;
+  height: auto;
   color: white;
   margin: 0;
   margin-left: 0%;
   margin-bottom: 5%;
+  padding-bottom: 3px;
+  padding-left: 3%;
+  padding-right: 3%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .votes {
@@ -111,11 +126,39 @@
   background-color: transparent;
   outline: none;
   cursor: pointer;
+  padding: 0px;
+}
+
+.hoverable {
+}
+
+.hoverText {
+  visibility: hidden;
+  width: 98px;
+  border: indigo solid 1pt;
+  background-color: white;
+  color: indigo;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  margin-top: -25px;
+  margin-left: 15px;
+  z-index: 1;
+}
+
+.hoverable:hover .hoverText {
+  visibility: visible;
+}
+
+.notHoverable:hover .hoverText {
+  visibility: hidden;
 }
 
 .author {
   color: indigo;
-  margin: 0px 5%;
+  margin: 0% 5%;
   /* background-color: tomato; */
 }
 
@@ -159,11 +202,23 @@
   flex-direction: row;
   justify-content: center;
   margin: 16px 0px;
+  /* margin-bottom: 21px; */
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
   .topic {
-    font-size: 75%;
+    font-size: 70%;
+  }
+  .title {
+    font-size: 2.75vh;
+  }
+  .author {
+    font-size: 80%;
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+  .containerGrid {
+    grid-template-columns: 12.5% 1fr 25%;
   }
   .deleteAndEditButton {
     margin: 0px 2px;
@@ -173,9 +228,12 @@
     flex-direction: column;
     justify-content: center;
   }
-  .author {
-    margin: 0px;
-    margin-bottom: 10px;
+
+  .voteCount {
+    font-size: 90%;
+  }
+  .comments {
+    font-size: 120%;
   }
   .buttonEd {
     display: none;

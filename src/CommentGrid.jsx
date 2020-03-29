@@ -4,7 +4,7 @@ import { Router, Link, navigate } from "@reach/router";
 import { voteOnComment } from "./utils/patchUtils";
 import { deleteCommentByID } from "./utils/deleteUtils";
 import VoteDisplayOnComment from "./VoteDisplayOnComment";
-import DateFormat from "./DateFormat";
+import { formatDate } from "./utils/formatDate";
 
 class CommentGrid extends React.Component {
   state = { err: null, currentUser: "", votes: 0 };
@@ -51,7 +51,7 @@ class CommentGrid extends React.Component {
           </div>
 
           <p className={styles.commentTime}>
-            <DateFormat created_at={this.props.comment.created_at} />
+            {formatDate(this.props.comment.created_at)}
           </p>
         </div>
 

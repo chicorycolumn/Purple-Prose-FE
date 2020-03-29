@@ -5,7 +5,7 @@ import { voteOnArticle } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID } from "./utils/getUtils";
 import { deleteArticleByID } from "./utils/deleteUtils";
-import DateFormat from "./DateFormat";
+import { formatDate } from "./utils/formatDate";
 
 class ArticlePreview extends React.Component {
   state = { article: null, votes: null, currentUser: "" };
@@ -120,9 +120,7 @@ class ArticlePreview extends React.Component {
             <span role="img">💬</span>
             {` ${comment_count} `}
           </p>
-          <p className={styles.created_at}>
-            <DateFormat created_at={created_at} />
-          </p>
+          <p className={styles.created_at}>{formatDate(created_at)}</p>
         </div>
       </div>
     );

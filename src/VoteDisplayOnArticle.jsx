@@ -3,6 +3,7 @@ import { voteOnArticle } from "./utils/patchUtils";
 import styles from "./css/ArticlePreview.module.css";
 import { queryUserVoteOnArticle } from "./utils/getUtils";
 import { fetchArticleByID } from "./utils/getUtils";
+import { formatVotes } from "./utils/formatVotes";
 
 class VoteDisplayOnArticle extends Component {
   state = {
@@ -76,7 +77,16 @@ class VoteDisplayOnArticle extends Component {
         >
           {this.state.castedVote.toString() === "1" ? "▲" : "▵"}
         </button>
-        <p className={styles.voteCount}>{this.props.votes}</p>
+        <div
+          className={`${
+            this.props.votes > 999 || this.props.votes < -999
+              ? styles.hoverable
+              : styles.notHoverable
+          }`}
+        >
+          <p className={styles.voteCount}>{formatVotes(this.props.votes)}</p>
+          <span className={styles.hoverText}>{this.props.votes} votes</span>
+        </div>
         <button
           className={styles.voteEmoji}
           onClick={() => {

@@ -3,6 +3,7 @@ import { voteOnComment } from "./utils/patchUtils";
 import styles from "./css/ArticlePreview.module.css";
 import { queryUserVoteOnComment } from "./utils/getUtils";
 import { fetchArticleByID } from "./utils/getUtils";
+import { formatVotes } from "./utils/formatVotes";
 
 class VoteDisplayOnArticle extends Component {
   state = {
@@ -78,7 +79,7 @@ class VoteDisplayOnArticle extends Component {
         >
           {this.state.castedVote.toString() === "1" ? "▲" : "▵"}
         </button>
-        <p className={styles.voteCount}>{this.props.votes}</p>
+        <p className={styles.voteCount}>{formatVotes(this.props.votes)}</p>
         <button
           className={styles.voteEmoji}
           onClick={() => {

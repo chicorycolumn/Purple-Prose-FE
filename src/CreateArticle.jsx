@@ -239,7 +239,10 @@ class CreateComment extends React.Component {
                             className={`${styles.buttonNew} ${styles.dropButtons}`}
                             onClick={e => {
                               e.preventDefault();
-                              this.setState({ newTopicFieldShowing: true });
+                              this.setState({
+                                newTopicFieldShowing: true,
+                                topicInput: ""
+                              });
                             }}
                           >
                             Create new topic
