@@ -323,7 +323,7 @@ class CreateComment extends React.Component {
             }}
           >
             {this.state.isLoading
-              ? "submitting..."
+              ? "submitting"
               : this.state.editMode
               ? "Edit it!"
               : "Say it!"}
