@@ -3,20 +3,25 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 10%;
-  padding-top: 0%;
+  margin-top: 10px;
+  /* padding: 10%;
+  padding-top: 0%; */
 }
 
 .userCard {
   width: 180px;
-  background-color: rgb(213, 191, 255);
+  background-color: var(--hot-lilac);
   border: indigo solid 1.5px;
   margin: 2vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   color: indigo;
   height: 100px;
+}
+
+.userCardFaded {
+  background-color: var(--shade-lilac);
 }
 
 .slug {
@@ -50,4 +55,18 @@
   margin: 0%;
   /* margin-top: 1.5vh; */
   margin-bottom: 1.5vh;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .slug {
+    font-size: 100%;
+  }
+  .userCard {
+    width: 137px;
+    margin: 1.75vh;
+    /* border: none; */
+  }
+  .userContainer {
+    justify-content: space-around;
+  }
 }

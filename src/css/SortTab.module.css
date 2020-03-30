@@ -7,10 +7,12 @@
   height: 21.5px;
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  z-index: 2;
 }
 
 .rightContainer {
-  margin-right: 2.5px;
+  margin-left: 0%;
 }
 
 .rightButton {
@@ -21,24 +23,24 @@
   position: relative;
   border: rebeccapurple solid 1pt;
   cursor: pointer;
+  font-size: 13.5px;
 }
 
 .leftContainer {
   display: flex;
   flex-direction: row;
-  margin-left: 12.5px;
+  margin-right: 5%;
 }
 
 .sortbar {
-  background-color: ghostwhite;
   display: flex;
   flex-direction: row;
   margin-top: 0px;
 }
 
 .trigger {
-  position: fixed;
-  left: 0.5px;
+  /* position: fixed; */
+  /* left: 0.5px; */
   width: 92px;
   height: 21px;
   background-color: white;
@@ -72,32 +74,32 @@
 .dropButtons {
   border: black solid 1pt;
   border-top: none;
-  width: 80px;
+  width: 92.5px;
   text-align: center;
-  margin-left: -5px;
+  margin-left: 0px;
   cursor: pointer;
 }
 
 .littleButtons {
-  position: fixed;
+  /* position: fixed; */
   /* border: indigo solid 1pt; */
   background-color: white;
   color: rebeccapurple;
   margin: 0%;
-  margin-left: 5px;
+  margin-left: 0px;
   border: rebeccapurple solid 1pt;
   height: 18px;
   width: 20px;
   cursor: pointer;
 }
 
-.asc {
+/* .asc {
   left: 87px;
 }
 
 .desc {
   left: 109px;
-}
+} */
 
 .loadingText {
   color: var(--dark-lilac);
@@ -105,4 +107,38 @@
   font-style: italic;
   margin: 0%;
   margin-left: 7.5px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .fullWidthBar {
+    justify-content: space-between;
+  }
+  .leftContainer {
+    margin-right: 0%;
+  }
+  .rightButton {
+    width: 46px;
+    font-size: 11px;
+    height: 21px;
+    top: -0.8px;
+    padding: 1px;
+    margin: -1px;
+  }
+  .trigger {
+    font-size: 11px;
+    width: 80px;
+    padding: 1px;
+    margin-right: -2px;
+    height: 21.5px;
+  }
+  .dropButtons {
+    width: 78px;
+    font-size: 12px;
+    margin-left: 0px;
+  }
+  .littleButtons {
+    margin-left: -1px;
+    margin-right: -1px;
+    height: 19px;
+  }
 }

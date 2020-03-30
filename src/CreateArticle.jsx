@@ -7,6 +7,7 @@ import {
   patchArticleDetails
 } from "./utils/patchUtils";
 import { fetchTopics, fetchArticleByID } from "./utils/getUtils";
+import SortTab from "./SortTab";
 
 class CreateComment extends React.Component {
   state = {
@@ -27,6 +28,7 @@ class CreateComment extends React.Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     Promise.all([
       fetchTopics(),
       this.props.article_id ? fetchArticleByID(this.props.article_id) : null
@@ -169,84 +171,100 @@ class CreateComment extends React.Component {
     }
 
     return (
-      <form>
-        <div className={styles.overbox}>
-          <div className={styles.topbox}>
-            <textarea
-              className={`${styles.titleField} ${this.state
-                .shallMakeTitleFlash && styles.flashingField}`}
-              placeholder="Title"
-              required
-              rows="2"
-              cols="80"
-              maxLength="70"
-              onChange={e => {
-                this.setState({ titleInput: e.target.value });
-              }}
-              value={this.state.titleInput}
-            ></textarea>
+      <>
+        <SortTab showSorter={false} />
 
-            <div className={styles.separator}></div>
+        <form>
+          <div className={styles.overbox}>
+            <div className={styles.topbox}>
+              <textarea
+                className={`${styles.titleField} ${this.state
+                  .shallMakeTitleFlash && styles.flashingField}`}
+                placeholder="Title"
+                required
+                rows="2"
+                cols="80"
+                maxLength="70"
+                onChange={e => {
+                  this.setState({ titleInput: e.target.value });
+                }}
+                value={this.state.titleInput}
+              ></textarea>
 
-            {this.state.newTopicFieldShowing ? (
-              <div className={styles.newTopicFieldOverarch}>
-                <input
-                  maxLength="12"
-                  placeholder="New topic"
-                  className={`${styles.newTopicField} ${this.state
-                    .shallMakeTopicFlash && styles.flashingField}`}
-                  onChange={e => {
-                    this.setState({ topicInput: e.target.value.toLowerCase() });
-                  }}
-                  value={this.state.topicInput}
-                ></input>
-                <button
-                  onClick={() => {
-                    this.setState({
-                      newTopicFieldShowing: false,
-                      topicInput: ""
-                    });
-                  }}
-                  className={styles.exitX}
-                >
-                  <span role="img" aria-label="red cross">
-                    ❌
-                  </span>
-                </button>
-              </div>
-            ) : (
-              <div className={styles.dropdownHolder}>
-                <button
-                  id="triggerForDropdownFilters"
-                  className={`${styles.trigger} ${this.state
-                    .shallMakeTopicFlash && styles.flashingField}`}
-                  onClick={e => {
-                    e.preventDefault();
-                    this.showDropdown(e);
-                  }}
-                >
-                  {this.state.topicInput === ""
-                    ? "Select topic"
-                    : this.state.topicInput}
-                </button>
+              <div className={styles.separator}></div>
 
-                {this.state.dropdownShowing ? (
-                  <div className={styles.dropdown}>
-                    {this.state.topics.map((topic, index) =>
-                      index === 0 ? (
-                        <>
-                          <button
-                            className={`${styles.buttonNew} ${styles.dropButtons}`}
-                            onClick={e => {
-                              e.preventDefault();
-                              this.setState({
-                                newTopicFieldShowing: true,
-                                topicInput: ""
-                              });
-                            }}
-                          >
-                            Create new topic
-                          </button>
+              {this.state.newTopicFieldShowing ? (
+                <div className={styles.newTopicFieldOverarch}>
+                  <input
+                    maxLength="12"
+                    placeholder="New topic"
+                    className={`${styles.newTopicField} ${this.state
+                      .shallMakeTopicFlash && styles.flashingField}`}
+                    onChange={e => {
+                      this.setState({
+                        topicInput: e.target.value.toLowerCase()
+                      });
+                    }}
+                    value={this.state.topicInput}
+                  ></input>
+                  <button
+                    onClick={() => {
+                      this.setState({
+                        newTopicFieldShowing: false,
+                        topicInput: ""
+                      });
+                    }}
+                    className={styles.exitX}
+                  >
+                    <span role="img" aria-label="red cross">
+                      ❌
+                    </span>
+                  </button>
+                </div>
+              ) : (
+                <div className={styles.dropdownHolder}>
+                  <button
+                    id="triggerForDropdownFilters"
+                    className={`${styles.trigger} ${this.state
+                      .shallMakeTopicFlash && styles.flashingField}`}
+                    onClick={e => {
+                      e.preventDefault();
+                      this.showDropdown(e);
+                    }}
+                  >
+                    {this.state.topicInput === ""
+                      ? "Select topic"
+                      : this.state.topicInput}
+                  </button>
+
+                  {this.state.dropdownShowing ? (
+                    <div className={styles.dropdown}>
+                      {this.state.topics.map((topic, index) =>
+                        index === 0 ? (
+                          <>
+                            <button
+                              className={`${styles.buttonNew} ${styles.dropButtons}`}
+                              onClick={e => {
+                                e.preventDefault();
+                                this.setState({
+                                  newTopicFieldShowing: true,
+                                  topicInput: ""
+                                });
+                              }}
+                            >
+                              Create new topic
+                            </button>
+                            <button
+                              className={`${styles.button1} ${styles.dropButtons}`}
+                              onClick={e => {
+                                e.preventDefault();
+                                this.handleTopic(topic);
+                              }}
+                            >
+                              {topic.slug}
+                            </button>
+                          </>
+                        ) : (
                           <button
                             className={`${styles.button1} ${styles.dropButtons}`}
                             onClick={e => {
@@ -256,70 +274,62 @@ class CreateComment extends React.Component {
                           >
                             {topic.slug}
                           </button>
-                        </>
-                      ) : (
-                        <button
-                          className={`${styles.button1} ${styles.dropButtons}`}
-                          onClick={e => {
-                            e.preventDefault();
-                            this.handleTopic(topic);
-                          }}
-                        >
-                          {topic.slug}
-                        </button>
+                        )
+                      )}
                       )
-                    )}
-                    )
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-            )}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              )}
+            </div>
+            <textarea
+              required
+              rows="3"
+              cols="80"
+              placeholder="Your thoughts!"
+              className={`${styles.bodyInputField} ${this.state
+                .shallMakeBodyFlash && styles.flashingField}`}
+              onChange={e => {
+                this.setState({ bodyInput: e.target.value });
+              }}
+              value={this.state.bodyInput}
+            ></textarea>
           </div>
-          <textarea
-            required
-            rows="3"
-            cols="80"
-            placeholder="Your thoughts!"
-            className={`${styles.bodyInputField} ${this.state
-              .shallMakeBodyFlash && styles.flashingField}`}
-            onChange={e => {
-              this.setState({ bodyInput: e.target.value });
+          <button
+            className={styles.articleSubmitButton}
+            onClick={e => {
+              e.preventDefault();
+
+              if (
+                this.state.titleInput === "" ||
+                this.state.topicInput === "" ||
+                this.state.bodyInput === ""
+              ) {
+                this.setState({
+                  shallMakeTitleFlash:
+                    this.state.titleInput === "" ? true : false,
+                  shallMakeBodyFlash:
+                    this.state.bodyInput === "" ? true : false,
+                  shallMakeTopicFlash:
+                    this.state.topicInput === "" ? true : false
+                });
+              } else {
+                this.submitArticle();
+
+                this.setState({ isLoading: true });
+              }
             }}
-            value={this.state.bodyInput}
-          ></textarea>
-        </div>
-        <button
-          className={styles.articleSubmitButton}
-          onClick={e => {
-            e.preventDefault();
-
-            if (
-              this.state.titleInput === "" ||
-              this.state.topicInput === "" ||
-              this.state.bodyInput === ""
-            ) {
-              this.setState({
-                shallMakeTitleFlash:
-                  this.state.titleInput === "" ? true : false,
-                shallMakeBodyFlash: this.state.bodyInput === "" ? true : false,
-                shallMakeTopicFlash: this.state.topicInput === "" ? true : false
-              });
-            } else {
-              this.submitArticle();
-
-              this.setState({ isLoading: true });
-            }
-          }}
-        >
-          {this.state.isLoading
-            ? "submitting..."
-            : this.state.editMode
-            ? "Edit it!"
-            : "Say it!"}
-        </button>
-      </form>
+          >
+            {this.state.isLoading
+              ? "submitting..."
+              : this.state.editMode
+              ? "Edit it!"
+              : "Say it!"}
+          </button>
+        </form>
+      </>
     );
   }
 }

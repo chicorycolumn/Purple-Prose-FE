@@ -8,6 +8,8 @@ import CommentGrid from "./CommentGrid";
 import CreateComment from "./CreateComment";
 import { deleteArticleByID } from "./utils/deleteUtils";
 import { formatDate } from "./utils/formatDate";
+import SortTab from "./SortTab";
+import LoadingPage from "./LoadingPage";
 
 class SingleArticle extends React.Component {
   state = {
@@ -24,6 +26,7 @@ class SingleArticle extends React.Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     return Promise.all([
       localStorage.getItem("currentUser"),
       fetchArticleWithComments(this.props.article_id)
@@ -128,126 +131,131 @@ class SingleArticle extends React.Component {
 
     return (
       <>
-        {this.state.isLoading ? (
-          "loading..."
-        ) : (
-          <>
-            <div className={styles.containerGrid}>
-              <div className={styles.centralContainer}>
-                <p className={styles.title}>{this.state.article.title}</p>
+        <SortTab showSorter={false} />
+        <>
+          {this.state.isLoading ? (
+            <LoadingPage />
+          ) : (
+            <>
+              <div className={styles.containerGrid}>
+                <div className={styles.centralContainer}>
+                  <p className={styles.title}>{this.state.article.title}</p>
 
-                <div className={styles.authorAndButtonsContainer}>
-                  {this.state.currentUser === this.state.article.author ? (
-                    <div className={styles.deleteAndEditHolder}>
-                      <button
-                        className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
-                        onClick={e => {
-                          e.preventDefault();
-                          navigate(
-                            `/articles/${this.state.article.article_id}/edit`
-                          );
-                        }}
-                      >
-                        Edit
-                      </button>
-
-                      <p className={styles.author}>
-                        by {this.state.article.author}
-                      </p>
-                      <div className={styles.mobileContainer}>
+                  <div className={styles.authorAndButtonsContainer}>
+                    {this.state.currentUser === this.state.article.author ? (
+                      <div className={styles.deleteAndEditHolder}>
                         <button
-                          className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
+                          className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
                           onClick={e => {
                             e.preventDefault();
                             navigate(
-                              `/articles/edit/${this.state.article.article_id}`
+                              `/articles/${this.state.article.article_id}/edit`
                             );
                           }}
                         >
                           Edit
                         </button>
-                        <button
-                          className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
-                          onClick={e => {
-                            this.deleteArticle(e);
-                          }}
-                        >
-                          Delete
-                        </button>
+
+                        <p className={styles.author}>
+                          by {this.state.article.author}
+                        </p>
+                        <div className={styles.mobileContainer}>
+                          <button
+                            className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
+                            onClick={e => {
+                              e.preventDefault();
+                              navigate(
+                                `/articles/edit/${this.state.article.article_id}`
+                              );
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
+                            onClick={e => {
+                              this.deleteArticle(e);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <p className={styles.author}>
-                      by {this.state.article.author}
-                    </p>
-                  )}
+                    ) : (
+                      <p className={styles.author}>
+                        by {this.state.article.author}
+                      </p>
+                    )}
+                  </div>
                 </div>
+
+                <div className={styles.bodyContainer}>
+                  <p className={styles.bodyText}>{this.state.article.body}</p>
+                </div>
+
+                <button
+                  onClick={() => {
+                    this.state.currentUser !== null &&
+                    this.state.currentUser !== undefined &&
+                    this.state.currentUser !== ""
+                      ? this.setState(currState => {
+                          return {
+                            createCommentDisplaying: !currState.createCommentDisplaying
+                          };
+                        })
+                      : alert("To vote on the latest news, log in or sign up!");
+                  }}
+                  className={`${styles.joinConvoButton} ${
+                    this.state.createCommentDisplaying ? styles.bordered : ""
+                  }`}
+                >
+                  {this.state.createCommentDisplaying
+                    ? "◀ Maybe later..."
+                    : "	▶ Join the conversation!"}
+                </button>
+
+                <div className={styles.leftHandSideContainer}>
+                  <VoteDisplayOnArticle
+                    article_id={this.state.article.article_id}
+                    votes={this.state.votes}
+                    upwardVoteOnArticle={this.upwardVoteOnArticle}
+                  />
+                </div>
+
+                <div className={styles.rightHandSideContainer}>
+                  <p className={styles.topic}>{this.state.article.topic}</p>
+                  <p className={styles.comments}>
+                    <span role="img">{"💬 "}</span>
+                    {this.state.comment_count}
+                  </p>
+
+                  <p className={styles.created_at}>
+                    {formatDate(this.state.article.created_at)}
+                  </p>
+                </div>
+                {this.state.createCommentDisplaying && (
+                  <CreateComment
+                    newCommentInput={this.state.newCommentInput}
+                    upwardNewCommentInput={this.upwardNewCommentInput}
+                    submitNewComment={this.submitNewComment}
+                    upwardEmptyCheckReset={this.state.upwardEmptyCheckReset}
+                    userSubmitsEmpty={this.state.userSubmitsEmpty}
+                  />
+                )}
               </div>
 
-              <div className={styles.bodyContainer}>
-                <p className={styles.bodyText}>{this.state.article.body}</p>
+              <div>
+                {this.state.comments.map(comment => (
+                  <CommentGrid
+                    comment={comment}
+                    article_id={this.state.article.article_id}
+                    upwardDeleteComment={this.upwardDeleteComment}
+                  />
+                ))}
               </div>
-
-              <button
-                onClick={() => {
-                  this.state.currentUser !== null &&
-                  this.state.currentUser !== undefined &&
-                  this.state.currentUser !== ""
-                    ? this.setState(currState => {
-                        return {
-                          createCommentDisplaying: !currState.createCommentDisplaying
-                        };
-                      })
-                    : alert("To vote on the latest news, log in or sign up!");
-                }}
-                className={styles.joinConvoButton}
-              >
-                {this.state.createCommentDisplaying
-                  ? "Maybe later..."
-                  : "Join the conversation!"}
-              </button>
-
-              <div className={styles.leftHandSideContainer}>
-                <VoteDisplayOnArticle
-                  article_id={this.state.article.article_id}
-                  votes={this.state.votes}
-                  upwardVoteOnArticle={this.upwardVoteOnArticle}
-                />
-              </div>
-
-              <div className={styles.rightHandSideContainer}>
-                <p className={styles.topic}>{this.state.article.topic}</p>
-                <p className={styles.comments}>
-                  <span role="img">💬</span>
-                  {this.state.comment_count}
-                </p>
-
-                <p className={styles.created_at}>
-                  {formatDate(this.state.article.created_at)}
-                </p>
-              </div>
-              {this.state.createCommentDisplaying && (
-                <CreateComment
-                  newCommentInput={this.state.newCommentInput}
-                  upwardNewCommentInput={this.upwardNewCommentInput}
-                  submitNewComment={this.submitNewComment}
-                  upwardEmptyCheckReset={this.state.upwardEmptyCheckReset}
-                  userSubmitsEmpty={this.state.userSubmitsEmpty}
-                />
-              )}
-            </div>
-
-            <div>
-              {this.state.comments.map(comment => (
-                <CommentGrid
-                  comment={comment}
-                  article_id={this.state.article.article_id}
-                  upwardDeleteComment={this.upwardDeleteComment}
-                />
-              ))}
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </>
       </>
     );
   }

@@ -140,6 +140,7 @@ class Login extends React.Component {
               <form>
                 <input
                   className={styles.enterUsername}
+                  maxLength="12"
                   type="text"
                   placeholder="Who goes there?"
                   onChange={e => {
@@ -151,6 +152,7 @@ class Login extends React.Component {
                 <input
                   className={styles.enterPassword}
                   type="password"
+                  maxLength="24"
                   placeholder="What be ye password?"
                   onChange={e => {
                     this.setState({ passwordInput: e.target.value });
@@ -203,6 +205,7 @@ class Login extends React.Component {
               <form>
                 <input
                   className={styles.enterUsername}
+                  maxLength="12"
                   type="text"
                   placeholder="Username"
                   onChange={e => {
@@ -215,6 +218,7 @@ class Login extends React.Component {
                   className={styles.enterPassword}
                   type="password"
                   placeholder="Password"
+                  maxLength="24"
                   onChange={e => {
                     this.setState({ passwordSignupInput: e.target.value });
                   }}

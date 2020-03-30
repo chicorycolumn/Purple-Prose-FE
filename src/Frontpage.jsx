@@ -5,6 +5,7 @@ import ArticlePreview from "./ArticlePreview";
 import SortTab from "./SortTab";
 import noArticlesYetBackground from "./images/emptypage.jpg";
 import styles from "./css/Frontpage.module.css";
+import LoadingPage from "./LoadingPage";
 
 class Frontpage extends Component {
   state = {
@@ -14,6 +15,8 @@ class Frontpage extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
+
     const qObj = {};
 
     const qArr = this.props.location.search.replace("?", "").split("=");
@@ -45,14 +48,10 @@ class Frontpage extends Component {
     }
     return (
       <div>
-        <SortTab reloadArticles={this.reloadArticles} />
+        <SortTab reloadArticles={this.reloadArticles} showSorter={true} />
 
         {this.state.isLoading ? (
-          <>
-            <br />
-            <br />
-            <br />l o a d i n g . . .
-          </>
+          <LoadingPage />
         ) : this.state.articles.length ? (
           this.state.articles.map(article => {
             return (

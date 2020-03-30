@@ -58,6 +58,10 @@
   position: relative;
   top: 11px;
   cursor: pointer;
+  background-color: var(--light-lilac);
+  border-style: solid;
+  border: indigo solid 1pt;
+  color: indigo;
 }
 
 .enterUsername {
@@ -76,12 +80,15 @@
 }
 
 .buttonRight {
-  border: rebeccapurple solid 1pt;
   margin: 0%;
   margin-top: 2.5vh;
   width: 17vw;
   height: 30px;
   cursor: pointer;
+  background-color: var(--light-lilac);
+  border-style: solid;
+  border: indigo solid 1pt;
+  color: indigo;
 }
 
 .buttonRightWithoutRightBorder {
@@ -103,7 +110,7 @@
   display: block;
   font-style: italic;
   margin: 0%;
-  margin-top: 3.25vh;
+  margin-top: 25px;
   /* margin-left: -10%; */
   width: 17vw;
   height: 28px;

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Router, Link, navigate } from "@reach/router";
 import { fetchTopics } from "./utils/getUtils";
 import TopicCard from "./TopicCard";
+import SortTab from "./SortTab";
+import LoadingPage from "./LoadingPage";
 
 class Topics extends Component {
   state = {
@@ -11,6 +13,7 @@ class Topics extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     fetchTopics().then(topics => {
       this.setState({ topics, isLoading: false });
     });
@@ -22,15 +25,18 @@ class Topics extends Component {
     }
 
     return (
-      <div>
-        <p>
-          {this.state.isLoading ? (
-            "loading..."
-          ) : (
-            <TopicCard topics={this.state.topics} />
-          )}
-        </p>
-      </div>
+      <>
+        <SortTab showSorter={false} />
+        <div>
+          <p>
+            {this.state.isLoading ? (
+              <LoadingPage />
+            ) : (
+              <TopicCard topics={this.state.topics} />
+            )}
+          </p>
+        </div>
+      </>
     );
   }
 }

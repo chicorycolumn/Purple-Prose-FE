@@ -8,7 +8,6 @@ const Navbar = props => {
   return (
     <div className={styles.navGrid}>
       <Link to={"/"}>
-        {" "}
         <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
       </Link>
       <div className={styles.searchbarAndLoginContainer}>
@@ -16,7 +15,7 @@ const Navbar = props => {
           <input
             className={styles.searchBar}
             type="text"
-            placeholder="Browse.."
+            placeholder="Browse pending.."
           />
         </div>
         <Login currentUser={props.currentUser} />

@@ -30,29 +30,27 @@ class App extends React.Component {
         <Navbar currentUser={this.state.currentUser} />
         <body className={styles.App}>
           <header className="NC News"></header>
-          <div>
-            <Router>
-              <Frontpage currentUser={this.state.currentUser} path="/" />
-              <Frontpage
-                currentUser={this.state.currentUser}
-                path="/articles/*"
-              />
-              <SingleArticle
-                currentUser={this.state.currentUser}
-                path="/articles/:article_id"
-              />
-              <CreateArticle
-                currentUser={this.state.currentUser}
-                editMode={true}
-                path="/articles/:article_id/edit"
-              />
-              <Users path="/users/*" />
-              <CreateArticle path="/write/" />
-              <Topics path="/topics/*" />
-              <ErrorPage path="/error" />
-              <ErrorPage errCode="404" default />
-            </Router>
-          </div>
+          <Router>
+            <Frontpage currentUser={this.state.currentUser} path="/" />
+            <Frontpage
+              currentUser={this.state.currentUser}
+              path="/articles/*"
+            />
+            <SingleArticle
+              currentUser={this.state.currentUser}
+              path="/articles/:article_id"
+            />
+            <CreateArticle
+              currentUser={this.state.currentUser}
+              editMode={true}
+              path="/articles/:article_id/edit"
+            />
+            <Users path="/users/*" />
+            <CreateArticle path="/write/" />
+            <Topics path="/topics/*" />
+            <ErrorPage path="/error" />
+            <ErrorPage errCode="404" default />
+          </Router>
         </body>
       </>
     );

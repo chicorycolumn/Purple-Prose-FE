@@ -16,6 +16,10 @@ class SortTab extends React.Component {
     const sort_by = localStorage.getItem("sort_by") || "created_at";
     const order = localStorage.getItem("order") || "desc";
     const currentUser = localStorage.getItem("currentUser");
+
+    localStorage.removeItem("sort_by");
+    localStorage.removeItem("order");
+
     this.setState({
       currentUser,
       sortDirection: order,
@@ -29,9 +33,16 @@ class SortTab extends React.Component {
   showDropdown(event) {
     event.preventDefault();
 
-    this.setState({ dropdownShowing: true }, () => {
-      document.addEventListener("click", this.closeDropdown);
-    });
+    this.setState(
+      currState => {
+        return {
+          dropdownShowing: !currState.dropdownShowing
+        };
+      },
+      () => {
+        document.addEventListener("click", this.closeDropdown);
+      }
+    );
   }
 
   closeDropdown(event) {
@@ -77,73 +88,10 @@ class SortTab extends React.Component {
     return (
       <>
         <div className={styles.fullWidthBar}>
-          <div className={styles.leftContainer}>
-            <div className={styles.sortbar}>
-              <button
-                id="triggerForDropdownFilters"
-                className={styles.trigger}
-                onClick={this.showDropdown}
-              >
-                {this.state.currentlyLoading ? (
-                  <p className={styles.loadingText}>loading...</p>
-                ) : this.state.currentFilter === "comment_count" ? (
-                  "by comments"
-                ) : this.state.currentFilter === "votes" ? (
-                  "by votes"
-                ) : (
-                  "by date"
-                )}
-              </button>
-              {this.state.dropdownShowing ? (
-                <div className={styles.dropdown}>
-                  <button
-                    className={`${styles.button1} ${styles.dropButtons}`}
-                    onClick={() => {
-                      this.handleFilterClick("created_at");
-                    }}
-                  >
-                    date
-                  </button>
-
-                  <button
-                    className={`${styles.button2} ${styles.dropButtons}`}
-                    onClick={() => {
-                      this.handleFilterClick("comment_count");
-                    }}
-                  >
-                    comments
-                  </button>
-                  <button
-                    className={`${styles.button3} ${styles.dropButtons}`}
-                    onClick={() => {
-                      this.handleFilterClick("votes");
-                    }}
-                  >
-                    votes
-                  </button>
-                </div>
-              ) : (
-                ""
-              )}
-              <p
-                onClick={() => {
-                  this.handleDirectionClick("asc");
-                }}
-                className={`${styles.asc} ${styles.littleButtons}`}
-              >
-                {this.state.sortDirection === "asc" ? "▲" : "▵"}
-              </p>
-              <p
-                onClick={() => {
-                  this.handleDirectionClick("desc");
-                }}
-                className={`${styles.desc} ${styles.littleButtons}`}
-              >
-                {this.state.sortDirection === "asc" ? "▿" : "▼"}
-              </p>
-            </div>
-          </div>
           <div className={styles.rightContainer}>
+            <Link to={"/"}>
+              <button className={styles.rightButton}>Home</button>
+            </Link>
             <Link to={"/users"}>
               <button className={styles.rightButton}>Users</button>
             </Link>
@@ -165,6 +113,77 @@ class SortTab extends React.Component {
               </button>
             )}
           </div>
+
+          {this.props.showSorter ? (
+            <div className={styles.leftContainer}>
+              <div className={styles.sortbar}>
+                <button
+                  id="triggerForDropdownFilters"
+                  className={styles.trigger}
+                  onClick={this.showDropdown}
+                >
+                  {this.state.currentlyLoading ? (
+                    <p className={styles.loadingText}>loading...</p>
+                  ) : this.state.currentFilter === "comment_count" ? (
+                    "by comments"
+                  ) : this.state.currentFilter === "votes" ? (
+                    "by votes"
+                  ) : (
+                    "by date"
+                  )}
+                </button>
+                {this.state.dropdownShowing ? (
+                  <div className={styles.dropdown}>
+                    <button
+                      className={`${styles.button1} ${styles.dropButtons}`}
+                      onClick={() => {
+                        this.handleFilterClick("created_at");
+                      }}
+                    >
+                      date
+                    </button>
+
+                    <button
+                      className={`${styles.button2} ${styles.dropButtons}`}
+                      onClick={() => {
+                        this.handleFilterClick("comment_count");
+                      }}
+                    >
+                      comments
+                    </button>
+                    <button
+                      className={`${styles.button3} ${styles.dropButtons}`}
+                      onClick={() => {
+                        this.handleFilterClick("votes");
+                      }}
+                    >
+                      votes
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <p
+                  onClick={() => {
+                    this.handleDirectionClick("asc");
+                  }}
+                  className={`${styles.asc} ${styles.littleButtons}`}
+                >
+                  {this.state.sortDirection === "asc" ? "▲" : "▵"}
+                </p>
+                <p
+                  onClick={() => {
+                    this.handleDirectionClick("desc");
+                  }}
+                  className={`${styles.desc} ${styles.littleButtons}`}
+                >
+                  {this.state.sortDirection === "asc" ? "▿" : "▼"}
+                </p>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </>
     );

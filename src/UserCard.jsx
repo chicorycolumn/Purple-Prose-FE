@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./css/UserCard.module.css";
 import { Router, Link, navigate } from "@reach/router";
 import { fetchArticles } from "./utils/getUtils";
+import LoadingPage from "./LoadingPage";
 
 class UserCard extends React.Component {
   state = {
@@ -22,7 +23,11 @@ class UserCard extends React.Component {
     }
 
     const cardContents = (
-      <div className={styles.userCard}>
+      <div
+        className={`${styles.userCard} ${
+          this.state.articleCounts < 1 ? styles.userCardFaded : ""
+        }`}
+      >
         <h1 className={styles.slug}>{this.props.user.username}</h1>
 
         <p className={styles.description}>
