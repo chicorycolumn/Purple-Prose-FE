@@ -17,14 +17,16 @@ class SortTab extends React.Component {
     const order = localStorage.getItem("order") || "desc";
     const currentUser = localStorage.getItem("currentUser");
 
-    localStorage.removeItem("sort_by");
-    localStorage.removeItem("order");
-
     this.setState({
       currentUser,
       sortDirection: order,
       currentFilter: sort_by
     });
+
+    setTimeout(() => {
+      localStorage.removeItem("sort_by");
+      localStorage.removeItem("order");
+    }, 5000);
   }
 
   showDropdown = this.showDropdown.bind(this);

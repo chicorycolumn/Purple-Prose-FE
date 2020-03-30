@@ -54,8 +54,8 @@
   }
   .searchbarAndLoginContainer {
     flex-direction: column;
-    left: 25px;
     top: -5px;
+    width: auto;
   }
   .loginHolder {
     position: relative;
