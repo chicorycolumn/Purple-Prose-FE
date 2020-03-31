@@ -4,24 +4,42 @@ import styles from "./css/Navbar.module.css";
 import { Router, Link, navigate } from "@reach/router";
 import Login from "./Login";
 
-const Navbar = props => {
-  return (
-    <div className={styles.navGrid}>
-      <Link to={"/"}>
-        <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
-      </Link>
-      <div className={styles.searchbarAndLoginContainer}>
-        <div className={styles.searchbarContainer}>
-          <input
-            className={styles.searchBar}
-            type="text"
-            placeholder="Browse pending.."
-          />
+class Navbar extends React.Component {
+  state = {
+    searchInput: ""
+  };
+
+  render() {
+    console.log(this.state.searchInput);
+    return (
+      <div className={styles.navGrid}>
+        <Link to={"/"}>
+          <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
+        </Link>
+        <div className={styles.searchbarAndLoginContainer}>
+          <div className={styles.searchbarContainer}>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                navigate(`/articles/search?=${this.state.searchInput}`);
+              }}
+            >
+              <input
+                className={styles.searchBar}
+                type="text"
+                placeholder="Browse pending.."
+                onChange={e => {
+                  this.setState({ searchInput: e.target.value });
+                }}
+                value={this.state.searchInput}
+              />
+            </form>
+          </div>
+          <Login currentUser={this.props.currentUser} />
         </div>
-        <Login currentUser={props.currentUser} />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Navbar;

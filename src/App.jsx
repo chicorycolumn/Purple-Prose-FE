@@ -36,6 +36,10 @@ class App extends React.Component {
               currentUser={this.state.currentUser}
               path="/articles/*"
             />
+            <Frontpage
+              currentUser={this.state.currentUser}
+              path="/articles/search"
+            />
             <SingleArticle
               currentUser={this.state.currentUser}
               path="/articles/:article_id"
