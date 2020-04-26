@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./css/ArticlePreview.module.css";
-import { Router, Link, navigate } from "@reach/router";
-import { voteOnArticle } from "./utils/patchUtils";
+import { Link, navigate } from "@reach/router";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID } from "./utils/getUtils";
 import { deleteArticleByID } from "./utils/deleteUtils";
@@ -13,17 +12,17 @@ class ArticlePreview extends React.Component {
   componentDidMount() {
     const currentUser = localStorage.getItem("currentUser");
 
-    fetchArticleByID(this.props.article.article_id).then(data => {
+    fetchArticleByID(this.props.article.article_id).then((data) => {
       this.setState({
         currentUser,
         article: data["article"],
-        votes: data["article"].votes
+        votes: data["article"].votes,
       });
     });
   }
 
-  upwardVoteOnArticle = voteDirection => {
-    this.setState(currState => {
+  upwardVoteOnArticle = (voteDirection) => {
+    this.setState((currState) => {
       return { votes: currState.votes + voteDirection };
     });
   };
@@ -49,7 +48,7 @@ class ArticlePreview extends React.Component {
       author,
       topic,
       created_at,
-      article_id
+      article_id,
     } = this.props.article;
 
     return (
@@ -66,7 +65,7 @@ class ArticlePreview extends React.Component {
                 <div className={styles.deleteAndEditHolder}>
                   <button
                     className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
-                    onClick={e => {
+                    onClick={(e) => {
                       e.preventDefault();
                       navigate(
                         `/articles/${this.props.article.article_id}/edit`
@@ -80,7 +79,7 @@ class ArticlePreview extends React.Component {
                   <div className={styles.mobileContainer}>
                     <button
                       className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault();
                         navigate(
                           `/articles/edit/${this.props.article.article_id}`
@@ -91,7 +90,7 @@ class ArticlePreview extends React.Component {
                     </button>
                     <button
                       className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
-                      onClick={e => {
+                      onClick={(e) => {
                         this.deleteArticle(e);
                       }}
                     >
@@ -117,7 +116,10 @@ class ArticlePreview extends React.Component {
         <div className={styles.rightHandSideContainer}>
           <p className={styles.topic}>{topic}</p>
           <p className={styles.comments}>
-            <span role="img">💬</span>
+            <span role="img" aria-label="Speech bubble">
+              💬
+            </span>
+
             {` ${comment_count} `}
           </p>
           <p className={styles.created_at}>{formatDate(created_at)}</p>

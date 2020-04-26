@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Link, navigate } from "@reach/router";
+import { navigate } from "@reach/router";
 import { fetchTopics } from "./utils/getUtils";
 import TopicCard from "./TopicCard";
 import SortTab from "./SortTab";
@@ -9,12 +9,12 @@ class Topics extends Component {
   state = {
     topics: null,
     isLoading: true,
-    err: null
+    err: null,
   };
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    fetchTopics().then(topics => {
+    fetchTopics().then((topics) => {
       this.setState({ topics, isLoading: false });
     });
   }
@@ -28,13 +28,13 @@ class Topics extends Component {
       <>
         <SortTab showSorter={false} />
         <div>
-          <p>
+          <div>
             {this.state.isLoading ? (
               <LoadingPage />
             ) : (
               <TopicCard topics={this.state.topics} />
             )}
-          </p>
+          </div>
         </div>
       </>
     );

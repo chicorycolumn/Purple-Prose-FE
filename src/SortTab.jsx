@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./css/SortTab.module.css";
-import { Router, Link, navigate } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 
 class SortTab extends React.Component {
   state = {
@@ -9,7 +9,7 @@ class SortTab extends React.Component {
     dropdownShowing: false,
     currentlyLoading: false,
     err: null,
-    currentUser: ""
+    currentUser: "",
   };
 
   componentDidMount() {
@@ -20,7 +20,7 @@ class SortTab extends React.Component {
     this.setState({
       currentUser,
       sortDirection: order,
-      currentFilter: sort_by
+      currentFilter: sort_by,
     });
 
     setTimeout(() => {
@@ -36,9 +36,9 @@ class SortTab extends React.Component {
     event.preventDefault();
 
     this.setState(
-      currState => {
+      (currState) => {
         return {
-          dropdownShowing: !currState.dropdownShowing
+          dropdownShowing: !currState.dropdownShowing,
         };
       },
       () => {
@@ -62,7 +62,7 @@ class SortTab extends React.Component {
     }
   }
 
-  handleFilterClick = filter => {
+  handleFilterClick = (filter) => {
     localStorage.setItem("sort_by", filter);
     localStorage.setItem("order", this.state.sortDirection);
 
@@ -70,12 +70,12 @@ class SortTab extends React.Component {
 
     this.setState({
       currentFilter: filter,
-      currentlyLoading: true
+      currentlyLoading: true,
     });
     this.closeDropdown();
   };
 
-  handleDirectionClick = direction => {
+  handleDirectionClick = (direction) => {
     localStorage.setItem("sort_by", this.state.currentFilter);
     localStorage.setItem("order", direction);
 

@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./css/CreateArticle.module.css";
-import { Router, Link, navigate } from "@reach/router";
+import { navigate } from "@reach/router";
 import {
   postNewArticle,
   postNewTopic,
-  patchArticleDetails
+  patchArticleDetails,
 } from "./utils/patchUtils";
 import { fetchTopics, fetchArticleByID } from "./utils/getUtils";
 import SortTab from "./SortTab";
@@ -24,15 +24,15 @@ class CreateComment extends React.Component {
     topicDescriptionInput: "",
     topics: null,
     dropdownShowing: false,
-    newTopicFieldShowing: false
+    newTopicFieldShowing: false,
   };
 
   componentDidMount() {
     window.scrollTo(0, 0);
     Promise.all([
       fetchTopics(),
-      this.props.article_id ? fetchArticleByID(this.props.article_id) : null
-    ]).then(resArr => {
+      this.props.article_id ? fetchArticleByID(this.props.article_id) : null,
+    ]).then((resArr) => {
       const topics = resArr[0];
       const articleData = resArr[1];
       const currentUser = localStorage.getItem("currentUser");
@@ -43,7 +43,7 @@ class CreateComment extends React.Component {
         article: articleData ? articleData.article : null,
         bodyInput: articleData ? articleData.article.body : "",
         titleInput: articleData ? articleData.article.title : "",
-        topicInput: articleData ? articleData.article.topic : ""
+        topicInput: articleData ? articleData.article.topic : "",
       });
     });
   }
@@ -78,7 +78,7 @@ class CreateComment extends React.Component {
     }
   }
 
-  handleTopic = topic => {
+  handleTopic = (topic) => {
     this.setState({ topicInput: topic.slug, dropdownShowing: false });
   };
 
@@ -88,12 +88,12 @@ class CreateComment extends React.Component {
       titleInput,
       bodyInput,
       topicInput,
-      topicDescriptionInput
+      topicDescriptionInput,
     } = this.state;
 
     if (
       this.state.topics.some(
-        topic => topic.slug.toLowerCase() === topicInput.toLowerCase()
+        (topic) => topic.slug.toLowerCase() === topicInput.toLowerCase()
       )
     ) {
       this.state.editMode
@@ -103,11 +103,11 @@ class CreateComment extends React.Component {
             titleInput,
             bodyInput,
             topicInput
-          ).then(newlyUpdatedArticle => {
+          ).then((newlyUpdatedArticle) => {
             navigate(`/articles/${newlyUpdatedArticle.article_id}`);
           })
         : postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
-            newlyPostedArticle => {
+            (newlyPostedArticle) => {
               navigate(`/articles/${newlyPostedArticle.article_id}`);
             }
           );
@@ -123,11 +123,11 @@ class CreateComment extends React.Component {
               titleInput,
               bodyInput,
               topicInput
-            ).then(newlyUpdatedArticle => {
+            ).then((newlyUpdatedArticle) => {
               navigate(`/articles/${newlyUpdatedArticle.article_id}`);
             })
           : postNewArticle(currentUser, titleInput, bodyInput, topicInput).then(
-              newlyPostedArticle => {
+              (newlyPostedArticle) => {
                 navigate(`/articles/${newlyPostedArticle.article_id}`);
               }
             );
@@ -136,20 +136,6 @@ class CreateComment extends React.Component {
   };
 
   render() {
-    // [
-    //   "shallMakeBodyFlash",
-    //   "shallMakeTitleFlash",
-    //   "shallMakeTopicFlash"
-    // ].forEach(item => {
-    //   if (`this.state.${item}`) {
-    //     setTimeout(() => {
-    //       let stateObj = {};
-    //       stateObj[item] = false;
-    //       this.setState(stateObj);
-    //     }, 2000);
-    //   }
-    // });
-
     if (this.state.shallMakeBodyFlash) {
       setTimeout(() => {
         this.setState({ shallMakeBodyFlash: false });
@@ -178,14 +164,15 @@ class CreateComment extends React.Component {
           <div className={styles.overbox}>
             <div className={styles.topbox}>
               <textarea
-                className={`${styles.titleField} ${this.state
-                  .shallMakeTitleFlash && styles.flashingField}`}
+                className={`${styles.titleField} ${
+                  this.state.shallMakeTitleFlash && styles.flashingField
+                }`}
                 placeholder="Title"
                 required
                 rows="2"
                 cols="80"
                 maxLength="70"
-                onChange={e => {
+                onChange={(e) => {
                   this.setState({ titleInput: e.target.value });
                 }}
                 value={this.state.titleInput}
@@ -198,11 +185,12 @@ class CreateComment extends React.Component {
                   <input
                     maxLength="12"
                     placeholder="New topic"
-                    className={`${styles.newTopicField} ${this.state
-                      .shallMakeTopicFlash && styles.flashingField}`}
-                    onChange={e => {
+                    className={`${styles.newTopicField} ${
+                      this.state.shallMakeTopicFlash && styles.flashingField
+                    }`}
+                    onChange={(e) => {
                       this.setState({
-                        topicInput: e.target.value.toLowerCase()
+                        topicInput: e.target.value.toLowerCase(),
                       });
                     }}
                     value={this.state.topicInput}
@@ -211,7 +199,7 @@ class CreateComment extends React.Component {
                     onClick={() => {
                       this.setState({
                         newTopicFieldShowing: false,
-                        topicInput: ""
+                        topicInput: "",
                       });
                     }}
                     className={styles.exitX}
@@ -225,9 +213,10 @@ class CreateComment extends React.Component {
                 <div className={styles.dropdownHolder}>
                   <button
                     id="triggerForDropdownFilters"
-                    className={`${styles.trigger} ${this.state
-                      .shallMakeTopicFlash && styles.flashingField}`}
-                    onClick={e => {
+                    className={`${styles.trigger} ${
+                      this.state.shallMakeTopicFlash && styles.flashingField
+                    }`}
+                    onClick={(e) => {
                       e.preventDefault();
                       this.showDropdown(e);
                     }}
@@ -243,20 +232,22 @@ class CreateComment extends React.Component {
                         index === 0 ? (
                           <>
                             <button
+                              key={`button-${topic.slug}`}
                               className={`${styles.buttonNew} ${styles.dropButtons}`}
-                              onClick={e => {
+                              onClick={(e) => {
                                 e.preventDefault();
                                 this.setState({
                                   newTopicFieldShowing: true,
-                                  topicInput: ""
+                                  topicInput: "",
                                 });
                               }}
                             >
                               Create new topic
                             </button>
                             <button
+                              key={`button2-${topic.slug}`}
                               className={`${styles.button1} ${styles.dropButtons}`}
-                              onClick={e => {
+                              onClick={(e) => {
                                 e.preventDefault();
                                 this.handleTopic(topic);
                               }}
@@ -266,8 +257,9 @@ class CreateComment extends React.Component {
                           </>
                         ) : (
                           <button
+                            key={`button3-${topic.slug}`}
                             className={`${styles.button1} ${styles.dropButtons}`}
-                            onClick={e => {
+                            onClick={(e) => {
                               e.preventDefault();
                               this.handleTopic(topic);
                             }}
@@ -289,9 +281,10 @@ class CreateComment extends React.Component {
               rows="3"
               cols="80"
               placeholder="Your thoughts!"
-              className={`${styles.bodyInputField} ${this.state
-                .shallMakeBodyFlash && styles.flashingField}`}
-              onChange={e => {
+              className={`${styles.bodyInputField} ${
+                this.state.shallMakeBodyFlash && styles.flashingField
+              }`}
+              onChange={(e) => {
                 this.setState({ bodyInput: e.target.value });
               }}
               value={this.state.bodyInput}
@@ -299,7 +292,7 @@ class CreateComment extends React.Component {
           </div>
           <button
             className={styles.articleSubmitButton}
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
 
               if (
@@ -313,7 +306,7 @@ class CreateComment extends React.Component {
                   shallMakeBodyFlash:
                     this.state.bodyInput === "" ? true : false,
                   shallMakeTopicFlash:
-                    this.state.topicInput === "" ? true : false
+                    this.state.topicInput === "" ? true : false,
                 });
               } else {
                 this.submitArticle();

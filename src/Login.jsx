@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "./css/Login.module.css";
-import { Router, Link, navigate } from "@reach/router";
 import loginImage from "./images/rush.png";
 import signupImage from "./images/naughty.jpg";
 import { postNewUser, patchAsLogin } from "./utils/patchUtils";
-import axios from "axios";
 
 class Login extends React.Component {
   state = {
@@ -17,7 +15,7 @@ class Login extends React.Component {
     loginError: "",
     usernameSignupInput: "",
     passwordSignupInput: "",
-    signupError: ""
+    signupError: "",
   };
 
   componentDidMount() {
@@ -27,12 +25,12 @@ class Login extends React.Component {
     this.setState({
       currentUser,
       currentUserToken,
-      loginError: ""
+      loginError: "",
     });
   }
 
   showLoginBox = () => {
-    this.setState(currState => {
+    this.setState((currState) => {
       return {
         loginBoxShowing: !currState.loginBoxShowing,
         signupBoxShowing: false,
@@ -41,13 +39,13 @@ class Login extends React.Component {
         loginError: "",
         usernameSignupInput: "",
         passwordSignupInput: "",
-        signupError: ""
+        signupError: "",
       };
     });
   };
 
   showSignupBox = () => {
-    this.setState(currState => {
+    this.setState((currState) => {
       return {
         signupBoxShowing: !currState.signupBoxShowing,
         loginBoxShowing: false,
@@ -56,12 +54,12 @@ class Login extends React.Component {
         loginError: "",
         usernameSignupInput: "",
         passwordSignupInput: "",
-        signupError: ""
+        signupError: "",
       };
     });
   };
 
-  sendLoginDetails = event => {
+  sendLoginDetails = (event) => {
     if (event) {
       event.preventDefault();
     }
@@ -69,7 +67,7 @@ class Login extends React.Component {
     patchAsLogin(
       this.state.usernameInput || this.state.usernameSignupInput,
       this.state.passwordInput || this.state.passwordSignupInput
-    ).then(feedback => {
+    ).then((feedback) => {
       if (feedback.loginError) {
         this.setState({ loginError: feedback.loginError });
       } else {
@@ -82,7 +80,7 @@ class Login extends React.Component {
           passwordInput: "",
           currentUser,
           currentUserToken,
-          loginError: ""
+          loginError: "",
         });
       }
     });
@@ -92,7 +90,7 @@ class Login extends React.Component {
     postNewUser(
       this.state.usernameSignupInput,
       this.state.passwordSignupInput
-    ).then(feedback => {
+    ).then((feedback) => {
       if (feedback.err) {
         this.setState({ signupError: feedback.err });
       } else {
@@ -117,7 +115,7 @@ class Login extends React.Component {
                   this.setState({
                     loginBoxShowing: false,
                     usernameInput: "",
-                    passwordInput: ""
+                    passwordInput: "",
                   });
                 }}
                 className={styles.exitX}
@@ -143,7 +141,7 @@ class Login extends React.Component {
                   maxLength="12"
                   type="text"
                   placeholder="Who goes there?"
-                  onChange={e => {
+                  onChange={(e) => {
                     this.setState({ usernameInput: e.target.value });
                   }}
                   value={this.state.usernameInput}
@@ -154,7 +152,7 @@ class Login extends React.Component {
                   type="password"
                   maxLength="24"
                   placeholder="What be ye password?"
-                  onChange={e => {
+                  onChange={(e) => {
                     this.setState({ passwordInput: e.target.value });
                   }}
                   value={this.state.passwordInput}
@@ -182,7 +180,7 @@ class Login extends React.Component {
                   this.setState({
                     signupBoxShowing: false,
                     usernameSignupInput: "",
-                    passwordSignupInput: ""
+                    passwordSignupInput: "",
                   });
                 }}
                 className={styles.exitX2}
@@ -208,7 +206,7 @@ class Login extends React.Component {
                   maxLength="12"
                   type="text"
                   placeholder="Username"
-                  onChange={e => {
+                  onChange={(e) => {
                     this.setState({ usernameSignupInput: e.target.value });
                   }}
                   value={this.state.usernameSignupInput}
@@ -219,34 +217,34 @@ class Login extends React.Component {
                   type="password"
                   placeholder="Password"
                   maxLength="24"
-                  onChange={e => {
+                  onChange={(e) => {
                     this.setState({ passwordSignupInput: e.target.value });
                   }}
                   value={this.state.passwordSignupInput}
                 />
                 <br />
                 <button
-                  onClick={e => {
+                  onClick={(e) => {
                     if (!this.state.usernameSignupInput) {
                       e.preventDefault();
                       this.setState({
-                        signupError: "Please choose a username"
+                        signupError: "Please choose a username",
                       });
                     } else if (this.state.usernameSignupInput.length > 12) {
                       e.preventDefault();
                       this.setState({
                         signupError:
-                          "Username should be less than 12 characters"
+                          "Username should be less than 12 characters",
                       });
                     } else if (!this.state.passwordSignupInput) {
                       e.preventDefault();
                       this.setState({
-                        signupError: `Please choose a password, ${this.state.usernameSignupInput}`
+                        signupError: `Please choose a password, ${this.state.usernameSignupInput}`,
                       });
                     } else if (this.state.passwordSignupInput.length < 4) {
                       e.preventDefault();
                       this.setState({
-                        signupError: `Password should be at least four characters, ${this.state.usernameSignupInput}`
+                        signupError: `Password should be at least four characters, ${this.state.usernameSignupInput}`,
                       });
                     } else {
                       e.preventDefault();

@@ -1,16 +1,15 @@
 import React from "react";
 import ncnewslogo from "./images/logoncnews.png";
 import styles from "./css/Navbar.module.css";
-import { Router, Link, navigate } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import Login from "./Login";
 
 class Navbar extends React.Component {
   state = {
-    searchInput: ""
+    searchInput: "",
   };
 
   render() {
-    console.log(this.state.searchInput);
     return (
       <div className={styles.navGrid}>
         <Link to={"/"}>
@@ -19,7 +18,7 @@ class Navbar extends React.Component {
         <div className={styles.searchbarAndLoginContainer}>
           <div className={styles.searchbarContainer}>
             <form
-              onSubmit={e => {
+              onSubmit={(e) => {
                 e.preventDefault();
 
                 navigate(`/articles?search=${this.state.searchInput}`);
@@ -29,7 +28,7 @@ class Navbar extends React.Component {
                 className={styles.searchBar}
                 type="text"
                 placeholder="Browse pending.."
-                onChange={e => {
+                onChange={(e) => {
                   this.setState({ searchInput: e.target.value });
                 }}
                 value={this.state.searchInput}

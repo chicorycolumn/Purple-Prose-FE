@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Link, navigate } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import styles from "./css/App.module.css";
 import Navbar from "./Navbar";
 import Users from "./Users";
@@ -9,15 +9,13 @@ import SingleArticle from "./SingleArticle";
 import ErrorPage from "./ErrorPage";
 import CreateArticle from "./CreateArticle";
 
-//ArticlePreview and Navbar are RSC so have no error block added.
-
 class App extends React.Component {
   state = { currentUser: "", err: null };
 
   componentDidMount() {
     const currentUser = localStorage.getItem("currentUser");
     this.setState({
-      currentUser
+      currentUser,
     });
   }
 
@@ -28,7 +26,7 @@ class App extends React.Component {
     return (
       <>
         <Navbar currentUser={this.state.currentUser} />
-        <body className={styles.App}>
+        <div className={styles.App}>
           <header className="NC News"></header>
           <Router>
             <Frontpage currentUser={this.state.currentUser} path="/" />
@@ -52,7 +50,7 @@ class App extends React.Component {
             <ErrorPage path="/error" />
             <ErrorPage errCode="404" default />
           </Router>
-        </body>
+        </div>
       </>
     );
   }

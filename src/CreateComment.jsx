@@ -1,23 +1,19 @@
 import React from "react";
 import styles from "./css/SingleArticle.module.css";
-import { Router, Link, navigate } from "@reach/router";
-import { voteOnArticle, postNewComment } from "./utils/patchUtils";
-import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
-import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
-import CommentGrid from "./CommentGrid";
+import { navigate } from "@reach/router";
 
 class CreateComment extends React.Component {
   state = {
     isLoading: false,
     shallMakeInputBoxFlash: false,
     err: null,
-    currentUser: ""
+    currentUser: "",
   };
 
   componentDidMount() {
     const currentUser = localStorage.getItem("currentUser");
     this.setState({
-      currentUser
+      currentUser,
     });
   }
 
@@ -39,10 +35,11 @@ class CreateComment extends React.Component {
               required
               rows="3"
               cols="80"
-              className={`${styles.newCommentInputField} ${this.state
-                .shallMakeInputBoxFlash &&
-                styles.flashingNewCommentInputField}`}
-              onChange={e => {
+              className={`${styles.newCommentInputField} ${
+                this.state.shallMakeInputBoxFlash &&
+                styles.flashingNewCommentInputField
+              }`}
+              onChange={(e) => {
                 this.props.upwardNewCommentInput(e.target.value);
               }}
               value={this.props.newCommentInput}
@@ -63,7 +60,7 @@ class CreateComment extends React.Component {
 
               <button
                 className={styles.newCommentSubmitButton}
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   if (this.props.newCommentInput === "") {
                     this.setState({ shallMakeInputBoxFlash: true });

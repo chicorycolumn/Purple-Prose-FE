@@ -1,18 +1,17 @@
 import React from "react";
 import styles from "./css/UserCard.module.css";
-import { Router, Link, navigate } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import { fetchArticles } from "./utils/getUtils";
-import LoadingPage from "./LoadingPage";
 
 class UserCard extends React.Component {
   state = {
     articleCounts: null,
     isLoading: true,
-    err: null
+    err: null,
   };
 
   componentDidMount() {
-    fetchArticles({ author: this.props.user.username }).then(articles => {
+    fetchArticles({ author: this.props.user.username }).then((articles) => {
       this.setState({ articleCounts: articles.length, isLoading: false });
     });
   }

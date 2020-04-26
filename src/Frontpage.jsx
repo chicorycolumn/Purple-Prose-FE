@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Link, navigate } from "@reach/router";
+import { navigate } from "@reach/router";
 import { fetchArticles } from "./utils/getUtils";
 import ArticlePreview from "./ArticlePreview";
 import SortTab from "./SortTab";
@@ -18,16 +18,10 @@ class Frontpage extends Component {
     window.scrollTo(0, 0);
 
     const qObj = {};
-
     const qArr = this.props.location.search.replace("?", "").split("=");
-
-    console.log(qArr);
-
     qObj[qArr[0]] = qArr[1];
-
     const sort_by = localStorage.getItem("sort_by") || "created_at";
     const order = localStorage.getItem("order") || "desc";
-
     qObj.sort_by = sort_by;
     qObj.order = order;
 
@@ -70,7 +64,7 @@ class Frontpage extends Component {
         ) : this.state.articles.length ? (
           this.state.articles.map((article) => {
             return (
-              <div id={article.article_id}>
+              <div key={article.article_id} id={article.article_id}>
                 <ArticlePreview article={article} />
               </div>
             );

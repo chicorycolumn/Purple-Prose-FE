@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./css/CommentGrid.module.css";
-import { Router, Link, navigate } from "@reach/router";
-import { voteOnComment } from "./utils/patchUtils";
+import { navigate } from "@reach/router";
 import { deleteCommentByID } from "./utils/deleteUtils";
 import VoteDisplayOnComment from "./VoteDisplayOnComment";
 import { formatDate } from "./utils/formatDate";
@@ -13,12 +12,12 @@ class CommentGrid extends React.Component {
     const currentUser = localStorage.getItem("currentUser");
     this.setState({
       currentUser,
-      votes: this.props.comment.votes
+      votes: this.props.comment.votes,
     });
   }
 
-  upwardVoteOnComment = voteDirection => {
-    this.setState(currState => {
+  upwardVoteOnComment = (voteDirection) => {
+    this.setState((currState) => {
       return { votes: currState.votes + voteDirection };
     });
   };
@@ -61,7 +60,6 @@ class CommentGrid extends React.Component {
 
         <div className={styles.leftHandSideContainer}>
           <VoteDisplayOnComment
-            // article_id={this.props.article_id}
             votes={this.state.votes}
             upwardVoteOnComment={this.upwardVoteOnComment}
             comment_id={this.props.comment.comment_id}

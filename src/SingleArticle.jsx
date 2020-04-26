@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./css/SingleArticle.module.css";
-import { Router, Link, navigate } from "@reach/router";
-import { voteOnArticle, postNewComment } from "./utils/patchUtils";
+import { navigate } from "@reach/router";
+import { postNewComment } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
-import { fetchArticleByID, fetchArticleWithComments } from "./utils/getUtils";
+import { fetchArticleWithComments } from "./utils/getUtils";
 import CommentGrid from "./CommentGrid";
 import CreateComment from "./CreateComment";
 import { deleteArticleByID } from "./utils/deleteUtils";
@@ -22,16 +22,16 @@ class SingleArticle extends React.Component {
     userSubmitsEmpty: false,
     err: null,
     currentUser: "",
-    comment_count: 0
+    comment_count: 0,
   };
 
   componentDidMount() {
     window.scrollTo(0, 0);
     return Promise.all([
       localStorage.getItem("currentUser"),
-      fetchArticleWithComments(this.props.article_id)
+      fetchArticleWithComments(this.props.article_id),
     ])
-      .then(resArr => {
+      .then((resArr) => {
         const currentUser = resArr[0];
         const [err, article, comments] = resArr[1];
 
@@ -43,10 +43,10 @@ class SingleArticle extends React.Component {
             comments,
             isLoading: false,
             votes: article.votes,
-            currentUser
+            currentUser,
           });
       })
-      .catch(err => navigate("/error", { state: { err } }));
+      .catch((err) => navigate("/error", { state: { err } }));
   }
 
   deleteArticle(e) {
@@ -65,7 +65,7 @@ class SingleArticle extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.article === null && this.state.article) {
-      this.setState(currState => {
+      this.setState((currState) => {
         return { comment_count: currState.article.comment_count };
       });
     }
@@ -75,30 +75,30 @@ class SingleArticle extends React.Component {
     this.setState({ userSubmitsEmpty: false });
   };
 
-  upwardNewCommentInput = newCommentInput => {
+  upwardNewCommentInput = (newCommentInput) => {
     this.setState({ newCommentInput });
   };
 
-  upwardDeleteComment = comment_id => {
-    this.setState(currState => {
+  upwardDeleteComment = (comment_id) => {
+    this.setState((currState) => {
       let newCommentArray = currState.comments.filter(
-        comment => comment.comment_id !== comment_id
+        (comment) => comment.comment_id !== comment_id
       );
 
       return {
         comments: newCommentArray,
-        comment_count: currState.comment_count - 1
+        comment_count: currState.comment_count - 1,
       };
     });
   };
 
-  upwardVoteOnArticle = voteDirection => {
-    this.setState(currState => {
+  upwardVoteOnArticle = (voteDirection) => {
+    this.setState((currState) => {
       return { votes: currState.votes + voteDirection };
     });
   };
 
-  submitNewComment = event => {
+  submitNewComment = (event) => {
     event.preventDefault();
 
     if (this.state.newCommentInput === "") {
@@ -108,16 +108,16 @@ class SingleArticle extends React.Component {
         this.state.currentUser,
         this.state.article.article_id,
         this.state.newCommentInput
-      ).then(newlyComment => {
+      ).then((newlyComment) => {
         Promise.all([
-          this.setState(currState => {
+          this.setState((currState) => {
             return {
               newCommentInput: "",
               createCommentDisplaying: false,
               comments: [newlyComment, ...currState.comments],
-              comment_count: currState.comment_count + 1
+              comment_count: currState.comment_count + 1,
             };
-          })
+          }),
         ]).then(() => {
           window.location.reload(false);
         });
@@ -146,7 +146,7 @@ class SingleArticle extends React.Component {
                       <div className={styles.deleteAndEditHolder}>
                         <button
                           className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
-                          onClick={e => {
+                          onClick={(e) => {
                             e.preventDefault();
                             navigate(
                               `/articles/${this.state.article.article_id}/edit`
@@ -162,7 +162,7 @@ class SingleArticle extends React.Component {
                         <div className={styles.mobileContainer}>
                           <button
                             className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
-                            onClick={e => {
+                            onClick={(e) => {
                               e.preventDefault();
                               navigate(
                                 `/articles/edit/${this.state.article.article_id}`
@@ -173,7 +173,7 @@ class SingleArticle extends React.Component {
                           </button>
                           <button
                             className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
-                            onClick={e => {
+                            onClick={(e) => {
                               this.deleteArticle(e);
                             }}
                           >
@@ -198,9 +198,9 @@ class SingleArticle extends React.Component {
                     this.state.currentUser !== null &&
                     this.state.currentUser !== undefined &&
                     this.state.currentUser !== ""
-                      ? this.setState(currState => {
+                      ? this.setState((currState) => {
                           return {
-                            createCommentDisplaying: !currState.createCommentDisplaying
+                            createCommentDisplaying: !currState.createCommentDisplaying,
                           };
                         })
                       : alert("To vote on the latest news, log in or sign up!");
@@ -245,8 +245,9 @@ class SingleArticle extends React.Component {
               </div>
 
               <div>
-                {this.state.comments.map(comment => (
+                {this.state.comments.map((comment) => (
                   <CommentGrid
+                    key={comment.comment_id}
                     comment={comment}
                     article_id={this.state.article.article_id}
                     upwardDeleteComment={this.upwardDeleteComment}

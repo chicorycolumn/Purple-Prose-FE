@@ -1,5 +1,4 @@
 import React from "react";
-import { Router, Link, navigate } from "@reach/router";
 
 const lookup = [
   "Jan",
@@ -13,10 +12,10 @@ const lookup = [
   "Sep",
   "Oct",
   "Nov",
-  "Dec"
+  "Dec",
 ];
 
-const DateFormat = props => {
+const DateFormat = (props) => {
   const { created_at } = props;
 
   const year = new Date(created_at).getFullYear();
