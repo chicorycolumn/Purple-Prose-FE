@@ -28,7 +28,7 @@
 .searchBar {
   height: 25px;
   font-size: 12pt;
-  width: 100%;
+  width: 40vw;
   margin-top: 2.5vh;
   margin-left: 5px;
   cursor: pointer;
@@ -41,13 +41,25 @@
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .searchbarContainer {
+    display: flex;
+    position: relative;
+    width: 50%;
+    left: -4px;
+    /* margin-left: 10vw; */
+  }
+
   .searchBar {
+    height: 25px;
+    font-size: 12pt;
+    width: 100%;
+    margin-top: 2.5vh;
+    margin-left: 5px;
+    cursor: pointer;
     margin: 0px;
     width: 150px;
   }
-  .searchbarContainer {
-    left: -4px;
-  }
+
   .buttonRight {
     margin: 0px;
     width: 77.5px;

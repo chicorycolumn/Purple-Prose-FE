@@ -27,7 +27,7 @@ class Navbar extends React.Component {
               <input
                 className={styles.searchBar}
                 type="text"
-                placeholder="Browse pending.."
+                placeholder="Search articles!"
                 onChange={(e) => {
                   this.setState({ searchInput: e.target.value });
                 }}
