@@ -21,7 +21,8 @@ class Navbar extends React.Component {
             <form
               onSubmit={e => {
                 e.preventDefault();
-                navigate(`/articles/search?=${this.state.searchInput}`);
+
+                navigate(`/articles?search=${this.state.searchInput}`);
               }}
             >
               <input

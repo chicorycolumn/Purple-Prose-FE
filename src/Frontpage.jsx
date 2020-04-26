@@ -11,15 +11,17 @@ class Frontpage extends Component {
   state = {
     articles: null,
     isLoading: true,
-    err: null
+    err: null,
   };
 
-  componentDidMount() {
+  makeSearchQuery = () => {
     window.scrollTo(0, 0);
 
     const qObj = {};
 
     const qArr = this.props.location.search.replace("?", "").split("=");
+
+    console.log(qArr);
 
     qObj[qArr[0]] = qArr[1];
 
@@ -30,7 +32,7 @@ class Frontpage extends Component {
     qObj.order = order;
 
     fetchArticles(qObj)
-      .then(articles => {
+      .then((articles) => {
         if (sort_by === "votes") {
           articles.sort((a, b) =>
             order === "desc" ? b.votes - a.votes : a.votes - b.votes
@@ -39,7 +41,20 @@ class Frontpage extends Component {
 
         this.setState({ articles, isLoading: false });
       })
-      .catch(err => this.setState({ err }));
+      .catch((err) => this.setState({ err }));
+  };
+
+  componentDidMount() {
+    this.makeSearchQuery();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.location.search.replace("?", "").split("=")[1] !==
+      prevProps.location.search.replace("?", "").split("=")[1]
+    ) {
+      this.makeSearchQuery();
+    }
   }
 
   render() {
@@ -53,7 +68,7 @@ class Frontpage extends Component {
         {this.state.isLoading ? (
           <LoadingPage />
         ) : this.state.articles.length ? (
-          this.state.articles.map(article => {
+          this.state.articles.map((article) => {
             return (
               <div id={article.article_id}>
                 <ArticlePreview article={article} />
