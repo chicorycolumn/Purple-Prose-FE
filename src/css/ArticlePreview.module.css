@@ -57,6 +57,7 @@
   background-color: var(--shade-lilac);
   width: 100%;
   justify-content: center;
+  box-shadow: 1px 0px 1px indigo;
 }
 
 .rightHandSideContainer {
@@ -68,6 +69,7 @@
   height: 99.8%;
   width: 100%;
   background-color: var(--shade-lilac);
+  box-shadow: -1px 0px 1px indigo;
 }
 
 .topic {

@@ -38,6 +38,8 @@
   margin-left: -1%;
   display: flex;
   cursor: pointer;
+  height: 70px;
+  width: auto;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {

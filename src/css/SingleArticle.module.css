@@ -69,6 +69,9 @@
   width: 100%;
   justify-content: center;
   grid-row: 1;
+  /* box-shadow: 0.5px 0px 0.5px indigo; */
+  border-right: indigo dotted 0.5pt;
+  border-bottom: indigo dotted 0.5pt;
 }
 
 .rightHandSideContainer {
@@ -81,6 +84,9 @@
   width: 100%;
   background-color: var(--shade-lilac);
   grid-row: 1;
+  /* box-shadow: -0.5px 0px 0.5px indigo; */
+  border-left: indigo dotted 0.5pt;
+  border-bottom: indigo dotted 0.5pt;
 }
 
 .topic {
