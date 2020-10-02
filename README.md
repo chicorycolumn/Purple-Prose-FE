@@ -28,7 +28,7 @@ General instructions for taking a **React project** and hosting it on **Netlify*
 
 0. Ensure the project is initialised in a Git repository. If you are unsure what this means, instructions can be found [here](https://medium.com/@JinnaBalu/initialize-local-git-repository-push-to-the-remote-repository-787f83ff999) and [here](https://www.theserverside.com/video/How-to-create-a-local-repository-with-the-git-init-command).
 
-1. Login to Netlify and click _New Site from Git_, then select _Github_ and then the project in question. Set the command as `yarn build` or `npm run build`.
+1. Login to Netlify and click _New Site from Git_, then select _Github_ and then the project in question. Set the command as `npm run build`.
 
 Now when you commit and push to Github, Netlify will deploy the latest version of the project automatically.
 
