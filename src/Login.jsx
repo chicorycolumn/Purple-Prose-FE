@@ -3,6 +3,7 @@ import styles from "./css/Login.module.css";
 import loginImage from "./images/rush.png";
 import signupImage from "./images/naughty.jpg";
 import { postNewUser, patchAsLogin } from "./utils/patchUtils";
+import globalStyles from "./css/Global.module.css";
 
 class Login extends React.Component {
   state = {
@@ -137,7 +138,7 @@ class Login extends React.Component {
               </p>
               <form>
                 <input
-                  className={styles.enterUsername}
+                  className={`${styles.enterLogin} ${styles.enterUsername}`}
                   maxLength="12"
                   type="text"
                   placeholder="Who goes there?"
@@ -148,7 +149,7 @@ class Login extends React.Component {
                 />
 
                 <input
-                  className={styles.enterPassword}
+                  className={`${styles.enterLogin} ${styles.enterPassword}`}
                   type="password"
                   maxLength="24"
                   placeholder="What be ye password?"
@@ -160,7 +161,7 @@ class Login extends React.Component {
                 <br />
                 <button
                   onClick={this.sendLoginDetails}
-                  className={styles.loginButtonFromForm}
+                  className={`${styles.loginButtonFromForm} ${globalStyles.buttonColoringMedium}`}
                   type="submit"
                 >
                   Log in
@@ -183,7 +184,7 @@ class Login extends React.Component {
                     passwordSignupInput: "",
                   });
                 }}
-                className={styles.exitX2}
+                className={styles.exitX}
               >
                 <span role="img" aria-label="red cross">
                   ❌
@@ -191,7 +192,7 @@ class Login extends React.Component {
               </button>
 
               <img
-                className={styles.welcomeBackImage}
+                className={styles.welcomeBackImage2}
                 src={signupImage}
                 alt="A triangle that says join us."
               />
@@ -202,7 +203,7 @@ class Login extends React.Component {
               </div>
               <form>
                 <input
-                  className={styles.enterUsername}
+                  className={`${styles.enterLogin} ${styles.enterUsername}`}
                   maxLength="12"
                   type="text"
                   placeholder="Username"
@@ -213,7 +214,7 @@ class Login extends React.Component {
                 />
 
                 <input
-                  className={styles.enterPassword}
+                  className={`${styles.enterLogin} ${styles.enterPassword}`}
                   type="password"
                   placeholder="Password"
                   maxLength="24"
@@ -251,7 +252,7 @@ class Login extends React.Component {
                       this.sendSignupDetails();
                     }
                   }}
-                  className={styles.loginButtonFromForm}
+                  className={`${styles.loginButtonFromForm} ${globalStyles.buttonColoringMedium}`}
                   type="submit"
                 >
                   Register
@@ -275,7 +276,7 @@ class Login extends React.Component {
                 <button
                   type="submit"
                   onClick={this.logOut}
-                  className={styles.buttonRight}
+                  className={`${styles.buttonRight} ${globalStyles.buttonColoringMedium}`}
                 >
                   Log out
                 </button>
@@ -284,14 +285,14 @@ class Login extends React.Component {
           ) : (
             <>
               <button
-                className={`${styles.buttonRight} ${styles.buttonRightWithoutRightBorder}`}
+                className={`${styles.buttonRight} ${styles.buttonRightWithoutRightBorder} ${globalStyles.buttonColoringMedium}`}
                 onClick={this.showLoginBox}
               >
                 Log In
               </button>
               <button
                 onClick={this.showSignupBox}
-                className={styles.buttonRight}
+                className={`${styles.buttonRight} ${globalStyles.buttonColoringMedium}`}
               >
                 Sign up
               </button>

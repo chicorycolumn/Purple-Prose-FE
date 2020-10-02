@@ -9,6 +9,36 @@
   --soft-lilac1: #f7f1fd; /*These three more rarely, just for dropdowns..*/
   --soft-lilac2: #f5eaff;
   --soft-lilac3: #efe0ff;
+
+  --bradius1: 20px;
+  --bradius2: 10px;
+
+  --indigoTrans0: rgba(75, 0, 130, 0.8);
+  --indigoTrans1: rgba(75, 0, 130, 0.6);
+  --indigoTrans2: rgba(75, 0, 130, 0.4);
+  --indigoTrans3: rgba(75, 0, 130, 0.2);
+
+  --shadow1: 2.5px 2.5px 5px var(--indigoTrans0);
+  --shadow2: 1.5px 1.5px 5px var(--indigoTrans1);
+  --shadow3: 0.5px 0.5px 5px var(--indigoTrans2);
+  --shadow4: 0px 0px 5px var(--indigoTrans3);
+
+  --borderLight: var(--indigoTrans2) solid 0.5px;
+}
+
+div {
+  border-radius: var(--bradius1);
+}
+
+button {
+  border-radius: var(--bradius2);
+  outline: none;
+}
+
+input,
+textarea {
+  border-radius: var(--bradius1);
+  outline: none;
 }
 
 .App {
@@ -18,8 +48,10 @@
   width: auto;
   height: auto;
   min-height: 87vh;
-  padding-top: 90px;
+  padding-top: 100px;
   padding-bottom: 1px;
+
+  border-radius: 0px;
 }
 
 .App-link {

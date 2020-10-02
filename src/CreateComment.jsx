@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./css/SingleArticle.module.css";
 import { navigate } from "@reach/router";
+import globalStyles from "./css/Global.module.css";
 
 class CreateComment extends React.Component {
   state = {
@@ -59,7 +60,7 @@ class CreateComment extends React.Component {
               </div>
 
               <button
-                className={styles.newCommentSubmitButton}
+                className={`${styles.newCommentSubmitButton} ${globalStyles.buttonColoringLight}`}
                 onClick={(e) => {
                   e.preventDefault();
                   if (this.props.newCommentInput === "") {

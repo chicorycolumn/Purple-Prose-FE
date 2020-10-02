@@ -4,11 +4,19 @@
   position: fixed;
   top: 70px;
   width: 100%;
-  height: 21.5px;
+  height: 26px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  align-items: center;
   z-index: 2;
+  border-radius: 0px;
+
+  box-shadow: 0px 1.5px 3px var(--indigoTrans2);
+
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .rightContainer {
@@ -17,11 +25,7 @@
 
 .rightButton {
   width: 60px;
-  background-color: white;
-  color: indigo;
-  font-weight: bold;
   position: relative;
-  border: rebeccapurple solid 1pt;
   cursor: pointer;
   font-size: 13.5px;
 }
@@ -41,14 +45,15 @@
 .trigger {
   /* position: fixed; */
   /* left: 0.5px; */
-  width: 92px;
+  width: 94px;
   height: 21px;
-  background-color: white;
-  color: indigo;
-  font-weight: bold;
-  border: rebeccapurple solid 1pt;
   font-size: 12px;
   cursor: pointer;
+}
+
+.trigger:focus {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .dropdown {
@@ -59,38 +64,40 @@
   cursor: pointer;
 }
 
-.button1 {
-  background-color: var(--soft-lilac1);
-}
-
-.button2 {
-  background-color: var(--soft-lilac2);
-}
-
-.button3 {
-  background-color: var(--soft-lilac3);
-}
-
 .dropButtons {
-  border: black solid 1pt;
+  border: var(--indigo) solid 1px;
+
+  box-shadow: var(--shadow1);
+
   border-top: none;
   width: 92.5px;
   text-align: center;
   margin-left: 0px;
   cursor: pointer;
+
+  border-radius: 0px;
+
+  position: relative;
+  left: 1px;
+
+  background-color: var(--soft-lilac2);
+}
+
+.dropButtons:last-child {
+  border-bottom-right-radius: var(--bradius1);
+  border-bottom-left-radius: var(--bradius1);
 }
 
 .littleButtons {
   /* position: fixed; */
-  /* border: indigo solid 1pt; */
-  background-color: white;
-  color: rebeccapurple;
+  /* border: var(--indigo) solid 1pt; */
   margin: 0%;
   margin-left: 0px;
-  border: rebeccapurple solid 1pt;
   height: 18px;
   width: 20px;
   cursor: pointer;
+
+  border-radius: var(--bradius1);
 }
 
 /* .asc {
@@ -112,6 +119,8 @@
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
   .fullWidthBar {
     justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
   }
   .leftContainer {
     margin-right: 0%;
@@ -122,13 +131,13 @@
     height: 21px;
     top: -0.8px;
     padding: 1px;
-    margin: -1px;
+    /* margin: -1px; */
   }
   .trigger {
     font-size: 11px;
     width: 80px;
     padding: 1px;
-    margin-right: -2px;
+    /* margin-right: -2px; */
     height: 21.5px;
   }
   .dropButtons {
@@ -137,8 +146,8 @@
     margin-left: 0px;
   }
   .littleButtons {
-    margin-left: -1px;
-    margin-right: -1px;
+    /* margin-left: -1px;
+    margin-right: -1px; */
     height: 19px;
   }
 }

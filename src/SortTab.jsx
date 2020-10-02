@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./css/SortTab.module.css";
 import { Link, navigate } from "@reach/router";
+import globalStyles from "./css/Global.module.css";
 
 class SortTab extends React.Component {
   state = {
@@ -92,17 +93,33 @@ class SortTab extends React.Component {
         <div className={styles.fullWidthBar}>
           <div className={styles.rightContainer}>
             <Link to={"/"}>
-              <button className={styles.rightButton}>Home</button>
+              <button
+                className={`${styles.rightButton} ${globalStyles.buttonColoringLight}`}
+              >
+                Home
+              </button>
             </Link>
             <Link to={"/users"}>
-              <button className={styles.rightButton}>Users</button>
+              <button
+                className={`${styles.rightButton} ${globalStyles.buttonColoringLight}`}
+              >
+                Users
+              </button>
             </Link>
             <Link to={"/topics"}>
-              <button className={styles.rightButton}>Topics</button>
+              <button
+                className={`${styles.rightButton} ${globalStyles.buttonColoringLight}`}
+              >
+                Topics
+              </button>
             </Link>
             {this.state.currentUser ? (
               <Link to={"/write"}>
-                <button className={styles.rightButton}>Write!</button>
+                <button
+                  className={`${styles.rightButton} ${globalStyles.buttonColoringLight}`}
+                >
+                  Write!
+                </button>
               </Link>
             ) : (
               <button
@@ -121,7 +138,7 @@ class SortTab extends React.Component {
               <div className={styles.sortbar}>
                 <button
                   id="triggerForDropdownFilters"
-                  className={styles.trigger}
+                  className={`${styles.trigger} ${globalStyles.buttonColoringLight}`}
                   onClick={this.showDropdown}
                 >
                   {this.state.currentlyLoading ? (
@@ -169,7 +186,7 @@ class SortTab extends React.Component {
                   onClick={() => {
                     this.handleDirectionClick("asc");
                   }}
-                  className={`${styles.asc} ${styles.littleButtons}`}
+                  className={`${styles.asc} ${styles.littleButtons} ${globalStyles.buttonColoringLight}`}
                 >
                   {this.state.sortDirection === "asc" ? "▲" : "▵"}
                 </p>
@@ -177,7 +194,7 @@ class SortTab extends React.Component {
                   onClick={() => {
                     this.handleDirectionClick("desc");
                   }}
-                  className={`${styles.desc} ${styles.littleButtons}`}
+                  className={`${styles.desc} ${styles.littleButtons} ${globalStyles.buttonColoringLight}`}
                 >
                   {this.state.sortDirection === "asc" ? "▿" : "▼"}
                 </p>

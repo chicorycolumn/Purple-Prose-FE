@@ -4,6 +4,7 @@ import { navigate } from "@reach/router";
 import { deleteCommentByID } from "./utils/deleteUtils";
 import VoteDisplayOnComment from "./VoteDisplayOnComment";
 import { formatDate } from "./utils/formatDate";
+import globalStyles from "./css/Global.module.css";
 
 class CommentGrid extends React.Component {
   state = { err: null, currentUser: "", votes: 0 };
@@ -41,7 +42,7 @@ class CommentGrid extends React.Component {
 
             {this.props.comment.author === this.state.currentUser && (
               <button
-                className={styles.deleteCommentButton}
+                className={`${styles.deleteCommentButton} ${globalStyles.buttonColoringLight}`}
                 onClick={this.deleteComment}
               >
                 Delete

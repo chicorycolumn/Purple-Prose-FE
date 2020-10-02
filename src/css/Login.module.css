@@ -26,57 +26,57 @@
   background-color: white;
   height: 300px;
   width: 286px;
-  border: indigo dotted 1pt;
+  /* border: var(--indigo) dotted 1pt; */
   display: inline-block;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding-bottom: 25px;
+
+  box-shadow: var(--shadow2);
 }
 
 .signupBox {
   /* background-color: var(--shade-lilac); */
   position: fixed;
   background-color: white;
-  height: 400px;
+  height: 300px;
   width: 286px;
-  border: indigo dotted 1pt;
+  /* border: var(--indigo) dotted 1pt; */
   display: inline-block;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding-bottom: 25px;
+
+  box-shadow: var(--shadow2);
 }
 
 .loginButtonFromForm {
-  border: rebeccapurple solid 1pt;
   margin: 0%;
   width: 100px;
   height: 30px;
   position: relative;
   top: 11px;
   cursor: pointer;
-  background-color: var(--light-lilac);
-  border-style: solid;
-  border: indigo solid 1pt;
-  color: indigo;
+}
+
+.enterLogin {
+  background-color: white;
+  width: 180px;
+  height: 25px;
+  border: var(--dark-lilac) solid 1pt;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .enterUsername {
-  background-color: white;
-  width: 200px;
-  height: 25px;
-  border: var(--dark-lilac) solid 1pt;
 }
 
 .enterPassword {
-  background-color: white;
-  width: 200px;
-  height: 25px;
-  border: var(--dark-lilac) solid 1pt;
-  border-top: none;
+  margin-top: 5px;
 }
 
 .buttonRight {
@@ -85,15 +85,11 @@
   width: 17vw;
   height: 30px;
   cursor: pointer;
-  background-color: var(--light-lilac);
-  border-style: solid;
-  border: indigo solid 1pt;
-  color: indigo;
 }
 
 .buttonRightWithoutRightBorder {
-  border-right: none;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .loggedInUserContainer {
@@ -114,7 +110,7 @@
   /* margin-left: -10%; */
   width: 17vw;
   height: 28px;
-  color: indigo;
+  color: var(--indigo);
   font-size: 100%;
   padding: 0px;
   position: relative;
@@ -129,22 +125,19 @@
 .welcomeBackImage {
   height: 150px;
   width: 150px;
+  position: relative;
+  top: 15px;
+}
+
+.welcomeBackImage2 {
+  height: 150px;
+  width: 150px;
 }
 
 .exitX {
-  position: relative;
-  left: 130px;
-  top: 7px;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-
-.exitX2 {
-  position: relative;
-  left: 130px;
-  top: -2px;
+  position: absolute;
+  right: 4px;
+  top: 10px;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -158,27 +151,34 @@
 }
 
 .basicText {
-  color: indigo;
+  color: var(--indigo);
 }
 
 .welcomeOrErrorText {
-  color: indigo;
+  color: var(--indigo);
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
   .buttonRight {
     margin: 0px;
     width: 77.5px;
+    height: 20px;
+    margin-top: 7.5px;
   }
 
   .loggedInUserContainer {
     margin: 0px;
+    margin-top: 1px;
     width: 77.5px;
   }
 
   .loginHolder {
     position: relative;
     right: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px;
   }
   .loggedInUser {
     margin: 0%;

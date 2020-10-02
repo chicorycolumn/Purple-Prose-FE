@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./css/SingleArticle.module.css";
+import globalStyles from "./css/Global.module.css";
 import { navigate } from "@reach/router";
 import { postNewComment } from "./utils/patchUtils";
 import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
@@ -10,6 +11,7 @@ import { deleteArticleByID } from "./utils/deleteUtils";
 import { formatDate } from "./utils/formatDate";
 import SortTab from "./SortTab";
 import LoadingPage from "./LoadingPage";
+import commentIcon from "../src/images/speechbubble6.png";
 
 class SingleArticle extends React.Component {
   state = {
@@ -138,14 +140,16 @@ class SingleArticle extends React.Component {
           ) : (
             <>
               <div className={styles.containerGrid}>
-                <div className={styles.centralContainer}>
+                <div
+                  className={`${styles.centralContainer} ${styles.topRowOfContainers}`}
+                >
                   <p className={styles.title}>{this.state.article.title}</p>
 
                   <div className={styles.authorAndButtonsContainer}>
                     {this.state.currentUser === this.state.article.author ? (
                       <div className={styles.deleteAndEditHolder}>
                         <button
-                          className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
+                          className={`${styles.deleteAndEditButton} ${styles.buttonEd} ${globalStyles.buttonColoringLight}`}
                           onClick={(e) => {
                             e.preventDefault();
                             navigate(
@@ -161,7 +165,7 @@ class SingleArticle extends React.Component {
                         </p>
                         <div className={styles.mobileContainer}>
                           <button
-                            className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
+                            className={`${styles.deleteAndEditButton} ${styles.buttonEdMob} ${globalStyles.buttonColoringLight}`}
                             onClick={(e) => {
                               e.preventDefault();
                               navigate(
@@ -172,7 +176,7 @@ class SingleArticle extends React.Component {
                             Edit
                           </button>
                           <button
-                            className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
+                            className={`${styles.deleteAndEditButton} ${styles.buttonDel} ${globalStyles.buttonColoringLight}`}
                             onClick={(e) => {
                               this.deleteArticle(e);
                             }}
@@ -206,15 +210,19 @@ class SingleArticle extends React.Component {
                       : alert("To vote on the latest news, log in or sign up!");
                   }}
                   className={`${styles.joinConvoButton} ${
-                    this.state.createCommentDisplaying ? styles.bordered : ""
+                    this.state.createCommentDisplaying
+                      ? styles.joinConvoButton_depressed
+                      : ""
                   }`}
                 >
                   {this.state.createCommentDisplaying
-                    ? "◀ Maybe later..."
+                    ? "◀ Maybe later"
                     : "	▶ Join the conversation!"}
                 </button>
 
-                <div className={styles.leftHandSideContainer}>
+                <div
+                  className={`${styles.leftHandSideContainer} ${styles.topRowOfContainers}`}
+                >
                   <VoteDisplayOnArticle
                     article_id={this.state.article.article_id}
                     votes={this.state.votes}
@@ -222,10 +230,16 @@ class SingleArticle extends React.Component {
                   />
                 </div>
 
-                <div className={styles.rightHandSideContainer}>
+                <div
+                  className={`${styles.rightHandSideContainer} ${styles.topRowOfContainers}`}
+                >
                   <p className={styles.topic}>{this.state.article.topic}</p>
                   <p className={styles.comments}>
-                    <span role="img">{"💬 "}</span>
+                    <img
+                      src={commentIcon}
+                      className={styles.commentIcon}
+                      alt="Speech bubble"
+                    />
                     {this.state.comment_count}
                   </p>
 
@@ -244,7 +258,7 @@ class SingleArticle extends React.Component {
                 )}
               </div>
 
-              <div>
+              <div className={styles.allCommentsContainer}>
                 {this.state.comments.map((comment) => (
                   <CommentGrid
                     key={comment.comment_id}

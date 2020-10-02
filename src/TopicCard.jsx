@@ -4,6 +4,7 @@ import { Link, navigate } from "@reach/router";
 import { fetchArticleCountsByTopic } from "./utils/getUtils";
 import LoadingPage from "./LoadingPage";
 import { patchTopic } from "./utils/patchUtils";
+import globalStyles from "./css/Global.module.css";
 
 class TopicCard extends React.Component {
   state = {
@@ -101,7 +102,7 @@ class TopicCard extends React.Component {
                               e.preventDefault();
                               this.showTopicEditor(topic);
                             }}
-                            className={styles.editTopicButton}
+                            className={`${styles.editTopicButton} ${globalStyles.buttonColoringLight}`}
                           >
                             Edit
                           </button>
@@ -145,7 +146,7 @@ class TopicCard extends React.Component {
                                       this.state.descriptionInput
                                     );
                               }}
-                              className={styles.sendTopicButton}
+                              className={`${styles.sendTopicButton} ${globalStyles.buttonColoringLight}`}
                             >
                               {this.state.isLoadingNew ? "Sending..." : "Done"}
                             </button>

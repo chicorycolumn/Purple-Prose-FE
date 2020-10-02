@@ -8,6 +8,7 @@ import {
 } from "./utils/patchUtils";
 import { fetchTopics, fetchArticleByID } from "./utils/getUtils";
 import SortTab from "./SortTab";
+import globalStyles from "./css/Global.module.css";
 
 class CreateComment extends React.Component {
   state = {
@@ -169,7 +170,7 @@ class CreateComment extends React.Component {
                 }`}
                 placeholder="Title"
                 required
-                rows="2"
+                rows="1"
                 cols="80"
                 maxLength="70"
                 onChange={(e) => {
@@ -291,7 +292,7 @@ class CreateComment extends React.Component {
             ></textarea>
           </div>
           <button
-            className={styles.articleSubmitButton}
+            className={`${styles.articleSubmitButton} ${globalStyles.buttonColoringLight}`}
             onClick={(e) => {
               e.preventDefault();
 

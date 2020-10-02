@@ -5,6 +5,8 @@ import VoteDisplayOnArticle from "./VoteDisplayOnArticle";
 import { fetchArticleByID } from "./utils/getUtils";
 import { deleteArticleByID } from "./utils/deleteUtils";
 import { formatDate } from "./utils/formatDate";
+import commentIcon from "../src/images/speechbubble6.png";
+import globalStyles from "./css/Global.module.css";
 
 class ArticlePreview extends React.Component {
   state = { article: null, votes: null, currentUser: "" };
@@ -64,7 +66,7 @@ class ArticlePreview extends React.Component {
               {this.state.currentUser === this.props.article.author ? (
                 <div className={styles.deleteAndEditHolder}>
                   <button
-                    className={`${styles.deleteAndEditButton} ${styles.buttonEd}`}
+                    className={`${styles.deleteAndEditButton} ${styles.buttonEd} ${globalStyles.buttonColoringLight}`}
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(
@@ -78,7 +80,7 @@ class ArticlePreview extends React.Component {
                   <p className={styles.author}>by {author}</p>
                   <div className={styles.mobileContainer}>
                     <button
-                      className={`${styles.deleteAndEditButton} ${styles.buttonEdMob}`}
+                      className={`${styles.deleteAndEditButton} ${styles.buttonEdMob} ${globalStyles.buttonColoringLight}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigate(
@@ -89,7 +91,7 @@ class ArticlePreview extends React.Component {
                       Edit
                     </button>
                     <button
-                      className={`${styles.deleteAndEditButton} ${styles.buttonDel}`}
+                      className={`${styles.deleteAndEditButton} ${styles.buttonDel} ${globalStyles.buttonColoringLight}`}
                       onClick={(e) => {
                         this.deleteArticle(e);
                       }}
@@ -116,8 +118,12 @@ class ArticlePreview extends React.Component {
         <div className={styles.rightHandSideContainer}>
           <p className={styles.topic}>{topic}</p>
           <p className={styles.comments}>
-            <span role="img" aria-label="Speech bubble">
-              💬
+            <span>
+              <img
+                src={commentIcon}
+                className={styles.commentIcon}
+                alt="Speech bubble"
+              />
             </span>
 
             {` ${comment_count} `}
