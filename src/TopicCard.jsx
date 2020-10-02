@@ -94,7 +94,7 @@ class TopicCard extends React.Component {
                     )}
 
                     {this.state.currentTopicToEdit !== topic.slug ? (
-                      <>
+                      <div className={styles.sendAndExitHolder}>
                         {this.state.currentUser !== "" ? (
                           <button
                             key={`button-${topic.slug}`}
@@ -102,14 +102,14 @@ class TopicCard extends React.Component {
                               e.preventDefault();
                               this.showTopicEditor(topic);
                             }}
-                            className={`${styles.editTopicButton} ${globalStyles.buttonColoringLight}`}
+                            className={`${styles.sendOrEditTopicButton} ${globalStyles.buttonColoringLight}`}
                           >
                             Edit
                           </button>
                         ) : (
                           ""
                         )}
-                      </>
+                      </div>
                     ) : (
                       <>
                         <textarea
@@ -146,7 +146,7 @@ class TopicCard extends React.Component {
                                       this.state.descriptionInput
                                     );
                               }}
-                              className={`${styles.sendTopicButton} ${globalStyles.buttonColoringLight}`}
+                              className={`${styles.sendOrEditTopicButton} ${globalStyles.buttonColoringLight}`}
                             >
                               {this.state.isLoadingNew ? "Sending..." : "Done"}
                             </button>
@@ -159,7 +159,7 @@ class TopicCard extends React.Component {
                                   descriptionInput: "",
                                 });
                               }}
-                              className={styles.topicX}
+                              className={styles.exitX}
                             >
                               <span role="img" aria-label="Red X">
                                 ❌

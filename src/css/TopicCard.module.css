@@ -23,6 +23,8 @@
   box-sizing: border-box;
   padding-left: 10px;
   padding-right: 10px;
+
+  position: relative;
 }
 
 .slug {
@@ -34,20 +36,6 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-}
-
-.descriptionContainer {
-  margin: 0%;
-  margin-top: 0.5vh;
-  margin-bottom: 2.5vh;
-  height: auto;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  max-height: 50px;
 }
 
 .description {
@@ -63,19 +51,8 @@
   margin-bottom: 1.5vh;
 }
 
-.editTopicButton {
-  /* margin-bottom: -10px; */
-  height: 20px;
-
-  width: 90px;
-  /* position: relative; */
-
-  align-self: center;
-  cursor: pointer;
-}
-
-.topicX {
-  position: relative;
+.exitX {
+  position: absolute;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -83,26 +60,55 @@
   width: 30px;
   height: 30px;
   padding: 0px;
+
+  right: 0px;
+}
+
+.descriptionContainer {
+  margin: 0px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+
+  margin-bottom: 30px;
 }
 
 .descriptionField {
+  margin: 0px;
   border-radius: var(--bradius2);
   box-sizing: border-box;
   resize: none;
-  height: 39px;
+  height: 40px;
   font-family: arial;
   padding: 10px;
+
+  margin-bottom: 30px;
 }
 
-.sendTopicButton {
+.sendOrEditTopicButton {
   height: 20px;
-
-  width: 80px;
-  /* position: relative; */
-
+  width: 60%;
   align-self: center;
   cursor: pointer;
-  margin-left: 30px;
+}
+
+.sendAndExitHolder {
+  /* border: black solid 2px; */
+  height: 20px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 5px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {

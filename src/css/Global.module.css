@@ -11,7 +11,7 @@
   border: none;
   background-color: var(--shade-lilac);
   /* box-shadow: var(--shadow4); */
-  border: var(--indigoTrans1) solid 1px;
+  border: var(--indigoTrans1) solid 1.5px;
   color: var(--indigo);
   font-weight: bold;
 }
@@ -20,7 +20,22 @@
   border: none;
   background-color: var(--indigo);
   /* box-shadow: var(--shadow4); */
-  border: var(--indigoTrans1) solid 1px;
+  border: var(--indigoTrans1) solid 1.5px;
   color: white;
   font-weight: bold;
+}
+
+.buttonColoringLight:hover {
+  background-color: var(--hot-lilac);
+  color: black;
+}
+
+.buttonColoringMedium:hover {
+  background-color: var(--hot-lilac2);
+  color: black;
+}
+
+.buttonColoringDark:hover {
+  background-color: var(--hot-lilac3);
+  color: white;
 }

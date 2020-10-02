@@ -3,6 +3,12 @@
   --shade-lilac: #d7c9e9; /*Main colour of elements.*/
   --dark-lilac: #b893e7; /*Just for loading text, so far.*/
   --hot-lilac: #d5bfff; /*Cards.*/
+  --hot-lilac2: #bca2f0;
+  --hot-lilac4-trans1: rgba(136, 72, 255, 0.5);
+  --hot-lilac4-trans2: rgba(136, 72, 255, 0.25);
+  --hot-lilac4-trans3: rgba(136, 72, 255, 0.1);
+  --hot-lilac3: #b48bff;
+  --hot-lilac4: rgb(136, 72, 255);
   --rebecca: rebeccapurple; /*Nice strong fill colour.*/
   --indigo: indigo; /*Border.*/
   --shimmer-lilac: #ae92d3;

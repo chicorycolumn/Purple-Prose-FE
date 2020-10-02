@@ -126,7 +126,7 @@ class SortTab extends React.Component {
                 onClick={() => {
                   alert("To share your thoughts, log in or sign up!");
                 }}
-                className={styles.rightButton}
+                className={`${styles.rightButton} ${globalStyles.buttonColoringLight}`}
               >
                 Write!
               </button>
