@@ -35,6 +35,8 @@
   border-radius: 0px;
 
   background-color: var(--soft-lilac2);
+
+  border-top: var(--borderLight);
 }
 
 .allCommentsContainer {
@@ -100,13 +102,12 @@
   width: 100%;
   justify-content: center;
   grid-row: 1;
-  /* box-shadow: 0.5px 0px 0.5px indigo; */
-  /* border-right: var(--indigo)dotted 0.5pt;
-  border-bottom: var(--indigo)dotted 0.5pt; */
 
   border-radius: 0px;
+  border-top-left-radius: var(--bradius1);
 
-  border-right: var(--borderLight);
+  border: var(--borderLight);
+  border-bottom: none;
 }
 
 .rightHandSideContainer {
@@ -214,6 +215,10 @@
   cursor: pointer;
 
   border-radius: 0px;
+}
+
+.joinConvoButton:hover {
+  background-color: var(--shade-lilac);
 }
 
 .joinConvoButton_depressed {
@@ -379,6 +384,9 @@
 
   .deleteAndEditButton {
     margin: 0px 2px;
+    height: 20px;
+    width: 40px;
+    font-size: 10px;
     /* border: var(--indigo)solid 0.5pt; */
   }
   .deleteAndEditHolder {

@@ -5,7 +5,7 @@
   grid-template-columns: 10% 1fr minmax(200px, 17%);
 
   border: var(--indigo) solid 1px;
-  border-left: var(--indigo) solid 1.5px;
+  border-top: none;
 
   margin-left: 5%;
   margin-right: 5%;
@@ -24,6 +24,8 @@
   text-overflow: ellipsis;
   padding: 0px 5px;
   /* white-space: nowrap; */
+  border-radius: 0px;
+  border-top: var(--borderLight);
 }
 
 .title {
@@ -65,6 +67,8 @@
 
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+
+  border-top: var(--borderLight);
 }
 
 .rightHandSideContainer {
@@ -80,6 +84,8 @@
 
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+
+  border-top: var(--borderLight);
 }
 
 .topic {
@@ -342,6 +348,9 @@
   }
   .deleteAndEditButton {
     margin: 0px 2px;
+    height: 20px;
+    width: 40px;
+    font-size: 10px;
     /* border: var(--indigo) solid 0.5pt; */
   }
   .deleteAndEditHolder {
