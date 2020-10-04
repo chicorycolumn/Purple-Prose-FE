@@ -1,5 +1,11 @@
 # NC News frontend
 
+## Description
+
+NC News is an online news aggregation forum where users can write and share articles as well as commenting and voting on each other's articles and comments. Have you used Reddit? It's Reddit.
+
+This project is a fullstack RESTful API, with a PSQL database where Knex was used as a query builder, and a Frontend of React and CSS Modules. It was a solo project during the last week of the Backend and Frontend blocks of the [Northcoders](https://northcoders.com/) coding bootcamp.
+
 ## Instructions
 
 This frontend is live on [Netlify](https://purpleprose.netlify.app/).
@@ -32,8 +38,23 @@ General instructions for taking a **React project** and hosting it on **Netlify*
 
 Now when you commit and push to Github, Netlify will deploy the latest version of the project automatically.
 
-## Description
+## Built with
 
-## Challenges
+- [JavaScript](https://www.javascript.com/) - The primary coding language
+- [VisualStudioCode](https://code.visualstudio.com/) - The code editor
 
-## What I learned
+- [Heroku](https://www.heroku.com/) - The cloud application platform used for the backend
+- [Netlify](https://www.netlify.com/) - The hosting service used for the frontend
+
+- [PSQL](http://postgresguide.com/utilities/psql.html) - The interactive terminal for use with postgres
+- [Knex](http://knexjs.org/) - The SQL query builder
+- [MySQL](https://www.mysql.com/) - The database management system
+- [Axios](https://github.com/axios/axios) - The HTTP client
+- [Express](http://expressjs.com/) - The web application framework
+
+- [React](https://reactjs.org/) - The frontend framework
+- [Reach Router](https://reach.tech/router/) - The router
+- [CSS Modules](https://github.com/css-modules/css-modules) - The design organisation system
+
+- [Mocha](https://mochajs.org/) - The testing framework
+- [Chai](https://www.chaijs.com/) - The testing library
