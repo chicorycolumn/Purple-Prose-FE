@@ -161,8 +161,12 @@ class TopicCard extends React.Component {
                               }}
                               className={styles.exitX}
                             >
-                              <span role="img" aria-label="Red X">
-                                ❌
+                              <span
+                                className={globalStyles.exitSymbol}
+                                role="img"
+                                aria-label="Red X"
+                              >
+                                &times;
                               </span>
                             </button>
                           </div>

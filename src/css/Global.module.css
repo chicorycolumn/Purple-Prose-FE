@@ -39,3 +39,8 @@
   background-color: var(--hot-lilac3);
   color: white;
 }
+
+.exitSymbol {
+  font-size: 26px;
+  color: red;
+}

@@ -121,8 +121,12 @@ class Login extends React.Component {
                 }}
                 className={styles.exitX}
               >
-                <span role="img" aria-label="red cross">
-                  ❌
+                <span
+                  className={globalStyles.exitSymbol}
+                  role="img"
+                  aria-label="red cross"
+                >
+                  &times;
                 </span>
               </button>
 
@@ -186,8 +190,12 @@ class Login extends React.Component {
                 }}
                 className={styles.exitX}
               >
-                <span role="img" aria-label="red cross">
-                  ❌
+                <span
+                  className={globalStyles.exitSymbol}
+                  role="img"
+                  aria-label="red cross"
+                >
+                  &times;
                 </span>
               </button>
 
