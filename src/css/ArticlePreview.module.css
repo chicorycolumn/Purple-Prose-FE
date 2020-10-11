@@ -167,6 +167,10 @@
   -ms-animation-duration: 1s;
   -ms-animation-iteration-count: 1;
   -ms-animation-timing-function: ease-out;
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
 }
 
 @-moz-keyframes spin-once {

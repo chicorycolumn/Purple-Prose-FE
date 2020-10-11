@@ -223,6 +223,12 @@
 }
 
 .flashingField {
+  -moz-animation-name: errorShimmer;
+  -moz-animation-duration: 1.5s;
+  -webkit-animation-name: errorShimmer;
+  -webkit-animation-duration: 1.5s;
+  -ms-animation-name: errorShimmer;
+  -ms-animation-duration: 1.5s;
   animation-name: errorShimmer;
   animation-duration: 1.5s;
 }
