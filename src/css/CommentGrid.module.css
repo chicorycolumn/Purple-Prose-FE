@@ -4,9 +4,7 @@
   border-left: rebeccapurple dotted 0.5pt;
   border-right: rebeccapurple dotted 0.25pt;
   border-bottom: rebeccapurple dotted 0.25pt;
-
   border-radius: 0px;
-
   border: 0px;
 }
 
@@ -105,11 +103,8 @@
   grid-column: 1;
   height: 99.25%;
   margin-top: 0.5%;
-  /* background-color: var(--shade-lilac); */
-
   width: 100%;
   justify-content: center;
-
   border-top-right-radius: 0px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -119,19 +114,12 @@
   font-size: 100%;
   margin: 0%;
   padding: 0%;
-  /* margin: 0; */
 }
 
 .voteCount {
   font-size: 100%;
   margin: 5%;
   padding: 0%;
-
-  /* overflow: hidden;
-      text-overflow: ellipsis;
-      word-wrap: break-word;
-      display: block; */
-  /* margin: 0; */
 }
 
 .deleteCommentButton {

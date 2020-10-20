@@ -1,6 +1,5 @@
 .fullWidthBar {
   background-color: rebeccapurple;
-  /* background-color: #cda4ff; */
   position: fixed;
   top: 70px;
   width: 100%;
@@ -11,9 +10,7 @@
   align-items: center;
   z-index: 2;
   border-radius: 0px;
-
   box-shadow: 0px 1.5px 3px var(--indigoTrans2);
-
   box-sizing: border-box;
   padding-left: 10px;
   padding-right: 10px;
@@ -43,8 +40,6 @@
 }
 
 .trigger {
-  /* position: fixed; */
-  /* left: 0.5px; */
   width: 94px;
   height: 21px;
   font-size: 12px;
@@ -66,20 +61,15 @@
 
 .dropButtons {
   border: var(--indigo) solid 1px;
-
   box-shadow: var(--shadow1);
-
   border-top: none;
   width: 92.5px;
   text-align: center;
   margin-left: 0px;
   cursor: pointer;
-
   border-radius: 0px;
-
   position: relative;
   left: 1px;
-
   background-color: var(--soft-lilac2);
 }
 
@@ -89,24 +79,13 @@
 }
 
 .littleButtons {
-  /* position: fixed; */
-  /* border: var(--indigo) solid 1pt; */
   margin: 0%;
   margin-left: 0px;
   height: 18px;
   width: 20px;
   cursor: pointer;
-
   border-radius: var(--bradius1);
 }
-
-/* .asc {
-  left: 87px;
-}
-
-.desc {
-  left: 109px;
-} */
 
 .loadingText {
   color: var(--dark-lilac);
@@ -122,32 +101,33 @@
     padding-left: 5px;
     padding-right: 5px;
   }
+
   .leftContainer {
     margin-right: 0%;
   }
+
   .rightButton {
     width: 46px;
     font-size: 11px;
     height: 21px;
     top: -0.8px;
     padding: 1px;
-    /* margin: -1px; */
   }
+
   .trigger {
     font-size: 11px;
     width: 80px;
     padding: 1px;
-    /* margin-right: -2px; */
     height: 21.5px;
   }
+
   .dropButtons {
     width: 78px;
     font-size: 12px;
     margin-left: 0px;
   }
+
   .littleButtons {
-    /* margin-left: -1px;
-    margin-right: -1px; */
     height: 19px;
   }
 }

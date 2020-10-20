@@ -1,13 +1,10 @@
 .loginHolder {
-  /* grid-column: 4;
-    display: block; */
   text-align: right;
   padding-right: 2vw;
   display: flex;
 }
 
 .fullPageBox {
-  /* background-color: var(--shade-lilac); */
   position: fixed;
   top: 90px;
   left: 0px;
@@ -21,36 +18,30 @@
 }
 
 .loginBox {
-  /* background-color: var(--shade-lilac); */
   position: fixed;
   background-color: white;
   height: 300px;
   width: 286px;
-  /* border: var(--indigo) dotted 1pt; */
   display: inline-block;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding-bottom: 25px;
-
   box-shadow: var(--shadow2);
 }
 
 .signupBox {
-  /* background-color: var(--shade-lilac); */
   position: fixed;
   background-color: white;
   height: 300px;
   width: 286px;
-  /* border: var(--indigo) dotted 1pt; */
   display: inline-block;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding-bottom: 25px;
-
   box-shadow: var(--shadow2);
 }
 
@@ -72,9 +63,6 @@
   padding-right: 10px;
 }
 
-.enterUsername {
-}
-
 .enterPassword {
   margin-top: 5px;
 }
@@ -93,8 +81,6 @@
 }
 
 .loggedInUserContainer {
-  /* background-color: gold; */
-  /* border: black dotted 1px; */
   margin: 0%;
   margin-top: 2.5vh;
   width: 150px;
@@ -107,7 +93,6 @@
   font-style: italic;
   margin: 0%;
   margin-top: 25px;
-  /* margin-left: -10%; */
   width: 17vw;
   height: 28px;
   color: var(--indigo);
@@ -192,7 +177,4 @@
     overflow: hidden;
     font-size: 12px;
   }
-  /* .loggedInUser {
-    font-size: 8px;
-  } */
 }

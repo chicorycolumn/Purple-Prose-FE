@@ -1,17 +1,13 @@
 .containerGrid {
   display: grid;
   grid-template-columns: 10% 1fr 17%;
-
   grid-template-columns: 10% 1fr minmax(200px, 17%);
-
   border: var(--indigo) solid 1px;
   border-top: none;
-
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 2.5%;
   margin-bottom: 2.5%;
-
   box-shadow: var(--shadow1);
 }
 
@@ -23,13 +19,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0px 5px;
-  /* white-space: nowrap; */
   border-radius: 0px;
   border-top: var(--borderLight);
 }
 
 .title {
-  /* border: firebrick solid 2pt; */
   font-size: 3vh;
   text-align: center;
   max-height: 50%;
@@ -38,20 +32,10 @@
   grid-column: 2;
   grid-row: 1;
   color: var(--indigo);
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  hyphens: auto;
-  word-break: break-word; */
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
 }
-
-/* .body {
-  margin-top: 0%;
-  grid-row: 2;
-  grid-column: 1;
-} */
 
 .leftHandSideContainer {
   display: flex;
@@ -64,10 +48,8 @@
   width: 100%;
   justify-content: center;
   box-shadow: 1px 0px 1px var(--indigo);
-
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-
   border-top: var(--borderLight);
 }
 
@@ -81,16 +63,13 @@
   width: 100%;
   background-color: var(--shade-lilac);
   box-shadow: -1px 0px 1px var(--indigo);
-
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-
   border-top: var(--borderLight);
 }
 
 .topic {
   background-color: var(--indigo);
-  /* align-self: stretch; */
   height: auto;
   color: white;
   margin: 0;
@@ -102,7 +81,6 @@
   width: 92.5%;
   padding: 4%;
   font-size: 130%;
-
   border-top-right-radius: var(--bradius1);
 }
 
@@ -110,32 +88,21 @@
   font-size: 100%;
   margin: 0%;
   padding: 0%;
-  /* margin: 0; */
 }
 
 .voteCount {
   font-size: 100%;
   margin: 5%;
   padding: 0%;
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: block; */
-  /* margin: 0; */
 }
 
 .comments {
   font-size: 25px;
   margin: 0%;
   margin-bottom: -5%;
-  /* margin: 0; */
 }
 
 .created_at {
-  /* grid-row: 3;
-  grid-column: 2;
-  margin-top: 30%;
-  margin-bottom: 0%; */
   font-size: 12px;
   margin: 5%;
 }
@@ -255,9 +222,6 @@
   }
 }
 
-.hoverable {
-}
-
 .hoverText {
   visibility: hidden;
   width: 98px;
@@ -267,7 +231,6 @@
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   margin-top: -25px;
   margin-left: 15px;
@@ -285,11 +248,9 @@
 .author {
   color: var(--indigo);
   margin: 0% 5%;
-  /* background-color: tomato; */
 }
 
 .deleteAndEditHolder {
-  /* background-color: turquoise; */
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -299,12 +260,9 @@
 .deleteAndEditButton {
   height: 20px;
   width: 60px;
-  /* position: relative; */
   padding: 0px;
   margin: 0px 5%;
   align-self: center;
-  /* left: 43%;
-  top: -10px; */
   cursor: pointer;
 }
 
@@ -318,12 +276,10 @@
 .authorAndButtonsContainer {
   grid-column: 2;
   grid-row: 1;
-  /* background-color: yellow; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 16px 0px;
-  /* margin-bottom: 21px; */
 }
 
 .commentIcon {
@@ -355,7 +311,6 @@
     height: 20px;
     width: 40px;
     font-size: 10px;
-    /* border: var(--indigo) solid 0.5pt; */
   }
   .deleteAndEditHolder {
     flex-direction: column;

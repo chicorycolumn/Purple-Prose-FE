@@ -1,7 +1,6 @@
 .buttonColoringLight {
   border: none;
   background-color: white;
-  /* box-shadow: var(--shadow4); */
   border: var(--indigo) solid 1.5px;
   color: var(--indigo);
   font-weight: bold;
@@ -10,7 +9,6 @@
 .buttonColoringMedium {
   border: none;
   background-color: var(--shade-lilac);
-  /* box-shadow: var(--shadow4); */
   border: var(--indigoTrans1) solid 1.5px;
   color: var(--indigo);
   font-weight: bold;
@@ -19,7 +17,6 @@
 .buttonColoringDark {
   border: none;
   background-color: var(--indigo);
-  /* box-shadow: var(--shadow4); */
   border: var(--indigoTrans1) solid 1.5px;
   color: white;
   font-weight: bold;
