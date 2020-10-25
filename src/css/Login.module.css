@@ -22,7 +22,6 @@
   background-color: white;
   height: 300px;
   width: 286px;
-  display: inline-block;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -36,7 +35,6 @@
   background-color: white;
   height: 300px;
   width: 286px;
-  display: inline-block;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-evenly;

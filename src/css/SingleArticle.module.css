@@ -249,6 +249,25 @@
   border: var(--indigo) solid 1pt;
 }
 
+.flashingNewCommentInputField {
+  -webkit-animation-name: errorShimmer;
+  -webkit-animation-duration: 1.5s;
+  animation-name: errorShimmer;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes errorShimmer {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: var(--shimmer-lilac);
+  }
+  100% {
+    background-color: white;
+  }
+}
+
 @keyframes errorShimmer {
   0% {
     background-color: white;
@@ -261,19 +280,7 @@
   }
 }
 
-.flashingNewCommentInputField {
-  -moz-animation-name: errorShimmer;
-  -moz-animation-duration: 1.5s;
-  -webkit-animation-name: errorShimmer;
-  -webkit-animation-duration: 1.5s;
-  -ms-animation-name: errorShimmer;
-  -ms-animation-duration: 1.5s;
-  animation-name: errorShimmer;
-  animation-duration: 1.5s;
-}
-
 .deleteAndEditHolder {
-  /* background-color: turquoise; */
   display: flex;
   flex-direction: row;
   width: 100%;

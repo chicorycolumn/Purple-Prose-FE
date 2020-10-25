@@ -120,7 +120,14 @@
   }
 }
 
-@keyframes errorShimmer {
+.flashingField {
+  -webkit-animation-name: errorShimmer;
+  -webkit-animation-duration: 1.5s;
+  animation-name: errorShimmer;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes errorShimmer {
   0% {
     background-color: white;
   }
@@ -132,13 +139,14 @@
   }
 }
 
-.flashingField {
-  -moz-animation-name: errorShimmer;
-  -moz-animation-duration: 1.5s;
-  -webkit-animation-name: errorShimmer;
-  -webkit-animation-duration: 1.5s;
-  -ms-animation-name: errorShimmer;
-  -ms-animation-duration: 1.5s;
-  animation-name: errorShimmer;
-  animation-duration: 1.5s;
+@keyframes errorShimmer {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: var(--shimmer-lilac);
+  }
+  100% {
+    background-color: white;
+  }
 }

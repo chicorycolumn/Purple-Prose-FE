@@ -126,10 +126,6 @@
   -webkit-animation-duration: 1s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-out;
-  -moz-animation-name: bounce;
-  -moz-animation-duration: 1s;
-  -moz-animation-iteration-count: 1;
-  -moz-animation-timing-function: ease-out;
   -ms-animation-name: bounce;
   -ms-animation-duration: 1s;
   -ms-animation-iteration-count: 1;
@@ -140,12 +136,12 @@
   animation-timing-function: ease-out;
 }
 
-@-moz-keyframes spin-once {
+@-ms-keyframes spin-once {
   from {
-    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
   }
   to {
-    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
   }
 }
 @-webkit-keyframes spin-once {
@@ -165,22 +161,22 @@
   }
 }
 
-@keyframes bounce {
+@-ms-keyframes bounce {
   0%,
   20%,
   50%,
   80%,
   100% {
-    transform: translateY(0);
+    -ms-transform: translateY(0);
   }
   10% {
-    transform: translateY(-4px);
+    -ms-transform: translateY(-4px);
   }
   40% {
-    transform: translateY(-2.5px);
+    -ms-transform: translateY(-2.5px);
   }
   60% {
-    transform: translateY(-1.5px);
+    -ms-transform: translateY(-1.5px);
   }
 }
 
@@ -203,22 +199,22 @@
   }
 }
 
-@-moz-keyframes bounce {
+@keyframes bounce {
   0%,
   20%,
   50%,
   80%,
   100% {
-    -moz-transform: translateY(0);
+    transform: translateY(0);
   }
   10% {
-    -moz-transform: translateY(-4px);
+    transform: translateY(-4px);
   }
   40% {
-    -moz-transform: translateY(-2.5px);
+    transform: translateY(-2.5px);
   }
   60% {
-    -moz-transform: translateY(-1.5px);
+    transform: translateY(-1.5px);
   }
 }
 

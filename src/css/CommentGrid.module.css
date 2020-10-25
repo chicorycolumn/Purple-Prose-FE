@@ -1,9 +1,6 @@
 .containerGrid {
   display: grid;
   grid-template-columns: 10% 1fr 20%;
-  border-left: rebeccapurple dotted 0.5pt;
-  border-right: rebeccapurple dotted 0.25pt;
-  border-bottom: rebeccapurple dotted 0.25pt;
   border-radius: 0px;
   border: 0px;
 }
