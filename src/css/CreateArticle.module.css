@@ -164,20 +164,18 @@
 .articleSubmitButton {
   border: rebeccapurple solid 1pt;
   background-color: var(--shade-lilac);
-  margin: 0%;
   width: 25%;
   height: 58.5px;
-  margin-top: -2.5px;
+  margin: -2.5px 0% 0%;
   cursor: pointer;
   font-size: 18px;
 }
 
 .newCommentInfo {
   color: black;
-  margin: 0%;
   height: 30px;
   display: inline-block;
-  margin-right: 5px;
+  margin: 0% 5px 0% 0%;
 }
 
 .usernameOnComment {

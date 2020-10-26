@@ -26,10 +26,7 @@
 
 .slug {
   font-size: 140%;
-  margin: 0%;
-  margin-top: 7.5px;
-  margin-left: 7.5px;
-  margin-right: 7.5px;
+  margin: 7.5px 7.5px 0%;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -37,14 +34,12 @@
 
 .description {
   font-style: italic;
-  margin: 0%;
   margin: 1vh;
   font-size: 10pt;
 }
 
 .articleCount {
-  margin: 0%;
-  margin-bottom: 1.5vh;
+  margin: 0% 0% 1.5vh;
 }
 
 .exitX {
@@ -60,7 +55,6 @@
 }
 
 .descriptionContainer {
-  margin: 0px;
   height: 40px;
   display: flex;
   justify-content: flex-start;
@@ -68,18 +62,17 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-  margin-bottom: 30px;
+  margin: 0px 0px 30px;
 }
 
 .descriptionField {
-  margin: 0px;
   border-radius: var(--bradius2);
   box-sizing: border-box;
   resize: none;
   height: 40px;
   font-family: arial;
   padding: 10px;
-  margin-bottom: 30px;
+  margin: 0px 0px 30px;
 }
 
 .sendOrEditTopicButton {
@@ -108,7 +101,6 @@
 
   .topicCard {
     width: 140px;
-    margin: 1.75vh;
     border: none;
     margin: 7.5px 2.5px;
   }
