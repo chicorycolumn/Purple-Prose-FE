@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "https://nc-news-c-matus.herokuapp.com/api";
+import { baseUrl } from "./baseUrl.js";
 // const token = localStorage.getItem("currentUserToken");
 
 export const fetchUsers = () => {

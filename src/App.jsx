@@ -27,7 +27,7 @@ class App extends React.Component {
       <>
         <Navbar currentUser={this.state.currentUser} />
         <div className={styles.App}>
-          <header className="NC News"></header>
+          <header className="Purple Prose"></header>
           <Router>
             <Frontpage currentUser={this.state.currentUser} path="/" />
             <Frontpage

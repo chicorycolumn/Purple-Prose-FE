@@ -1,5 +1,5 @@
 import React from "react";
-import ncnewslogo from "./images/logoncnews.png";
+import logoPurpleProse from "./images/logoPurpleProse1.png";
 import styles from "./css/Navbar.module.css";
 import { Link, navigate } from "@reach/router";
 import Login from "./Login";
@@ -13,7 +13,7 @@ class Navbar extends React.Component {
     return (
       <div className={styles.navGrid}>
         <Link to={"/"}>
-          <img className={styles.ncLogo} src={ncnewslogo} alt="logo" />{" "}
+          <img className={styles.ncLogo} src={logoPurpleProse} alt="logo" />{" "}
         </Link>
         <div className={styles.searchbarAndLoginContainer}>
           <div className={styles.searchbarContainer}>

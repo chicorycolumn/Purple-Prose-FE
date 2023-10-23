@@ -779,17 +779,19 @@
                                         ? e.state.passwordSignupInput.length < 4
                                           ? (t.preventDefault(),
                                             e.setState({
-                                              signupError: "Password should be at least four characters, ".concat(
-                                                e.state.usernameSignupInput
-                                              ),
+                                              signupError:
+                                                "Password should be at least four characters, ".concat(
+                                                  e.state.usernameSignupInput
+                                                ),
                                             }))
                                           : (t.preventDefault(),
                                             e.sendSignupDetails())
                                         : (t.preventDefault(),
                                           e.setState({
-                                            signupError: "Please choose a password, ".concat(
-                                              e.state.usernameSignupInput
-                                            ),
+                                            signupError:
+                                              "Please choose a password, ".concat(
+                                                e.state.usernameSignupInput
+                                              ),
                                           }))
                                       : (t.preventDefault(),
                                         e.setState({
@@ -1620,7 +1622,8 @@
                                                           e.state
                                                             .descriptionInput
                                                             ? e.setState({
-                                                                shallMakeBoxFlash: !0,
+                                                                shallMakeBoxFlash:
+                                                                  !0,
                                                               })
                                                             : e.sendNewDescription(
                                                                 t.slug,
@@ -1645,7 +1648,8 @@
                                                       onClick: function (t) {
                                                         t.preventDefault(),
                                                           e.setState({
-                                                            currentTopicToEdit: null,
+                                                            currentTopicToEdit:
+                                                              null,
                                                             descriptionInput:
                                                               "",
                                                           });
@@ -2826,7 +2830,8 @@
                                       "" !== e.state.currentUser
                                         ? e.setState(function (e) {
                                             return {
-                                              createCommentDisplaying: !e.createCommentDisplaying,
+                                              createCommentDisplaying:
+                                                !e.createCommentDisplaying,
                                             };
                                           })
                                         : alert(
@@ -2851,8 +2856,8 @@
                                   r.a.createElement(ue, {
                                     article_id: this.state.article.article_id,
                                     votes: this.state.votes,
-                                    upwardVoteOnArticle: this
-                                      .upwardVoteOnArticle,
+                                    upwardVoteOnArticle:
+                                      this.upwardVoteOnArticle,
                                   })
                                 ),
                                 r.a.createElement(
@@ -2882,13 +2887,13 @@
                                 this.state.createCommentDisplaying &&
                                   r.a.createElement(Ae, {
                                     newCommentInput: this.state.newCommentInput,
-                                    upwardNewCommentInput: this
-                                      .upwardNewCommentInput,
+                                    upwardNewCommentInput:
+                                      this.upwardNewCommentInput,
                                     submitNewComment: this.submitNewComment,
-                                    upwardEmptyCheckReset: this.state
-                                      .upwardEmptyCheckReset,
-                                    userSubmitsEmpty: this.state
-                                      .userSubmitsEmpty,
+                                    upwardEmptyCheckReset:
+                                      this.state.upwardEmptyCheckReset,
+                                    userSubmitsEmpty:
+                                      this.state.userSubmitsEmpty,
                                   })
                               ),
                               r.a.createElement(
@@ -3175,7 +3180,8 @@
                                       ),
                                     onChange: function (t) {
                                       e.setState({
-                                        topicInput: t.target.value.toLowerCase(),
+                                        topicInput:
+                                          t.target.value.toLowerCase(),
                                       });
                                     },
                                     value: this.state.topicInput,
@@ -3246,7 +3252,8 @@
                                                     onClick: function (t) {
                                                       t.preventDefault(),
                                                         e.setState({
-                                                          newTopicFieldShowing: !0,
+                                                          newTopicFieldShowing:
+                                                            !0,
                                                           topicInput: "",
                                                         });
                                                     },
@@ -3384,7 +3391,9 @@
                       r.a.createElement(
                         "div",
                         { className: h.a.App },
-                        r.a.createElement("header", { className: "NC News" }),
+                        r.a.createElement("header", {
+                          className: "Purple Prose",
+                        }),
                         r.a.createElement(
                           d.b,
                           null,

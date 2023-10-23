@@ -1,8 +1,8 @@
-# NC News frontend
+# Purple Prose frontend
 
 ## Description
 
-NC News is an online news aggregation forum where users can write and share articles as well as commenting and voting on each other's articles and comments. Have you used Reddit? It's Reddit.
+Purple Prose is an online news aggregation forum where users can write and share articles as well as commenting and voting on each other's articles and comments. Have you used Reddit? It's Reddit.
 
 This project is a fullstack RESTful API, with a PSQL database where Knex was used as a query builder, and a Frontend of React and CSS Modules. It was a solo project during the last week of the Backend and Frontend blocks of the [Northcoders](https://northcoders.com/) coding bootcamp.
 

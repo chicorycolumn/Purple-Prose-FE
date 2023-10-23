@@ -18,6 +18,16 @@
   padding: 0px 5px;
   border-radius: 0px;
   border-top: var(--borderLight);
+  background-color: var(--soft-lilac1);
+  height: 100%;
+}
+
+.centralContainer:hover {
+  background-color: var(--soft-lilac0);
+}
+
+.centralContainer:hover .title {
+  color: var(--indigo2);
 }
 
 .title {
