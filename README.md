@@ -10,11 +10,11 @@ This project is a fullstack RESTful API, with a PSQL database where Knex was use
 
 This frontend is live on [Netlify](https://purpleprose.netlify.app/).
 <br/>
-The backend counterpart repository can be found [here](https://github.com/chicorycolumn/be-nc-news).
+The backend counterpart repository can be found [here](https://github.com/chicorycolumn/Purple-Prose-BE).
 <br/>
 You can also download this repository and run the project locally by following these steps:
 
-1. Fork this repository by clicking the button labelled 'Fork' on the [project page](https://github.com/chicorycolumn/fe-nc-news).
+1. Fork this repository by clicking the button labelled 'Fork' on the [project page](https://github.com/chicorycolumn/Purple-Prose-FE).
    <br/>
    Copy the url of your forked copy of the repository, and run `git clone the_url_of_your_forked_copy` in a Terminal window on your computer, replacing the long underscored word with your url.
    <br/>
