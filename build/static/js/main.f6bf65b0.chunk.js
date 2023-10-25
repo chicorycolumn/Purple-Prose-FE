@@ -316,7 +316,7 @@
         I = a(21),
         O = a(10),
         A = a.n(O),
-        x = "https://purple-prose.herokuapp.com/api",
+        x = "https://purple-prose-0fde376a3dc3.herokuapp.com/api",
         j = (function () {
           var e = Object(I.a)(
             k.a.mark(function e(t, a) {
@@ -944,7 +944,7 @@
             t
           );
         })(r.a.Component),
-        G = "https://purple-prose.herokuapp.com/api",
+        G = "https://purple-prose-0fde376a3dc3.herokuapp.com/api",
         R = function (e) {
           var t = "";
           if (e && Object.keys(e).length) {
@@ -1877,14 +1877,20 @@
         me = function (e) {
           return A.a.delete(
             ""
-              .concat("https://purple-prose.herokuapp.com/api", "/comments/")
+              .concat(
+                "https://purple-prose-0fde376a3dc3.herokuapp.com/api",
+                "/comments/"
+              )
               .concat(e)
           );
         },
         de = function (e) {
           return A.a.delete(
             ""
-              .concat("https://purple-prose.herokuapp.com/api", "/articles/")
+              .concat(
+                "https://purple-prose-0fde376a3dc3.herokuapp.com/api",
+                "/articles/"
+              )
               .concat(e)
           );
         },
