@@ -1,4 +1,4 @@
-(this["webpackJsonpnc-news"] = this["webpackJsonpnc-news"] || []).push([
+(this["webpackJsonppurpleprose"] = this["webpackJsonppurpleprose"] || []).push([
   [0],
   [
     ,
